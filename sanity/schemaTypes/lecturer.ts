@@ -32,4 +32,15 @@ export default defineType({
       ],
     }),
   ],
+  preview: {
+    select: {
+      name: 'name',
+    },
+    prepare(selection) {
+      return {
+        ...selection,
+        title: selection.name,
+      }
+    },
+  },
 })
