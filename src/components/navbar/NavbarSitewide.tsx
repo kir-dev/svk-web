@@ -31,7 +31,7 @@ import { useTranslations } from 'next-intl'
 import { LogoAnimated } from '../svg-components/LogoAnimated'
 
 export interface Props {
-  routes: { homeRoute: Route; otherRoutes: Route[] }
+  routes: Route[]
 }
 
 export const NavbarSitewide: FC<PropsWithChildren<Props>> = ({ routes }) => {
@@ -67,7 +67,7 @@ export const NavbarSitewide: FC<PropsWithChildren<Props>> = ({ routes }) => {
       </NavbarContent>
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        {routes.otherRoutes.map((route) =>
+        {routes.map((route) =>
           route.routes?.length ? (
             <Dropdown key={route.key}>
               <NavbarItem>
@@ -152,7 +152,7 @@ export const NavbarSitewide: FC<PropsWithChildren<Props>> = ({ routes }) => {
       </NavbarContent>
 
       <NavbarMenu className="flex gap-4 pt-4 bg-background bg-opacity-70">
-        {routes.otherRoutes
+        {routes
           .flatMap((item) => (item.routes?.length ? item.routes : item))
           .map((item) => (
             <NavbarMenuItem key={item.key} className="flex items-center gap-3">
