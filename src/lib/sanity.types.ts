@@ -90,3 +90,13 @@ export interface Course {
     place?: string
   }[]
 }
+
+//SVK
+
+export interface Partner {
+  _type: 'partner'
+  _id: string
+  name: string
+  link: string
+  image: ImageAsset
+}
