@@ -100,3 +100,12 @@ export interface Partner {
   link: string
   image: ImageAsset
 }
+
+export interface Member {
+  _type: 'member'
+  _id: string
+  name: string
+  position: string
+  linkedIn: string
+  picture: ImageAsset
+}
