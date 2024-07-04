@@ -1,4 +1,6 @@
 import { ImageAsset, PortableTextBlock, Slug } from 'sanity'
+import slug from 'sanity/src/core/schema/types/slug'
+import { DateTime } from 'groq-js'
 
 export interface ReducedPost {
   _id: string
@@ -108,4 +110,34 @@ export interface Member {
   position: string
   linkedIn: string
   picture: ImageAsset
+}
+
+export interface Lecturer {
+  _type: 'lecturer'
+  _id: string
+  name: string
+  title?: string
+  image?: ImageAsset
+}
+
+export interface EventPreview {
+  _type: 'event'
+  _id: string
+  title: string
+  slug: string
+  datetime?: DateTime
+  image?: ImageAsset
+}
+
+export interface EventSummary extends EventPreview {
+  description?: string
+  spotLink?: string
+  externalLink?: string
+  exportLink?: string
+}
+
+export interface EventFull extends EventSummary {
+  location?: string
+  host?: string
+  lecturer?: Lecturer
 }
