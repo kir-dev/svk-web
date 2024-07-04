@@ -98,18 +98,18 @@ export interface Course {
 export interface Partner {
   _type: 'partner'
   _id: string
-  name: string
-  link: string
-  image: ImageAsset
+  name?: string
+  link?: string
+  image?: ImageAsset
 }
 
 export interface Member {
   _type: 'member'
   _id: string
   name: string
-  position: string
-  linkedIn: string
-  picture: ImageAsset
+  position?: string
+  linkedIn?: string
+  picture?: ImageAsset
 }
 
 export interface Lecturer {
