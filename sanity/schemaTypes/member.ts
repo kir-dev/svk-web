@@ -17,7 +17,7 @@ export default defineType({
       type: 'string',
     }),
     defineField({
-      name: 'linkdIn',
+      name: 'linkedIn',
       title: 'LinkedIn',
       type: 'url',
     }),
