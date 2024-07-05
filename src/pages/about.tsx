@@ -7,7 +7,7 @@ export default function AboutUsPage() {
     <Layout>
       <section>
         <div className="flex flex-row m-5 gap-5">
-          <div className="flex w-1/2 justify-items-center align-text-bottom">
+          <div className="w-1/2 justify-content-end">
             <h1>
               Ezek Vagyunk Mi
             </h1>
@@ -42,6 +42,7 @@ export default function AboutUsPage() {
         </div>
       </section>
       <section>
+
         Carousel
       </section>
       <section>

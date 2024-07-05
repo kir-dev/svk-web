@@ -36,51 +36,5 @@ export const allRoutes: Route[] = [
     keywords:
       'történelem, history, about, rólunk, kir-dev, kirdev, kultúra, culture, vision',
     icon: NewspaperIcon,
-  },
-  // {
-  //   key: 'about',
-  //   routes: [
-  //     {
-  //       key: 'history',
-  //       href: '/about/history',
-  //       keywords:
-  //         'történelem, history, about, rólunk, kir-dev, kirdev, kultúra, culture, vision',
-  //       icon: BookOpenIcon,
-  //     },
-  //     {
-  //       key: 'members',
-  //       href: '/about/members',
-  //       keywords:
-  //         'csapatunk, members, team, tagok, tag, member, senior, developer',
-  //       icon: UserGroupIcon,
-  //     },
-  //     {
-  //       key: 'projects',
-  //       href: '/about/projects',
-  //       keywords:
-  //         'projektjeink, projects, projektek, project, open-source, nyílt forráskódú, open source, nyílt forráskód',
-  //       icon: Square3Stack3DIcon,
-  //     },
-  //     {
-  //       key: 'contact',
-  //       href: '/about/contact',
-  //       keywords: 'elérhetőségeink, contact, kapcsolat, email, phone',
-  //       icon: ChatBubbleOvalLeftEllipsisIcon,
-  //     },
-  //     {
-  //       key: 'afsz',
-  //       href: '/about/afsz',
-  //       keywords:
-  //         'elérhetőségeink, contact, felkérés, ajánlat, offer, request',
-  //       icon: DocumentIcon,
-  //     },
-  //   ],
-  // },
-  // {
-  //   key: 'courses',
-  //   href: '/courses',
-  //   keywords:
-  //     'tanfolyam, courses, kurzus, mentor, course, tanfolyamok, tanulás, learning, education, oktatás, oktatási',
-  //   icon: RocketLaunchIcon,
-  // },
+  }
 ]
