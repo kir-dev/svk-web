@@ -1,7 +1,7 @@
 {
   "Index": {
     "ourName": "Kir-Dev",
-    "mainTitle": "A kollégium webfejlesztői.",
+    "mainTitle": "Schönherz Vállalati Kapcsolatok.",
     "terminalTexts": {
       "line5": "A Schönherz webfejlesztő köre.",
       "line6": "Fő technológiáink: Node.js és React."
@@ -93,7 +93,11 @@
       "home": "Kezdőlap",
       "routes": {
         "blog": "Blog",
+
+        "home": "Főoldal",
+        "events": "Események",
         "about": "Rólunk",
+
         "history": "Történelem",
         "projects": "Projektjeink",
         "members": "Csapatunk",

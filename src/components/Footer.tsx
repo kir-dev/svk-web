@@ -1,4 +1,4 @@
-import { Button, Link } from '@nextui-org/react'
+import { Button } from '@nextui-org/react'
 import Image from 'next/image'
 
 import { environment } from '~/utils/environment'
@@ -60,88 +60,18 @@ const sponsors = [
 export default function Footer() {
   const t = useTranslations('common.footer')
   return (
-    <footer className="flex flex-col gap-10 pt-32">
-      <div className="flex flex-col items-center">
-        <div className="px-1 pb-6 text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-orange-400 font-bold w-min">
-          {t('sponsors')}
-        </div>
-        <div className="flex w-full justify-center items-center gap-3 flex-col sm:flex-row">
-          {sponsors.map((item) => (
-            <Link
-              key={item.key}
-              href={item.href}
-              target="_blank"
-              className={`${item.classNameExtra} w-40`}
-            >
-              <Image
-                src={item.src}
-                width={item.w}
-                height={item.h}
-                alt={item.alt}
-                className="h-auto w-full"
-              />
-            </Link>
-          ))}
-        </div>
+    <footer className="flex flex-col gap-10 pt-32 pb-10 items-center">
+      <div>
+        <Button className="w-auto">Csatlakozz</Button>
       </div>
-      <Container>
-        <div className="flex justify-between items-center gap-3 flex-col-reverse sm:flex-row pb-10">
-          <div className="h-24 sm:h-16 flex flex-col sm:flex-row items-center text-sm mt-10">
-            <LogoBig className="h-full w-auto" />
-            <div className="hidden sm:block">
-              <p>
-                {t.rich('partOfSimonyi', {
-                  link: (chunks) => (
-                    <Link
-                      href={environment.simonyiUrl}
-                      target="_blank"
-                      className="text-sm"
-                    >
-                      {chunks}
-                    </Link>
-                  ),
-                })}
-              </p>
-              <p>
-                <Link className="text-sm" href="/about/contact">
-                  {t('contact')}
-                </Link>
-              </p>
-              <p>Kir-Dev &copy; {new Date().getFullYear()}</p>
-            </div>
-            <div className="block sm:hidden text-center">
-              <p>
-                <Link className="text-sm" href="/about/contact">
-                  {t('contact')}
-                </Link>
-              </p>
-              <p>Kir-Dev &copy; {new Date().getFullYear()}</p>
-            </div>
-          </div>
-          <div className="flex flex-col items-center">
-            <div className="px-1 pb-6 text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-orange-400 font-bold">
-              {t('socials')}
-            </div>
-            <div className="flex gap-4">
-              {socials.map((item) => (
-                <Button
-                  key={item.key}
-                  isIconOnly
-                  className="p-0 bg-transparent data-[hover=true]:bg-transparent h-10 w-10"
-                >
-                  <Link
-                    href={item.href}
-                    target="_blank"
-                    className="h-full w-full text-foreground"
-                  >
-                    <item.icon className="h-full w-auto fill-current" />
-                  </Link>
-                </Button>
-              ))}
-            </div>
-          </div>
-        </div>
-      </Container>
+      <div className="flex flex-wrap justify-center gap-x-5">
+        {/*TODO swap to connections icons*/}
+        <Button className="w-auto" />
+        <Button className="w-auto" />
+        <Button className="w-auto" />
+        <Button className="w-auto" />
+      </div>
+
     </footer>
   )
 }
