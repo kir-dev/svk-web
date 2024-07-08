@@ -1,5 +1,4 @@
 import { groq, SanityClient } from 'next-sanity'
-import { client } from '../../../sanity/lib/client'
 import { EventFull, EventPreview, EventSummary } from '~/lib/sanity.types'
 
 export const currentEventsPreview = groq`*[_type == event && datetime > now()] {title, datetime, image}`
