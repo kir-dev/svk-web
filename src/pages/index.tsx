@@ -1,14 +1,12 @@
-import type { GetStaticProps, InferGetStaticPropsType } from 'next'
-import { useRouter } from 'next/router'
+import type { GetStaticProps } from 'next'
+
 
 import Container from '~/components/Container'
 import Layout from '~/components/Layout'
 import { readToken } from '~/lib/sanity.api'
-import { getClient } from '~/lib/sanity.client'
 import type { SharedPageProps } from '~/pages/_app'
 
 import { useTranslations } from 'next-intl'
-import { useState } from 'react'
 
 export const getStaticProps: GetStaticProps<
   SharedPageProps
@@ -24,7 +22,7 @@ export const getStaticProps: GetStaticProps<
 }
 
 export default function IndexPage() {
-  
+
   const t = useTranslations('Index')
 
   return (
