@@ -1,5 +1,3 @@
-export * from './course.queries'
 export * from './member.queries'
-export * from './post.queries'
-export * from './project.queries'
-export * from './siteSection.queries'
+export * from './event.queries'
+export * from './event.queries'
