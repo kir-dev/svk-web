@@ -1,12 +1,10 @@
 import { Avatar, Card, CardFooter } from '@nextui-org/react'
 import { useTranslations } from 'next-intl'
-import { useTheme } from 'next-themes'
 import Image from 'next/image'
-import { FC, ReactEventHandler, useEffect, useState } from 'react'
+import { FC, ReactEventHandler, useState } from 'react'
 
 import { urlForImage } from '~/lib/sanity.image'
 import { Member } from '~/lib/sanity.types'
-import { getAdaptiveImageUrl } from '~/utils/adaptive-member-image'
 
 type Props = {
   member: Member
@@ -16,21 +14,16 @@ export const MemberAvatarCard: FC<Props> = ({ member }) => {
   const defaultAvatarUrl = member.picture
     ? urlForImage(member.picture)?.url()
     : ''
-  const [avatarUrl, setAvatarUrl] = useState(defaultAvatarUrl)
+  const [avatarUrl] = useState(defaultAvatarUrl)
   const [showAvatar, setShowAvatar] = useState(false)
   const [overlayShown, setOverlayShown] = useState(false)
   const onOverlayEnter = () => setOverlayShown(true)
   const onOverlayLeave = () => setOverlayShown(false)
-  const { theme } = useTheme()
   const t = useTranslations('Members')
 
   const onError: ReactEventHandler<HTMLImageElement> = () => {
     setShowAvatar(true)
   }
-
-  useEffect(() => {
-    setAvatarUrl(getAdaptiveImageUrl(member, overlayShown, theme))
-  }, [setAvatarUrl, member, overlayShown, theme])
 
   return (
     <Card
