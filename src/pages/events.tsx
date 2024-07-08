@@ -1,5 +1,4 @@
 import Layout from '~/components/Layout'
-import { Text } from '@sanity/ui'
 import { Button } from '@nextui-org/react'
 
 
