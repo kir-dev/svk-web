@@ -60,25 +60,6 @@
     "nameFormat": "{lastName} {firstName}",
     "imageAlt": "{lastName} {firstName} profilképe"
   },
-  "Projects": {
-    "title": "Projektjeink",
-    "status": {
-      "active": "Aktív",
-      "new": "Új",
-      "done": "Átadva",
-      "discontinued": "Megszakítva"
-    }
-  },
-  "Courses": {
-    "title": "Tanfolyamunk",
-    "body": "A tavaszi félévek folyamán több alkalmas tanfolyamsorozatot tartunk. Megismerkedhettek a HTML-JS-CSS világával, egy-egy webes keretrendszerrel, illetve a webfejlesztés szakkifejezéseivel, eszközeivel.",
-    "action": "Jelentkezés lentebb",
-    "sectionJoiningTitle": "Jelentkezés",
-    "sectionMentoringTitle": "Mentorprogram"
-  },
-  "Post": {
-    "toc": "Tartalomjegyzék"
-  },
   "Blog": {
     "title": "Blog",
     "action": "Archívum megtekintése",
@@ -92,18 +73,9 @@
       "themeSwitcher": "Téma váltása",
       "home": "Kezdőlap",
       "routes": {
-        "blog": "Blog",
-
         "home": "Főoldal",
         "events": "Események",
-        "about": "Rólunk",
-
-        "history": "Történelem",
-        "projects": "Projektjeink",
-        "members": "Csapatunk",
-        "contact": "Kapcsolat",
-        "courses": "Tanfolyam",
-        "afsz": "Felkérések menete"
+        "about": "Rólunk"
       }
     },
     "footer": {

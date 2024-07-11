@@ -60,30 +60,6 @@
     "nameFormat": "{firstName} {lastName}",
     "imageAlt": "{firstName} {lastName}'s profile picture"
   },
-  "Projects": {
-    "title": "Projects",
-    "status": {
-      "active": "Active",
-      "new": "New",
-      "done": "Delivered",
-      "discontinued": "Discontinued"
-    }
-  },
-  "Courses": {
-    "title": "Courses",
-    "body": "During the spring semesters, we run a series of courses. You can learn about the world of HTML-JS-CSS, several web frameworks, and the terminology and tools of web development.",
-    "action": "Read more",
-    "sectionJoiningTitle": "Application",
-    "sectionMentoringTitle": "Mentoring"
-  },
-  "Post": {
-    "toc": "Table of contents"
-  },
-  "Blog": {
-    "title": "Blog",
-    "action": "See more in archive",
-    "archiveTitle": "Blog archive"
-  },
   "common": {
     "navbar": {
       "closeMenu": "Close menu",
@@ -92,14 +68,9 @@
       "themeSwitcher": "Switch color theme",
       "home": "Home",
       "routes": {
-        "blog": "Blog",
-        "about": "About us",
-        "history": "History",
-        "projects": "Projects",
-        "members": "Members",
-        "contact": "Contact",
-        "courses": "Courses",
-        "afsz": "ÁFSZ"
+        "home": "Home",
+        "events": "Events",
+        "about": "About Us"
       }
     },
     "footer": {

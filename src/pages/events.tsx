@@ -2,6 +2,14 @@ import Layout from '~/components/Layout'
 import { Button } from '@nextui-org/react'
 
 
+export const getStaticProps = async ({ locale }) => {
+  return {
+    props: {
+      messages: (await import(`../../messages/${locale}.json`)).default,
+    },
+  }
+}
+
 export default function EventsPage() {
   {/*TODO az egesz*/}
   return (
