@@ -14,8 +14,8 @@ export const EventCoverPicture: FC<Props> = ({ image, title }) => {
       <Image
         src={urlForImage(image)?.url() ?? ''}
         alt={title}
-        width={500}
-        height={500}
+        width={700}
+        height={700}
         className="rounded-t-md"
       />
     </div>

@@ -1,16 +1,22 @@
 import Layout from '~/components/Layout'
 import { Button } from '@nextui-org/react'
-import { getCurrentEventsSummary, getEvents } from '~/lib/queries'
+import {
+  getCurrentEventsSummary,
+  getEvents,
+  getPreviousEventsSummary,
+} from '~/lib/queries'
 import { getClient } from '~/lib/sanity.client'
 import { InferGetStaticPropsType } from 'next'
 import { EventTile } from '~/components/event-components/EventTile'
 
 export const getStaticProps = async ({ locale }) => {
   const client = getClient()
-  const events = await getCurrentEventsSummary(client)
+  const currentEvents = await getCurrentEventsSummary(client)
+  const previousEvents = await getPreviousEventsSummary(client)
   return {
     props: {
-      events: events,
+      currentEvents: currentEvents,
+      previousEvents: previousEvents,
       messages: (await import(`../../messages/${locale}.json`)).default,
     },
   }
@@ -19,19 +25,23 @@ export const getStaticProps = async ({ locale }) => {
 export default function EventsPage(
   props: InferGetStaticPropsType<typeof getStaticProps>,
 ) {
-  const events = props.events
+  const currentEvents = props.currentEvents
+  const previousEvents = props.previousEvents
   return (
     <Layout>
-      <h1>Aktualis Esemenyek</h1>
-      <div className="flex flex-wrap justify-center p-5 gap-5">
-        <Button>Esemeny</Button>
-        <Button>Esemeny</Button>
-      </div>
-      <h1>Korabbi Esemenyek</h1>
-      <div className="flex flex-wrap justify-center p-5 gap-5">
-        {events.map((event) => (
-          <EventTile key={event._id} eventSummary={event} />
-        ))}
+      <div className="w-3/4 mx-auto bg-cyan-700">
+        <h1 className="text-white text-2xl my-8">Aktuális eseményeink</h1>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-40">
+          {currentEvents.map((event) => (
+            <EventTile key={event._id} eventSummary={event} />
+          ))}
+        </div>
+        <h1 className="text-white text-2xl my-8">Korábbi eseményeink</h1>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 text-sm">
+          {previousEvents.map((event) => (
+            <EventTile key={event._id} eventSummary={event} />
+          ))}
+        </div>
       </div>
     </Layout>
   )
