@@ -1,8 +1,10 @@
 import { EventSummary } from '~/lib/sanity.types'
 import { FC } from 'react'
-import Image from 'next/image'
-import { urlForImage } from '~/lib/sanity.image'
 import { EventCoverPicture } from '~/components/event-components/EventCoverPicture'
+import { CalendarIcon } from '~/components/svg-components/CalendarIcon'
+import { PictureIcon } from '~/components/svg-components/PictureIcon'
+import { DocumentIcon } from '~/components/svg-components/DocumentIcon'
+import { IconBox } from '~/components/event-components/IconBox'
 
 interface Props {
   eventSummary: EventSummary
@@ -17,28 +19,26 @@ export const EventTile: FC<Props> = ({ eventSummary }) => {
           title={eventSummary.title}
         />
       )}
-      <div className="grid grid-cols-[80%_20%] px-5 py-6 text-white">
+      <div className="grid grid-cols-[80%_20%] text-white p-4">
         <div>
           <p className="text-justify">{eventSummary.description}</p>
         </div>
-        <div className="p-2 justify-self-end justify-items-center">
-          <ul>
-            <li>
-              {eventSummary.externalLink && (
-                <a href={eventSummary.externalLink}>Icon1</a>
-              )}
-            </li>
-            <li>
-              {eventSummary.spotLink && (
-                <a href={eventSummary.spotLink}>Icon2</a>
-              )}
-            </li>
-            <li>
-              {eventSummary.exportLink && (
-                <a href={eventSummary.exportLink}>Icon3</a>
-              )}
-            </li>
-          </ul>
+        <div className="grid grid-rows-3 gap-2 p-2 lg:px-0 justify-self-end">
+          {eventSummary.externalLink && (
+            <IconBox title="Link az esményre" url={eventSummary.externalLink}>
+              <CalendarIcon />
+            </IconBox>
+          )}
+          {eventSummary.spotLink && (
+            <IconBox title="Link a Spot albumhoz" url={eventSummary.spotLink}>
+              <PictureIcon />
+            </IconBox>
+          )}
+          {eventSummary.exportLink && (
+            <IconBox title="ICS export" url={eventSummary.exportLink}>
+              <DocumentIcon />
+            </IconBox>
+          )}
         </div>
       </div>
     </div>

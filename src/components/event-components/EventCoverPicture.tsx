@@ -16,6 +16,7 @@ export const EventCoverPicture: FC<Props> = ({ image, title }) => {
         alt={title}
         width={700}
         height={700}
+        title={title}
         className="rounded-t-md"
       />
     </div>

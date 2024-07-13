@@ -1,8 +1,6 @@
 import Layout from '~/components/Layout'
-import { Button } from '@nextui-org/react'
 import {
   getCurrentEventsSummary,
-  getEvents,
   getPreviousEventsSummary,
 } from '~/lib/queries'
 import { getClient } from '~/lib/sanity.client'
@@ -29,15 +27,15 @@ export default function EventsPage(
   const previousEvents = props.previousEvents
   return (
     <Layout>
-      <div className="w-3/4 mx-auto bg-cyan-700">
+      <div className="w-screen justify-items-center sm:w-3/4 mx-auto">
         <h1 className="text-white text-2xl my-8">Aktuális eseményeink</h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-40">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-40 justify-items-center">
           {currentEvents.map((event) => (
             <EventTile key={event._id} eventSummary={event} />
           ))}
         </div>
-        <h1 className="text-white text-2xl my-8">Korábbi eseményeink</h1>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 text-sm">
+        <h1 className="text-white text-2xl my-10">Korábbi eseményeink</h1>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 text-sm">
           {previousEvents.map((event) => (
             <EventTile key={event._id} eventSummary={event} />
           ))}
