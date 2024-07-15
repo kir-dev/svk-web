@@ -1,8 +1,6 @@
 import { Partner } from '~/lib/sanity.types'
 import { PartnerLogo } from '~/components/partners-components/PartnerLogo'
-import CountUp from 'react-countup'
-import VisibilitySensor from 'react-visibility-sensor'
-import { useState } from 'react'
+import { PartnersCounter } from '~/components/partners-components/PartnersCounter'
 
 interface Props {
   title: string
@@ -10,27 +8,9 @@ interface Props {
 }
 
 export const PartnersSection = ({ title, partners }: Props) => {
-  const [counted, setCounted] = useState(false)
-
   return (
     <div className="bg-white text-black py-10">
-      <h1 className="text-center text-4xl font-bold py-5">
-        {title}:
-        <CountUp start={0} end={partners.length}>
-          {({ countUpRef, start }) => (
-            <VisibilitySensor
-              onChange={(isVisible: boolean) => {
-                if (!counted && isVisible) {
-                  setCounted(true)
-                  start()
-                }
-              }}
-            >
-              <span ref={countUpRef} />
-            </VisibilitySensor>
-          )}
-        </CountUp>
-      </h1>
+      <PartnersCounter title={title} length={partners.length} />
       <div className="flex flex-wrap items-center gap-5">
         {partners.map((partner) => (
           <PartnerLogo key={partner._id} partner={partner} />

@@ -1,9 +1,8 @@
-import type { GetStaticProps, InferGetStaticPropsType } from 'next'
+import type { InferGetStaticPropsType } from 'next'
 
 import Container from '~/components/Container'
 import Layout from '~/components/Layout'
 import { readToken } from '~/lib/sanity.api'
-import type { SharedPageProps } from '~/pages/_app'
 
 import { useTranslations } from 'next-intl'
 import { PartnersSection } from '~/components/partners-components/PartnersSection'

@@ -1,7 +1,6 @@
 import { Partner } from '~/lib/sanity.types'
 import Image from 'next/image'
 import { urlForImage } from '~/lib/sanity.image'
-import { PartnerName } from '~/components/partners-components/PartnerName'
 
 interface Props {
   partner: Partner
@@ -9,7 +8,11 @@ interface Props {
 
 export const PartnerLogo = ({ partner }: Props) => {
   if (!partner.image) {
-    return <PartnerName name={partner.name} />
+    return (
+      <div className="px-4">
+        {<h1 className="text-2xl text-center">{partner.name}</h1>}
+      </div>
+    )
   }
   const partnerUrl = urlForImage(partner.image)?.url()
   return (
