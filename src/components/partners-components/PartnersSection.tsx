@@ -17,22 +17,20 @@ export const PartnersSection = ({ partners }: Props) => {
         Partnereink:
         <CountUp start={0} end={partners.length}>
           {({ countUpRef, start }) => (
-            <div>
-              <VisibilitySensor
-                onChange={(isVisible) => {
-                  if (!counted && isVisible) {
-                    setCounted(true)
-                    start()
-                  }
-                }}
-              >
-                <span ref={countUpRef} />
-              </VisibilitySensor>
-            </div>
+            <VisibilitySensor
+              onChange={(isVisible: boolean) => {
+                if (!counted && isVisible) {
+                  setCounted(true)
+                  start()
+                }
+              }}
+            >
+              <span ref={countUpRef} />
+            </VisibilitySensor>
           )}
         </CountUp>
       </h1>
-      <div className="flex items-center">
+      <div className="flex flex-wrap items-center gap-5">
         {partners.map((partner) => (
           <PartnerLogo key={partner._id} partner={partner} />
         ))}

@@ -13,14 +13,17 @@ export const PartnerLogo = ({ partner }: Props) => {
   }
   const partnerUrl = urlForImage(partner.image)?.url()
   return (
-    <div className="flex-nowrap px-5 relative h-24 w-full">
-      <Image
-        src={partnerUrl ?? ''}
-        alt={partner.name ?? ''}
-        layout="fill"
-        objectFit="contain"
-        className="h-full w-auto"
-      />
+    <div className="flex-nowrap relative h-24 w-36">
+      <a href={partner?.link} target="_blank">
+        <Image
+          src={partnerUrl ?? ''}
+          alt={partner.name ?? ''}
+          title={partner.name ?? ''}
+          fill
+          objectFit="contain"
+          className="h-auto w-full"
+        />
+      </a>
     </div>
   )
 }

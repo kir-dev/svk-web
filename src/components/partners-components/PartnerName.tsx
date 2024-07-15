@@ -3,5 +3,9 @@ interface Props {
 }
 
 export const PartnerName = ({ name }: Props) => {
-  return <div>{!name && <h1>{name}</h1>}</div>
+  return (
+    <div className="px-4">
+      {<h1 className="text-2xl text-center">{name}</h1>}
+    </div>
+  )
 }
