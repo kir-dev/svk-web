@@ -60,6 +60,11 @@
     "nameFormat": "{firstName} {lastName}",
     "imageAlt": "{firstName} {lastName}'s profile picture"
   },
+  "Events": {
+    "current": "Current events",
+    "past": "Past events",
+    "none": "There is no upcoming events"
+  },
   "common": {
     "navbar": {
       "closeMenu": "Close menu",
