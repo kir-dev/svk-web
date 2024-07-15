@@ -6,6 +6,7 @@ import {
 import { getClient } from '~/lib/sanity.client'
 import { InferGetStaticPropsType } from 'next'
 import { EventTile } from '~/components/event-components/EventTile'
+import { LargeEventGrid } from '~/components/event-components/LargeEventGrid'
 
 export const getStaticProps = async ({ locale }) => {
   const client = getClient()
@@ -29,11 +30,11 @@ export default function EventsPage(
     <Layout>
       <div className="w-screen justify-items-center sm:w-3/4 mx-auto">
         <h1 className="text-white text-2xl my-8">Aktuális eseményeink</h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-40 justify-items-center">
-          {currentEvents.map((event) => (
-            <EventTile key={event._id} eventSummary={event} />
-          ))}
-        </div>
+        {currentEvents.length > 0 ? (
+          <LargeEventGrid currentEvents={currentEvents} />
+        ) : (
+          <h1 className="text-center text-2xl">Nincsen közelgő esemény</h1>
+        )}
         <h1 className="text-white text-2xl my-10">Korábbi eseményeink</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 text-sm">
           {previousEvents.map((event) => (
