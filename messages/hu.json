@@ -65,6 +65,12 @@
     "action": "Archívum megtekintése",
     "archiveTitle": "Blog archívum"
   },
+  "Events": {
+    "current": "Aktuális esemény",
+    "past": "Korábbi események",
+    "none": "Nincsen közelgő esemény"
+  },
+
   "common": {
     "navbar": {
       "closeMenu": "Menü bezárása",
