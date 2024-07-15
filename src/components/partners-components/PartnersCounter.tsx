@@ -1,4 +1,4 @@
-import { FC, FunctionComponent, useState } from 'react'
+import { FC, useState } from 'react'
 import CountUp from 'react-countup'
 import VisibilitySensor from 'react-visibility-sensor'
 
