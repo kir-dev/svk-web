@@ -63,7 +63,7 @@
   "Events": {
     "current": "Current events",
     "past": "Past events",
-    "none": "There is no upcoming events"
+    "none": "There are no upcoming events"
   },
   "common": {
     "navbar": {
