@@ -46,7 +46,7 @@ export default function IndexPage(
         <Container>Mivel foglalkozunk</Container>
       </section>
       <section className="py-24">
-        <PartnersSection partners={partners} />
+        <PartnersSection partners={partners} title={t('partnersTitle')} />
       </section>
     </Layout>
   )

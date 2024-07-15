@@ -5,16 +5,17 @@ import VisibilitySensor from 'react-visibility-sensor'
 import { useState } from 'react'
 
 interface Props {
+  title: string
   partners: Partner[]
 }
 
-export const PartnersSection = ({ partners }: Props) => {
+export const PartnersSection = ({ title, partners }: Props) => {
   const [counted, setCounted] = useState(false)
 
   return (
-    <div>
+    <div className="bg-white text-black py-10">
       <h1 className="text-center text-4xl font-bold py-5">
-        Partnereink:
+        {title}:
         <CountUp start={0} end={partners.length}>
           {({ countUpRef, start }) => (
             <VisibilitySensor
