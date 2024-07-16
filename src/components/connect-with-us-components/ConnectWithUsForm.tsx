@@ -1,11 +1,18 @@
 import { ConnectWithUsFormField } from '~/components/connect-with-us-components/ConnectWithUsFormField'
 import React, { useEffect, useState } from 'react'
+import { sendContactFrom } from '~/lib/api'
 
 interface Props {
   closeModal: () => void
+  setSuccess: (success: boolean) => void
+  setSubmitted: (submitted: boolean) => void
 }
 
-export const ConnectWithUsForm = ({ closeModal }: Props) => {
+export const ConnectWithUsForm = ({
+  closeModal,
+  setSuccess,
+  setSubmitted,
+}: Props) => {
   const [validForm, setValidForm] = useState<boolean>(false)
   const [formData, setFormData] = useState<string[]>([])
   const [validFields, setValidFields] = useState<{ [key: string]: boolean }>({
@@ -73,6 +80,17 @@ export const ConnectWithUsForm = ({ closeModal }: Props) => {
       ...validFields,
       message: !(!message || !message.trim()),
     }))
+  }
+
+  const submit = async () => {
+    try {
+      await sendContactFrom(formData)
+      setSuccess(true)
+    } catch (error) {
+      setSuccess(false)
+    } finally {
+      setSubmitted(true)
+    }
   }
 
   return (
@@ -153,7 +171,7 @@ export const ConnectWithUsForm = ({ closeModal }: Props) => {
         <button
           type="submit"
           className="rounded-lg p-3 bg-white border-blue-500 border-2 text-blue-600 hover:bg-blue-500 hover:text-white transition-colors disabled:border-gray-600 disabled:text-gray-600 disabled:bg-white"
-          onClick={closeModal}
+          onClick={submit}
           disabled={!validForm}
         >
           Küldés
