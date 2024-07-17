@@ -1,29 +1,33 @@
-import type { GetStaticProps } from 'next'
-
+import type { InferGetStaticPropsType } from 'next'
 
 import Container from '~/components/Container'
 import Layout from '~/components/Layout'
 import { readToken } from '~/lib/sanity.api'
-import type { SharedPageProps } from '~/pages/_app'
 
 import { useTranslations } from 'next-intl'
+import { PartnersSection } from '~/components/partners-components/PartnersSection'
+import { getClient } from '~/lib/sanity.client'
+import { getPartners } from '~/lib/queries/partner.queries'
 
-export const getStaticProps: GetStaticProps<
-  SharedPageProps
-> = async ({ draftMode = false, locale }) => {
-
+export const getStaticProps = async ({ draftMode = false, locale }) => {
+  const client = getClient()
+  const partners = await getPartners(client)
   return {
     props: {
       draftMode,
       token: draftMode ? readToken : '',
       messages: (await import(`../../messages/${locale}.json`)).default,
+      partners: partners,
     },
   }
 }
 
-export default function IndexPage() {
-
+export default function IndexPage(
+  props: InferGetStaticPropsType<typeof getStaticProps>,
+) {
   const t = useTranslations('Index')
+
+  const partners = props.partners
 
   return (
     <Layout>
@@ -38,12 +42,10 @@ export default function IndexPage() {
         </Container>
       </section>
       <section className="py-24">
-        <Container>
-          Mivel foglalkozunk
-        </Container>
+        <Container>Mivel foglalkozunk</Container>
       </section>
       <section className="py-24">
-        <Container>Partnereink</Container>
+        <PartnersSection partners={partners} title={t('partnersTitle')} />
       </section>
     </Layout>
   )
