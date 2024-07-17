@@ -8,7 +8,6 @@ import { useTranslations } from 'next-intl'
 import { PartnersSection } from '~/components/partners-components/PartnersSection'
 import { getClient } from '~/lib/sanity.client'
 import { getPartners } from '~/lib/queries/partner.queries'
-import { ContactPopUp } from '~/components/contact-components/ContactPopUp'
 
 export const getStaticProps = async ({ draftMode = false, locale }) => {
   const client = getClient()
@@ -37,7 +36,6 @@ export default function IndexPage(
           {t('mainTitle')}
         </h1>
       </section>
-      <ContactPopUp />
       <section className="bg-gradient-to-r from-foreground-50 to-foreground-200 border-gray-300 border-y-1 py-24">
         <Container className="relative">Carousel</Container>
       </section>
