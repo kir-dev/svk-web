@@ -1,4 +1,8 @@
 import { mailOptions, transporter } from '~/config/nodemailer'
+import {
+  FormFields,
+  validateField,
+} from '~/components/contact-components/ContactFormValidation'
 
 const CONTACT_MESSAGE_FIELDS = {
   name: 'Név',
@@ -9,16 +13,17 @@ const CONTACT_MESSAGE_FIELDS = {
   message: 'Üzenet',
 }
 
-const generateEmailContent = (data) => {
+const generateEmailContent = (data: FormFields) => {
   const stringData = Object.entries(data).reduce(
     (str: string, [key, val]) =>
-      (str += `${CONTACT_MESSAGE_FIELDS[key]}:${val}\n`),
+      str + `${CONTACT_MESSAGE_FIELDS[key]}:${val}\n`,
     '',
   )
 
   const htmlData = Object.entries(data).reduce(
     (str: string, [key, val]) =>
-      (str += `<h3 style="font-weight: normal">${CONTACT_MESSAGE_FIELDS[key]}: ${val}</h3>`),
+      str +
+      `<h3 style="font-weight: normal">${CONTACT_MESSAGE_FIELDS[key]}: ${val}</h3>`,
     '',
   )
 
@@ -29,7 +34,15 @@ const generateEmailContent = (data) => {
 }
 
 const handler = async (req, res) => {
-  const data = req.body
+  const data: FormFields = req.body
+  const entries = Object.entries(data)
+  const valid =
+    entries
+      .map((field) => validateField(field[0], field[1]))
+      .filter((valid) => valid).length == entries.length
+  if (!valid) {
+    return res.status(400).send({ message: 'Incorrect form fields' })
+  }
   try {
     await transporter.sendMail({
       ...mailOptions,
@@ -38,7 +51,6 @@ const handler = async (req, res) => {
     })
     return res.status(200).send({ message: 'Successful request' })
   } catch (error) {
-    console.log(error)
     return res.status(400).send({ message: error.message })
   }
 }

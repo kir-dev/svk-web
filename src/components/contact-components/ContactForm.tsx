@@ -1,6 +1,11 @@
-import { ConnectWithUsFormField } from '~/components/connect-with-us-components/ConnectWithUsFormField'
-import React, { useEffect, useState } from 'react'
+import { ContactFormField } from '~/components/contact-components/ContactFormField'
+import React, { ChangeEvent, useEffect, useState } from 'react'
 import { sendContactFrom } from '~/lib/api'
+import {
+  FieldsValidity,
+  FormFields,
+  validateField,
+} from '~/components/contact-components/ContactFormValidation'
 
 interface Props {
   closeModal: () => void
@@ -8,84 +13,55 @@ interface Props {
   setSubmitted: (submitted: boolean) => void
 }
 
-export const ConnectWithUsForm = ({
+export const ContactForm = ({
   closeModal,
   setSuccess,
   setSubmitted,
 }: Props) => {
-  const [validForm, setValidForm] = useState<boolean>(false)
-  const [formData, setFormData] = useState<string[]>([])
-  const [validFields, setValidFields] = useState<{ [key: string]: boolean }>({
+  const formInitState: FormFields = {
+    name: '',
+    email: '',
+    phoneNumber: '',
+    companyName: '',
+    title: '',
+    message: '',
+  }
+
+  const validityInitState: FieldsValidity = {
     name: false,
     email: false,
     phoneNumber: false,
     companyName: false,
     title: false,
     message: false,
-  })
+  }
+
+  const [validForm, setValidForm] = useState<boolean>(false)
+  const [formData, setFormData] = useState<FormFields>(formInitState)
+  const [validFields, setValidFields] =
+    useState<FieldsValidity>(validityInitState)
 
   useEffect(() => {
     setValidForm(Object.values(validFields).every(Boolean))
   }, [validFields])
 
-  const handleChange = (event) => {
+  const handleChange = (
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { id, value } = event.target
     setFormData({ ...formData, [id]: value })
-  }
-
-  const validateName = (name: string) => {
     setValidFields((validFields) => ({
       ...validFields,
-      name: !(!name && !name.trim()),
+      [id]: validateField(id, value),
     }))
   }
 
-  const validateEmail = (email: string) => {
-    const emailRegexp =
-      '(?:[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\\])'
-    setValidFields((validFields) => ({
-      ...validFields,
-      email: !(!email || !email.trim() || !email.match(emailRegexp)),
-    }))
-  }
-
-  const validatePhoneNumber = (phoneNumber: string) => {
-    console.log(phoneNumber)
-    const phoneNumberRegexp = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s./0-9]*$/
-    setValidFields((validFields) => ({
-      ...validFields,
-      phoneNumber: !(
-        !phoneNumber ||
-        !phoneNumber.trim() ||
-        !phoneNumber.match(phoneNumberRegexp)
-      ),
-    }))
-  }
-
-  const validateCompanyName = (companyName: string) => {
-    setValidFields((validFields) => ({
-      ...validFields,
-      companyName: !(!companyName || !companyName.trim()),
-    }))
-  }
-  const validateTitle = (title: string) => {
-    setValidFields((validFields) => ({
-      ...validFields,
-      title: !(!title || !title.trim()),
-    }))
-  }
-
-  const validateMessage = (message: string) => {
-    setValidFields((validFields) => ({
-      ...validFields,
-      message: !(!message || !message.trim()),
-    }))
-  }
-
-  const submit = async () => {
+  const handleSubmit = async () => {
     try {
       await sendContactFrom(formData)
       setSuccess(true)
+      setFormData(formInitState)
+      setValidFields(validityInitState)
     } catch (error) {
       setSuccess(false)
     } finally {
@@ -96,50 +72,55 @@ export const ConnectWithUsForm = ({
   return (
     <form onSubmit={(e) => e.preventDefault()} className="my-5">
       <div className="grid grid-cols-2">
-        <ConnectWithUsFormField
+        <ContactFormField
           title="Név"
           type="text"
           id="name"
+          placeHolder="Példa János"
+          value={formData.name}
           onChange={(event) => {
             handleChange(event)
-            validateName(event.target.value)
           }}
         />
-        <ConnectWithUsFormField
+        <ContactFormField
           title="Email"
           type="email"
           id="email"
+          placeHolder="peldaJanos@email.com"
+          value={formData.email}
           onChange={(event) => {
             handleChange(event)
-            validateEmail(event.target.value)
           }}
         />
-        <ConnectWithUsFormField
+        <ContactFormField
           title="Telefonszám"
-          type="text"
+          type="tel"
           id="phoneNumber"
+          placeHolder="06012345678"
+          value={formData.phoneNumber}
           pattern="^(?:\+36|06)?\s?[1-9]\d\s?\d{3}\s?\d{3,4}$|^(?:\+36|06)?\s?((1|20|30|31|50|70|90)\d)\s?\d{3}\s?\d{3,4}$"
           onChange={(event) => {
             handleChange(event)
-            validatePhoneNumber(event.target.value)
           }}
         />
-        <ConnectWithUsFormField
+        <ContactFormField
           title="Cég neve"
           type="text"
           id="companyName"
+          placeHolder="Kis Kft."
+          value={formData.companyName}
           onChange={(event) => {
             handleChange(event)
-            validateCompanyName(event.target.value)
           }}
         />
-        <ConnectWithUsFormField
+        <ContactFormField
           title="Titulus"
           type="text"
           id="title"
+          placeHolder="Osztályvezető"
+          value={formData.title}
           onChange={(event) => {
             handleChange(event)
-            validateTitle(event.target.value)
           }}
         />
       </div>
@@ -153,10 +134,11 @@ export const ConnectWithUsForm = ({
         <textarea
           required={true}
           id="message"
+          value={formData.message}
+          placeholder="Szeretném felvenni önökkel a kapcsolataot mert..."
           className="w-full h-20 rounded text-gray-600 invalid:border-red-600 border-1 valid:border-blue-500 p-1"
           onChange={(event) => {
             handleChange(event)
-            validateMessage(event.target.value)
           }}
         />
       </div>
@@ -171,7 +153,7 @@ export const ConnectWithUsForm = ({
         <button
           type="submit"
           className="rounded-lg p-3 bg-white border-blue-500 border-2 text-blue-600 hover:bg-blue-500 hover:text-white transition-colors disabled:border-gray-600 disabled:text-gray-600 disabled:bg-white"
-          onClick={submit}
+          onClick={handleSubmit}
           disabled={!validForm}
         >
           Küldés

@@ -10,6 +10,7 @@ import { PartnersSection } from '~/components/partners-components/PartnersSectio
 import { getClient } from '~/lib/sanity.client'
 import { getPartners } from '~/lib/queries/partner.queries'
 import { ConnectWithUsPopUp } from '~/components/connect-with-us-components/ConnectWithUsPopUp'
+import { ContactPopUp } from '~/components/contact-components/ContactPopUp'
 
 export const getStaticProps = async ({ draftMode = false, locale }) => {
   const client = getClient()
@@ -38,7 +39,7 @@ export default function IndexPage(
           {t('mainTitle')}
         </h1>
       </section>
-      <ConnectWithUsPopUp />
+      <ContactPopUp />
       <section className="bg-gradient-to-r from-foreground-50 to-foreground-200 border-gray-300 border-y-1 py-24">
         <Container className="relative">Carousel</Container>
       </section>

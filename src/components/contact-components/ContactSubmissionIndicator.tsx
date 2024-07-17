@@ -9,15 +9,15 @@ export const ContactSubmissionIndicator = ({ isSuccess }: Props) => {
     <>
       {isSuccess ? (
         <div
-          className={`bg-blue-500 fixed top-0 inset-x-0 w-fit mx-auto p-5 rounded-b-lg transition-all duration-1000 `}
+          className={`bg-blue-500 fixed top-0 inset-x-0 w-fit mx-auto p-5 rounded-b-lg`}
         >
-          Sikeresen elküldve
+          Sikeresen elküldve!
         </div>
       ) : (
         <div
-          className={`bg-red-600 fixed top-0 inset-x-0 w-fit mx-auto p-5 rounded-b-lg transition-all duration-1000 `}
+          className={`bg-red-600 fixed top-0 inset-x-0 w-fit mx-auto p-5 rounded-b-lg`}
         >
-          Sikertelen
+          Sikertelen, próbálkozzon késöbb!
         </div>
       )}
     </>
