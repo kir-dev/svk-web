@@ -1,8 +1,5 @@
 import { mailOptions, transporter } from '~/config/nodemailer'
-import {
-  FormFields,
-  validateField,
-} from '~/components/contact-components/ContactFormValidation'
+import { FormFields, validateField } from '~/utils/contact-form-validation'
 
 const CONTACT_MESSAGE_FIELDS = {
   name: 'Név',

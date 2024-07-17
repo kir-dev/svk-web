@@ -71,7 +71,6 @@
     "past": "Korábbi események",
     "none": "Nincsen közelgő esemény"
   },
-
   "common": {
     "navbar": {
       "closeMenu": "Menü bezárása",
@@ -90,6 +89,24 @@
       "partOfSimonyi": "A Kir-Dev a <link>Simonyi Károly Szakkollégium</link> tagszervezete.",
       "sponsors": "Támogatóink",
       "socials": "Közösségi linkek"
+    },
+    "contact": {
+      "buttonTitle": "Kapcsolat",
+      "mainTitle": "Kapcsolat",
+      "form": {
+        "name": "Név",
+        "email": "Email",
+        "phoneNumber": "Telefonszám",
+        "companyName": "Cég neve",
+        "title": "Titulus",
+        "message": "Üzenet",
+        "cancel": "Mégse",
+        "submit": "Küldés"
+      },
+      "feedback": {
+        "success": "Sikeresen elküldve",
+        "failure": "Sikertelen, kérem késöbb próbálja újra"
+      }
     }
   }
 }

@@ -84,6 +84,24 @@
       "partOfSimonyi": "Kir-Dev is part of the <link>Simonyi Károly Collegium</link>.",
       "sponsors": "Sponsors",
       "socials": "Social media links"
+    },
+    "contact": {
+      "buttonTitle": "Contact",
+      "mainTitle": "Contact",
+      "form": {
+        "name": "Name",
+        "email": "Email",
+        "phoneNumber": "Phone number",
+        "companyName": "Company name",
+        "title": "Title",
+        "message": "Message",
+        "cancel": "Cancel",
+        "submit": "Send"
+      },
+      "feedback": {
+        "success": "Sent successfully",
+        "failure": "Send failure, please try again later"
+      }
     }
   }
 }

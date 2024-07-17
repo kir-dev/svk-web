@@ -5,7 +5,8 @@ import {
   FieldsValidity,
   FormFields,
   validateField,
-} from '~/components/contact-components/ContactFormValidation'
+} from '~/utils/contact-form-validation'
+import { useTranslations } from 'next-intl'
 
 interface Props {
   closeModal: () => void
@@ -35,6 +36,8 @@ export const ContactForm = ({
     title: false,
     message: false,
   }
+
+  const t = useTranslations('common.contact.form')
 
   const [validForm, setValidForm] = useState<boolean>(false)
   const [formData, setFormData] = useState<FormFields>(formInitState)
@@ -73,7 +76,7 @@ export const ContactForm = ({
     <form onSubmit={(e) => e.preventDefault()} className="my-5">
       <div className="grid grid-cols-2">
         <ContactFormField
-          title="Név"
+          title={t('name')}
           type="text"
           id="name"
           placeHolder="Példa János"
@@ -83,7 +86,7 @@ export const ContactForm = ({
           }}
         />
         <ContactFormField
-          title="Email"
+          title={t('email')}
           type="email"
           id="email"
           placeHolder="peldaJanos@email.com"
@@ -93,7 +96,7 @@ export const ContactForm = ({
           }}
         />
         <ContactFormField
-          title="Telefonszám"
+          title={t('phoneNumber')}
           type="tel"
           id="phoneNumber"
           placeHolder="06012345678"
@@ -104,7 +107,7 @@ export const ContactForm = ({
           }}
         />
         <ContactFormField
-          title="Cég neve"
+          title={t('companyName')}
           type="text"
           id="companyName"
           placeHolder="Kis Kft."
@@ -114,7 +117,7 @@ export const ContactForm = ({
           }}
         />
         <ContactFormField
-          title="Titulus"
+          title={t('title')}
           type="text"
           id="title"
           placeHolder="Osztályvezető"
@@ -129,7 +132,7 @@ export const ContactForm = ({
           htmlFor="message"
           className="text-md block uppercase text-gray-600"
         >
-          Üzenet
+          {t('message')}
         </label>
         <textarea
           required={true}
@@ -148,7 +151,7 @@ export const ContactForm = ({
           onClick={closeModal}
           className="rounded-lg p-3 bg-white border-red-600 border-2 text-red-600 hover:bg-red-600 hover:text-white transition-colors"
         >
-          Mégse
+          {t('cancel')}
         </button>
         <button
           type="submit"
@@ -156,7 +159,7 @@ export const ContactForm = ({
           onClick={handleSubmit}
           disabled={!validForm}
         >
-          Küldés
+          {t('submit')}
         </button>
       </div>
     </form>

@@ -1,8 +1,11 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import { ContactForm } from '~/components/contact-components/ContactForm'
 import { ContactSubmissionIndicator } from '~/components/contact-components/ContactSubmissionIndicator'
+import { useTranslations } from 'next-intl'
 
 export const ContactPopUp = () => {
+  const t = useTranslations('common.contact')
+
   const [isOpen, setIsOpen] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false)
   const [isSuccess, setIsSuccess] = useState<boolean>(true)
@@ -21,7 +24,7 @@ export const ContactPopUp = () => {
         onClick={() => setIsOpen(!isOpen)}
         className="rounded-full bg-teal-300 text-white p-3"
       >
-        Kapcsolat
+        {t('buttonTitle')}
       </button>
       <div
         className={`border-none bg-none w-max h-max ${isOpen ? 'visible' : 'invisible'}`}
@@ -39,7 +42,7 @@ export const ContactPopUp = () => {
             </div>
 
             <h1 className="text-center text-4xl font-bold text-gray-600">
-              Kapcsolat
+              {t('mainTitle')}
             </h1>
             <ContactForm
               closeModal={() => setIsOpen(false)}
