@@ -74,7 +74,7 @@ export const ContactForm = ({
 
   return (
     <form onSubmit={(e) => e.preventDefault()} className="my-5">
-      <div className="grid grid-cols-2">
+      <div className="grid grid-cols-1 sm:grid-cols-2">
         <ContactFormField
           title={t('name')}
           type="text"
