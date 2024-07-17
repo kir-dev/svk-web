@@ -1,11 +1,19 @@
-import React, { Fragment, useState } from 'react'
-import { ConnectWithUsForm } from '~/components/connect-with-us-components/ConnectWithUsForm'
-import { ContactSubmissionIndicator } from '~/components/connect-with-us-components/ContactSubmissionIndicator'
+import React, { Fragment, useEffect, useState } from 'react'
+import { ContactForm } from '~/components/contact-components/ContactForm'
+import { ContactSubmissionIndicator } from '~/components/contact-components/ContactSubmissionIndicator'
 
-export const ConnectWithUsPopUp = () => {
+export const ContactPopUp = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false)
   const [isSuccess, setIsSuccess] = useState<boolean>(true)
+
+  useEffect(() => {
+    if (isSubmitted) {
+      setTimeout(() => {
+        setIsSubmitted(false)
+      }, 5000)
+    }
+  }, [isSubmitted])
 
   return (
     <Fragment>
@@ -24,14 +32,16 @@ export const ConnectWithUsPopUp = () => {
           <div
             className={`w-full md:w-3/4 lg:w-1/2 h-fit bg-white fixed top-16 inset-x-0 mx-auto rounded-lg pt-8 my-5 shadow-md text-white transition-all duration-500 ${isOpen ? 'scale-100 opacity-100' : 'scale-125 opacity-0'}`}
           >
-            <div className={`${isSubmitted ? 'opacity-100' : 'opacity-0'}`}>
+            <div
+              className={`transition-opacity ${isSubmitted ? 'opacity-100' : 'opacity-0'}`}
+            >
               <ContactSubmissionIndicator isSuccess={isSuccess} />
             </div>
 
             <h1 className="text-center text-4xl font-bold text-gray-600">
               Kapcsolat
             </h1>
-            <ConnectWithUsForm
+            <ContactForm
               closeModal={() => setIsOpen(false)}
               setSuccess={setIsSuccess}
               setSubmitted={setIsSubmitted}

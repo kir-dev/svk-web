@@ -1,18 +1,22 @@
-import React from 'react'
+import React, { ChangeEvent } from 'react'
 
 interface Props {
   title: string
   type?: string
   id: string
   pattern?: string
-  onChange: (event) => void
+  value: string
+  placeHolder: string
+  onChange: (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
 }
 
-export const ConnectWithUsFormField = ({
+export const ContactFormField = ({
   title,
   type = 'text',
   id,
-  pattern = '*',
+  value,
+  placeHolder,
+  pattern = '.*',
   onChange,
 }: Props) => {
   return (
@@ -23,9 +27,11 @@ export const ConnectWithUsFormField = ({
       <input
         type={type}
         id={id}
+        value={value}
         className="shadow rounded w-full py-2 px-3 text-gray-700 invalid:border-red-600 border-1 valid:border-blue-500"
         required={true}
         pattern={pattern}
+        placeholder={placeHolder}
         onChange={onChange}
       />
     </div>

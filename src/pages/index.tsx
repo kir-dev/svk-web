@@ -6,7 +6,7 @@ import { readToken } from '~/lib/sanity.api'
 import type { SharedPageProps } from '~/pages/_app'
 
 import { useTranslations } from 'next-intl'
-import { ConnectWithUsPopUp } from '~/components/connect-with-us-components/ConnectWithUsPopUp'
+import { ContactPopUp } from '~/components/contact-components/ContactPopUp'
 
 export const getStaticProps: GetStaticProps<SharedPageProps> = async ({
   draftMode = false,
@@ -31,7 +31,7 @@ export default function IndexPage() {
           {t('mainTitle')}
         </h1>
       </section>
-      <ConnectWithUsPopUp />
+      <ContactPopUp />
       <section className="bg-gradient-to-r from-foreground-50 to-foreground-200 border-gray-300 border-y-1 py-24">
         <Container className="relative">Carousel</Container>
       </section>
