@@ -37,6 +37,8 @@ export const ContactForm = ({
     message: false,
   }
 
+  const t = useTranslations('common.contact.form')
+
   const [validForm, setValidForm] = useState<boolean>(false)
   const [formData, setFormData] = useState<FormFields>(formInitState)
   const [validFields, setValidFields] =
@@ -72,7 +74,9 @@ export const ContactForm = ({
 
   return (
     <form onSubmit={(e) => e.preventDefault()} className="my-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2">
         <ContactFormField
+          title={t('name')}
           type="text"
           id="name"
           placeHolder="Példa János"
@@ -82,6 +86,7 @@ export const ContactForm = ({
           }}
         />
         <ContactFormField
+          title={t('email')}
           type="email"
           id="email"
           placeHolder="peldaJanos@email.com"
@@ -91,6 +96,7 @@ export const ContactForm = ({
           }}
         />
         <ContactFormField
+          title={t('phoneNumber')}
           type="tel"
           id="phoneNumber"
           placeHolder="06012345678"
@@ -101,6 +107,7 @@ export const ContactForm = ({
           }}
         />
         <ContactFormField
+          title={t('companyName')}
           type="text"
           id="companyName"
           placeHolder="Kis Kft."
@@ -110,6 +117,7 @@ export const ContactForm = ({
           }}
         />
         <ContactFormField
+          title={t('title')}
           type="text"
           id="title"
           placeHolder="Osztályvezető"
@@ -124,6 +132,7 @@ export const ContactForm = ({
           htmlFor="message"
           className="text-md block uppercase text-gray-600"
         >
+          {t('message')}
         </label>
         <textarea
           required={true}
@@ -142,6 +151,7 @@ export const ContactForm = ({
           onClick={closeModal}
           className="rounded-lg p-3 bg-white border-red-600 border-2 text-red-600 hover:bg-red-600 hover:text-white transition-colors"
         >
+          {t('cancel')}
         </button>
         <button
           type="submit"
@@ -149,6 +159,7 @@ export const ContactForm = ({
           onClick={handleSubmit}
           disabled={!validForm}
         >
+          {t('submit')}
         </button>
       </div>
     </form>
