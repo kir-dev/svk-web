@@ -79,7 +79,7 @@ export const ContactForm = ({
           title={t('name')}
           type="text"
           id="name"
-          placeHolder="Példa János"
+          placeHolder={t('exampleName')}
           value={formData.name}
           onChange={(event) => {
             handleChange(event)
@@ -89,7 +89,7 @@ export const ContactForm = ({
           title={t('email')}
           type="email"
           id="email"
-          placeHolder="peldaJanos@email.com"
+          placeHolder={t('exampleEmail')}
           value={formData.email}
           onChange={(event) => {
             handleChange(event)
@@ -110,7 +110,7 @@ export const ContactForm = ({
           title={t('companyName')}
           type="text"
           id="companyName"
-          placeHolder="Kis Kft."
+          placeHolder={t('exampleCompanyName')}
           value={formData.companyName}
           onChange={(event) => {
             handleChange(event)
@@ -120,7 +120,7 @@ export const ContactForm = ({
           title={t('title')}
           type="text"
           id="title"
-          placeHolder="Osztályvezető"
+          placeHolder={t('exampleTitle')}
           value={formData.title}
           onChange={(event) => {
             handleChange(event)
@@ -138,8 +138,8 @@ export const ContactForm = ({
           required={true}
           id="message"
           value={formData.message}
-          placeholder="Szeretném felvenni önökkel a kapcsolataot mert..."
-          className="w-full h-20 rounded text-gray-600 invalid:border-red-600 border-1 valid:border-blue-500 p-1"
+          placeholder={t('exampleMessage')}
+          className="w-full h-20 rounded text-gray-600 invalid:border-red-600 border-2 valid:border-blue-500 p-1"
           onChange={(event) => {
             handleChange(event)
           }}

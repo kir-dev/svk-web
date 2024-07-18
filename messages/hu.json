@@ -77,6 +77,7 @@
       "openMenu": "Menü megnyitása",
       "langSwitcher": "Nyelv váltása",
       "themeSwitcher": "Téma váltása",
+      "buttonTitle": "Kapcsolat",
       "home": "Kezdőlap",
       "routes": {
         "home": "Főoldal",
@@ -91,15 +92,19 @@
       "socials": "Közösségi linkek"
     },
     "contact": {
-      "buttonTitle": "Kapcsolat",
       "mainTitle": "Kapcsolat",
       "form": {
         "name": "Név",
+        "exampleName": "Példa János",
         "email": "Email",
+        "exampleEmail": "peldajanos@email.com",
         "phoneNumber": "Telefonszám",
         "companyName": "Cég neve",
+        "exampleCompanyName": "Példa kft",
         "title": "Titulus",
+        "exampleTitle": "Osztályvezető",
         "message": "Üzenet",
+        "exampleMessage": "Szeretném felvenni önökkel a kapcsolatot mert...",
         "cancel": "Mégse",
         "submit": "Küldés"
       },

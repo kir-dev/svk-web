@@ -4,7 +4,8 @@ import { ContactSubmissionIndicator } from '~/components/contact-components/Cont
 import { useTranslations } from 'next-intl'
 
 export const ContactPopUp = () => {
-  const t = useTranslations('common.contact')
+  const tc = useTranslations('common.contact')
+  const tn = useTranslations('common.navbar')
 
   const [isOpen, setIsOpen] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false)
@@ -18,22 +19,30 @@ export const ContactPopUp = () => {
     }
   }, [isSubmitted])
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'auto'
+    }
+  }, [isOpen])
+
   return (
     <Fragment>
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="rounded-full bg-teal-300 text-white p-3"
       >
-        {t('buttonTitle')}
+        {tn('buttonTitle')}
       </button>
       <div
         className={`border-none bg-none w-max h-max ${isOpen ? 'visible' : 'invisible'}`}
       >
         <div
-          className={`w-screen h-screen bg-black fixed inset-0 z-50 overflow-y-auto transition ease-out duration-300 ${isOpen ? 'bg-opacity-80' : 'bg-opacity-0'}`}
+          className={`w-screen h-screen bg-black fixed inset-0 z-50 transition ease-out duration-300 ${isOpen ? 'bg-opacity-80' : 'bg-opacity-0'}`}
         >
           <div
-            className={`w-full md:w-3/4 lg:w-1/2 h-fit bg-white fixed top-16 inset-x-0 mx-auto rounded-lg pt-8 my-5 shadow-md text-white transition-all duration-500 ${isOpen ? 'scale-100 opacity-100' : 'scale-125 opacity-0'}`}
+            className={`w-full md:w-3/4 lg:w-1/2 max-h-screen h-auto bg-white fixed inset-x-0 mx-auto rounded-lg py-8 my-5 shadow-md text-white transition-all duration-500 overflow-y-auto ${isOpen ? 'scale-100 opacity-100' : 'scale-125 opacity-0'}`}
           >
             <div
               className={`transition-opacity ${isSubmitted ? 'opacity-100' : 'opacity-0'}`}
@@ -42,7 +51,7 @@ export const ContactPopUp = () => {
             </div>
 
             <h1 className="text-center text-4xl font-bold text-gray-600">
-              {t('mainTitle')}
+              {tc('mainTitle')}
             </h1>
             <ContactForm
               closeModal={() => setIsOpen(false)}
