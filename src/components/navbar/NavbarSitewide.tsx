@@ -29,6 +29,7 @@ import { Route } from '~/utils/routes'
 
 import { useTranslations } from 'next-intl'
 import { LogoAnimated } from '../svg-components/LogoAnimated'
+import { ContactPopUp } from '~/components/contact-components/ContactPopUp'
 
 export interface Props {
   routes: Route[]
@@ -120,6 +121,12 @@ export const NavbarSitewide: FC<PropsWithChildren<Props>> = ({ routes }) => {
             </NavbarItem>
           ),
         )}
+      </NavbarContent>
+
+      <NavbarContent className="flex gap-2" justify="end">
+        <NavbarItem className="flex h-full items-center">
+          <ContactPopUp />
+        </NavbarItem>
       </NavbarContent>
 
       <NavbarContent className="flex gap-2" justify="end">

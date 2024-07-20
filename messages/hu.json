@@ -71,13 +71,13 @@
     "past": "Korábbi események",
     "none": "Nincsen közelgő esemény"
   },
-
   "common": {
     "navbar": {
       "closeMenu": "Menü bezárása",
       "openMenu": "Menü megnyitása",
       "langSwitcher": "Nyelv váltása",
       "themeSwitcher": "Téma váltása",
+      "buttonTitle": "Kapcsolat",
       "home": "Kezdőlap",
       "routes": {
         "home": "Főoldal",
@@ -90,6 +90,28 @@
       "partOfSimonyi": "A Kir-Dev a <link>Simonyi Károly Szakkollégium</link> tagszervezete.",
       "sponsors": "Támogatóink",
       "socials": "Közösségi linkek"
+    },
+    "contact": {
+      "mainTitle": "Kapcsolat",
+      "form": {
+        "name": "Név",
+        "exampleName": "Példa János",
+        "email": "Email",
+        "exampleEmail": "peldajanos@email.com",
+        "phoneNumber": "Telefonszám",
+        "companyName": "Cég neve",
+        "exampleCompanyName": "Példa kft",
+        "title": "Titulus",
+        "exampleTitle": "Osztályvezető",
+        "message": "Üzenet",
+        "exampleMessage": "Szeretném felvenni önökkel a kapcsolatot mert...",
+        "cancel": "Mégse",
+        "submit": "Küldés"
+      },
+      "feedback": {
+        "success": "Sikeresen elküldve",
+        "failure": "Sikertelen, kérem késöbb próbálja újra"
+      }
     }
   }
 }

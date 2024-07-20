@@ -72,6 +72,7 @@
       "openMenu": "Open menu",
       "langSwitcher": "Switch language",
       "themeSwitcher": "Switch color theme",
+      "buttonTitle": "Contact",
       "home": "Home",
       "routes": {
         "home": "Home",
@@ -84,6 +85,28 @@
       "partOfSimonyi": "Kir-Dev is part of the <link>Simonyi Károly Collegium</link>.",
       "sponsors": "Sponsors",
       "socials": "Social media links"
+    },
+    "contact": {
+      "mainTitle": "Contact",
+      "form": {
+        "name": "Name",
+        "exampleName": "Example John",
+        "email": "Email",
+        "exampleEmail": "examplejohn@email.com",
+        "phoneNumber": "Phone number",
+        "companyName": "Company name",
+        "exampleCompanyName": "Example Corp.",
+        "title": "Title",
+        "exampleTitle": "Head of Department",
+        "message": "Message",
+        "exampleMessage": "I would like to contact you because...",
+        "cancel": "Cancel",
+        "submit": "Send"
+      },
+      "feedback": {
+        "success": "Sent successfully",
+        "failure": "Send failure, please try again later"
+      }
     }
   }
 }
