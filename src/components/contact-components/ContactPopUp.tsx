@@ -19,14 +19,6 @@ export const ContactPopUp = () => {
     }
   }, [isSubmitted])
 
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflowY = 'hidden'
-    } else {
-      document.body.style.overflowY = 'auto'
-    }
-  }, [isOpen])
-
   return (
     <Fragment>
       <button
@@ -36,25 +28,27 @@ export const ContactPopUp = () => {
         {tn('buttonTitle')}
       </button>
       <div
-        className={`border-none bg-none w-max h-max ${isOpen ? 'visible' : 'invisible'}`}
+        className={`border-none bg-none w-max h-max overflow-visible ${isOpen ? 'visible' : 'invisible'}`}
       >
-        <div
-          className={`w-full md:w-3/4 max-h-screen h-auto bg-white fixed inset-x-0 mx-auto rounded-lg py-8 pb-32  md:pb-8 my-5 shadow-black shadow-2xl text-white transition-all duration-500 overflow-y-auto ${isOpen ? 'scale-100 opacity-100' : 'scale-125 opacity-0'}`}
-        >
+        <div className="w-full h-screen z-50 fixed top-0 left-0">
           <div
-            className={`transition-opacity ${isSubmitted ? 'opacity-100' : 'opacity-0'}`}
+            className={`w-full md:w-3/4 max-h-screen h-auto bg-white rounded-lg py-8 pb-32  md:pb-8 my-5 mx-auto shadow-black md:shadow-2xl text-white transition-all duration-500 overflow-y-auto ${isOpen ? 'scale-100 opacity-100' : 'scale-125 opacity-0'}`}
           >
-            <ContactSubmissionIndicator isSuccess={isSuccess} />
-          </div>
+            <div
+              className={`transition-opacity ${isSubmitted ? 'opacity-100' : 'opacity-0'}`}
+            >
+              <ContactSubmissionIndicator isSuccess={isSuccess} />
+            </div>
 
-          <h1 className="text-center text-4xl font-bold text-gray-600">
-            {tc('mainTitle')}
-          </h1>
-          <ContactForm
-            closeModal={() => setIsOpen(false)}
-            setSuccess={setIsSuccess}
-            setSubmitted={setIsSubmitted}
-          />
+            <h1 className="text-center text-4xl font-bold text-gray-600">
+              {tc('mainTitle')}
+            </h1>
+            <ContactForm
+              closeModal={() => setIsOpen(false)}
+              setSuccess={setIsSuccess}
+              setSubmitted={setIsSubmitted}
+            />
+          </div>
         </div>
       </div>
     </Fragment>
