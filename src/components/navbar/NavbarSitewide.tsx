@@ -1,11 +1,6 @@
 'use client'
 
-import {
-  ChevronDownIcon,
-  ChevronRightIcon,
-  MoonIcon,
-  SunIcon,
-} from '@heroicons/react/24/solid'
+import { ChevronDownIcon, ChevronRightIcon } from '@heroicons/react/24/solid'
 import {
   Button,
   Dropdown,
@@ -20,7 +15,6 @@ import {
   NavbarMenuItem,
   NavbarMenuToggle,
 } from '@nextui-org/react'
-import { useTheme } from 'next-themes'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 import { FC, PropsWithChildren, useEffect, useState } from 'react'
@@ -39,7 +33,6 @@ export const NavbarSitewide: FC<PropsWithChildren<Props>> = ({ routes }) => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean | undefined>(false)
   const router = useRouter()
   const { pathname, asPath, query, locales, locale } = router
-  const { setTheme, theme } = useTheme()
 
   useEffect(() => {
     if (isMenuOpen) {
@@ -54,8 +47,11 @@ export const NavbarSitewide: FC<PropsWithChildren<Props>> = ({ routes }) => {
   }
 
   return (
-    <Navbar onMenuOpenChange={setIsMenuOpen}>
-      <NavbarContent>
+    <Navbar
+      onMenuOpenChange={setIsMenuOpen}
+      className="rounded-full bg-stone-950 mx-auto mt-5 px-0 text-white w-fit justify-between"
+    >
+      <NavbarContent className="justify-start lg:pr-20">
         <NavbarMenuToggle
           aria-label={isMenuOpen ? t('closeMenu') : t('openMenu')}
           className="sm:hidden"
@@ -67,7 +63,10 @@ export const NavbarSitewide: FC<PropsWithChildren<Props>> = ({ routes }) => {
         </NavbarBrand>
       </NavbarContent>
 
-      <NavbarContent className="hidden sm:flex gap-4" justify="center">
+      <NavbarContent
+        className="hidden sm:flex h-6/7 w-3/4 gap-4 lg:border-l-gray-600 lg:border-l-2 lg:border-r-gray-600 lg:border-r-2 md:px-10 lg:px-20"
+        justify="center"
+      >
         {routes.map((route) =>
           route.routes?.length ? (
             <Dropdown key={route.key}>
@@ -75,7 +74,7 @@ export const NavbarSitewide: FC<PropsWithChildren<Props>> = ({ routes }) => {
                 <DropdownTrigger>
                   <Button
                     disableRipple
-                    className="p-0 bg-transparent data-[hover=true]:bg-transparent text-md"
+                    className="p-0 bg-transparent data-[hover=true]:bg-transparent text-md target:bg-white"
                     endContent={<ChevronDownIcon className="h-3 w-3" />}
                     radius="sm"
                     variant="light"
@@ -112,7 +111,7 @@ export const NavbarSitewide: FC<PropsWithChildren<Props>> = ({ routes }) => {
             <NavbarItem key={route.key}>
               <NextLink
                 color="foreground"
-                className="text-md"
+                className={`text-md p-3 rounded-2xl ${route.href == pathname ? 'bg-gray-600' : 'bg-none'}`}
                 href={route.href ?? ''}
                 aria-label={t(`routes.${route.key}`)}
               >
@@ -123,38 +122,9 @@ export const NavbarSitewide: FC<PropsWithChildren<Props>> = ({ routes }) => {
         )}
       </NavbarContent>
 
-      <NavbarContent className="flex gap-2" justify="end">
+      <NavbarContent className="mx-auto lg:pl-20" justify="end">
         <NavbarItem className="flex h-full items-center">
           <ContactPopUp />
-        </NavbarItem>
-      </NavbarContent>
-
-      <NavbarContent className="flex gap-2" justify="end">
-        <NavbarItem className="flex h-full items-center">
-          <Button
-            isIconOnly
-            aria-label={t('langSwitcher')}
-            className="p-0"
-            variant="flat"
-            onPress={switchLocale}
-          >
-            {locale === 'en' ? 'HU' : 'EN'}
-          </Button>
-        </NavbarItem>
-        <NavbarItem className="flex h-full items-center">
-          <Button
-            isIconOnly
-            aria-label={t('themeSwitcher')}
-            className="p-0"
-            variant="flat"
-            onPress={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-          >
-            {theme === 'dark' ? (
-              <SunIcon className="h-5 w-5" />
-            ) : (
-              <MoonIcon className="h-5 w-5" />
-            )}
-          </Button>
         </NavbarItem>
       </NavbarContent>
 
