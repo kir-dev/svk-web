@@ -1,5 +1,3 @@
-import { Button, Link } from '@nextui-org/react'
-
 import { environment } from '~/utils/environment'
 
 import { useTranslations } from 'next-intl'
@@ -12,6 +10,7 @@ import { FC, PropsWithChildren } from 'react'
 import { useRouter } from 'next/router'
 import { LinkedInSvg } from '~/components/svg-components/LinkedInSvg'
 import { MailIconSvg } from '~/components/svg-components/MailIconSvg'
+import SocialIcon from '~/components/SocialIcon'
 
 export interface Props {
   routes: Route[]
@@ -47,19 +46,7 @@ export const Footer: FC<PropsWithChildren<Props>> = ({ routes }) => {
             <p>{t("footer.address1")}</p>
             <div className="flex flex-row justify-between pt-2">
               {socials.map((item) => (
-                <Button
-                  key={item.key}
-                  isIconOnly
-                  className="p-0 bg-transparent data-[hover=true]:bg-transparent h-10 w-10"
-                >
-                  <Link
-                    href={item.href}
-                    target="_blank"
-                    className="h-full w-full text-foreground"
-                  >
-                    <item.icon className="h-full w-auto fill-current" />
-                  </Link>
-                </Button>
+                <SocialIcon key={item.key} href={item.href} icon={item.icon}/>
               ))}
             </div>
           </div>
