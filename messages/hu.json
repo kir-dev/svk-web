@@ -78,18 +78,17 @@
       "langSwitcher": "Nyelv váltása",
       "themeSwitcher": "Téma váltása",
       "buttonTitle": "Kapcsolat",
-      "home": "Kezdőlap",
-      "routes": {
-        "home": "Főoldal",
-        "events": "Események",
-        "about": "Rólunk"
-      }
+      "home": "Kezdőlap"
+    },
+    "routes": {
+      "home": "Főoldal",
+      "events": "Események",
+      "about": "Rólunk"
     },
     "footer": {
-      "contact": "Kapcsolat",
-      "partOfSimonyi": "A Kir-Dev a <link>Simonyi Károly Szakkollégium</link> tagszervezete.",
-      "sponsors": "Támogatóink",
-      "socials": "Közösségi linkek"
+      "svk": "Schönherz Vállalati Kapcsolatok",
+      "address0": "Budapest, Irinyi József u. 42",
+      "address1": "1117, Magyarország"
     },
     "contact": {
       "mainTitle": "Kapcsolat",

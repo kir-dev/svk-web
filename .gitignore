@@ -42,7 +42,5 @@ yarn-error.log*
 
 # Env files created by scripts for working locally
 .env
+.env.local
 studio/.env.development
-
-.vercel
-.env*.local

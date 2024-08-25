@@ -3,7 +3,6 @@ import type { InferGetStaticPropsType } from 'next'
 import Container from '~/components/Container'
 import Layout from '~/components/Layout'
 import { readToken } from '~/lib/sanity.api'
-import type { SharedPageProps } from '~/pages/_app'
 
 import { useTranslations } from 'next-intl'
 import { PartnersSection } from '~/components/partners-components/PartnersSection'
@@ -40,7 +39,7 @@ export default function IndexPage(
       <section className="bg-gradient-to-r from-foreground-50 to-foreground-200 border-gray-300 border-y-1 py-24">
         <Container className="relative">Carousel</Container>
       </section>
-      <section className="py-24">
+      <section>
         <Container>Mivel foglalkozunk</Container>
       </section>
       <section className="py-24">

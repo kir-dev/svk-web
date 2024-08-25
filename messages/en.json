@@ -73,18 +73,17 @@
       "langSwitcher": "Switch language",
       "themeSwitcher": "Switch color theme",
       "buttonTitle": "Contact",
+      "home": "Home"
+    },
+    "routes": {
       "home": "Home",
-      "routes": {
-        "home": "Home",
-        "events": "Events",
-        "about": "About Us"
-      }
+      "events": "Events",
+      "about": "About Us"
     },
     "footer": {
-      "contact": "Contact",
-      "partOfSimonyi": "Kir-Dev is part of the <link>Simonyi Károly Collegium</link>.",
-      "sponsors": "Sponsors",
-      "socials": "Social media links"
+      "svk": "Schönherz Corporate Relations",
+      "address0": "Budapest, Irinyi József St. 42",
+      "address1": "1117, Hungary"
     },
     "contact": {
       "mainTitle": "Contact",

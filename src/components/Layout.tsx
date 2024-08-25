@@ -1,6 +1,6 @@
 import { allRoutes } from '~/utils/routes'
 
-import Footer from './Footer'
+import { Footer } from './Footer'
 import { NavbarSitewide } from './navbar/NavbarSitewide'
 
 export default function Layout({ children }) {
@@ -8,7 +8,7 @@ export default function Layout({ children }) {
     <div className="d-flex flex-col min-h-screen">
       <NavbarSitewide routes={allRoutes} />
       {children}
-      <Footer />
+      <Footer routes={allRoutes} />
     </div>
   )
 }
