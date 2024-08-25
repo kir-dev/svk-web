@@ -47,7 +47,7 @@ export const NavbarSitewide: FC<PropsWithChildren<Props>> = ({ routes }) => {
     }
   }, [isMenuOpen, pathname])
 
-  const t = useTranslations('common.navbar')
+  const t = useTranslations('common')
   const switchLocale = () => {
     const nextLocale = locales?.find((loc) => loc !== locale) || locale
     router.push({ pathname, query }, asPath, { locale: nextLocale })
@@ -57,11 +57,11 @@ export const NavbarSitewide: FC<PropsWithChildren<Props>> = ({ routes }) => {
     <Navbar onMenuOpenChange={setIsMenuOpen}>
       <NavbarContent>
         <NavbarMenuToggle
-          aria-label={isMenuOpen ? t('closeMenu') : t('openMenu')}
+          aria-label={isMenuOpen ? t('navbar.closeMenu') : t('navbar.openMenu')}
           className="sm:hidden"
         />
         <NavbarBrand>
-          <NextLink aria-label={t('home')} href="/">
+          <NextLink aria-label={t('navbar.home')} href="/">
             <LogoAnimated style={{ height: '1rem' }} />
           </NextLink>
         </NavbarBrand>
@@ -133,7 +133,7 @@ export const NavbarSitewide: FC<PropsWithChildren<Props>> = ({ routes }) => {
         <NavbarItem className="flex h-full items-center">
           <Button
             isIconOnly
-            aria-label={t('langSwitcher')}
+            aria-label={t('navbar.langSwitcher')}
             className="p-0"
             variant="flat"
             onPress={switchLocale}
@@ -144,7 +144,7 @@ export const NavbarSitewide: FC<PropsWithChildren<Props>> = ({ routes }) => {
         <NavbarItem className="flex h-full items-center">
           <Button
             isIconOnly
-            aria-label={t('themeSwitcher')}
+            aria-label={t('navbar.themeSwitcher')}
             className="p-0"
             variant="flat"
             onPress={() => setTheme(theme === 'dark' ? 'light' : 'dark')}

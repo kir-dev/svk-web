@@ -4,11 +4,9 @@ export const environment = {
   statusKirDevUrl: 'https://status.kir-dev.hu',
   socials: {
     githubOrgUrl: 'https://github.com/kir-dev',
-    twitterUsername: 'kirdev',
     instagramUrl: 'https://instagram.com/kir.dev',
-    youtubeUrl: 'https://youtube.com/channel/UCkpMTj9qST_7RDt2YL4RUEw',
-    facebookUrl: 'https://facebook.com/kirdevteam',
-    publicEmail: 'hello [kukac] kir-dev.hu',
+    facebookUrl: 'https://www.facebook.com/SchonherzVallalatiKapcsolatok',
+    linkedin: 'https://linkedin.com/company/sch%C3%B6nherz-corporate-relations',
   },
   rickrollUrl: 'https://youtu.be/HtaZuzmDHuI',
 }
