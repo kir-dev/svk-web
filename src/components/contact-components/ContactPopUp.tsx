@@ -3,9 +3,8 @@ import { ContactForm } from '~/components/contact-components/ContactForm'
 import { ContactSubmissionIndicator } from '~/components/contact-components/ContactSubmissionIndicator'
 import { useTranslations } from 'next-intl'
 
-export const ContactPopUp = () => {
+export const ContactPopUp = ({ children }) => {
   const tc = useTranslations('common.contact')
-  const tn = useTranslations('common.navbar')
 
   const [isOpen, setIsOpen] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false)
@@ -29,12 +28,7 @@ export const ContactPopUp = () => {
 
   return (
     <Fragment>
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="rounded-full bg-teal-300 text-white p-3"
-      >
-        {tn('buttonTitle')}
-      </button>
+      <button onClick={() => setIsOpen(!isOpen)}>{children}</button>
       <div
         className={`border-none bg-none w-max h-max ${isOpen ? 'visible' : 'invisible'}`}
       >
