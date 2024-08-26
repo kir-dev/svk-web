@@ -125,7 +125,11 @@ export const NavbarSitewide: FC<PropsWithChildren<Props>> = ({ routes }) => {
 
       <NavbarContent className="flex gap-2" justify="end">
         <NavbarItem className="flex h-full items-center">
-          <ContactPopUp />
+          <ContactPopUp>
+            <h1 className="rounded-full bg-teal-300 text-white p-3">
+              {t('navbar.buttonTitle')}
+            </h1>
+          </ContactPopUp>
         </NavbarItem>
       </NavbarContent>
 
