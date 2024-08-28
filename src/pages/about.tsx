@@ -4,6 +4,7 @@ import { getClient } from '~/lib/sanity.client'
 import type { InferGetStaticPropsType } from 'next'
 import { Member } from '~/lib/sanity.types'
 import { MemberCard } from '~/components/member-components/MemberCard'
+import { MembersGrid } from '~/components/member-components/MembersGrid'
 
 export const getStaticProps = async ({ locale }) => {
   const client = getClient()
@@ -60,17 +61,18 @@ export default function AboutUsPage(
       <section>Carousel</section>
       <section>
         Tagok
-        <div className="grid grid-cols-2 md:grid-rows-3 xl:grid-cols-4 gap-5 w-full md:w-2/3 mx-auto px-3 md:px-5 justify-center">
+        <MembersGrid>
           {members.map((member) => (
             <MemberCard
               key={member._id}
               name={member.name}
               position={member.position}
+              description={member.description}
               picture={member.picture}
               linkedIN={member.linkedIn}
             />
           ))}
-        </div>
+        </MembersGrid>
       </section>
     </Layout>
   )

@@ -14,6 +14,7 @@ export interface Member {
   _id: string
   name: string
   position?: string
+  description?: string
   linkedIn?: string
   picture?: ImageAsset
 }
