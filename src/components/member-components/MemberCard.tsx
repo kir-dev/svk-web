@@ -1,5 +1,5 @@
 import { ImageAsset } from 'sanity'
-import { FC, useEffect, useState } from 'react'
+import { FC, useState } from 'react'
 import { urlForImage } from '~/lib/sanity.image'
 import { LinkedInSvg } from '~/components/svg-components/LinkedInSvg'
 
@@ -19,25 +19,16 @@ export const MemberCard: FC<Props> = ({
   linkedIN,
 }: Props) => {
   const [hovered, setHovered] = useState<boolean>(false)
-  const [hoveredContentVisible, setHoveredContentVisible] =
-    useState<boolean>(false)
-
-  useEffect(() => {
-    if (hovered) {
-      setTimeout(() => setHoveredContentVisible(hovered), 250)
-    }
-  }, [hovered])
 
   return (
     <div
       className="relative transition-all grid-rows-2 bg-blue-950 rounded-md text-center justify-between overflow-y-hidden w-64 h-80 mx-auto"
       onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => {
-        setHovered(false)
-        setHoveredContentVisible(false)
-      }}
+      onMouseLeave={() => setHovered(false)}
     >
-      <div className={` transition-all p-1 pb-0 ${hovered ? 'h-0' : 'h-3/5'}`}>
+      <div
+        className={` transition-all p-1 pb-0 ${hovered ? 'h-0 opacity-0' : 'h-3/5'}`}
+      >
         {picture && (
           <img
             src={urlForImage(picture)?.url() ?? ''}
