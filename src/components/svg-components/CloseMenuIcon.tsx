@@ -1,6 +1,6 @@
-import { SVGProps } from 'react'
+import React, { SVGProps } from 'react'
 
-export const CloseMenuIcon: React.FC<SVGProps<SVGSVGElement>> = (props) => (
+export const CloseMenuIcon: React.FC<SVGProps<SVGSVGElement>> = () => (
   <svg
     height="40"
     widths="40"
