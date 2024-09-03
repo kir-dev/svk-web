@@ -77,7 +77,8 @@
       "openMenu": "Menü megnyitása",
       "langSwitcher": "Nyelv váltása",
       "themeSwitcher": "Téma váltása",
-      "buttonTitle": "Kapcsolat",
+      "contactButtonTitle": "Kapcsolat",
+      "joinButtonTitle": "Csatlakozás",
       "home": "Kezdőlap"
     },
     "routes": {

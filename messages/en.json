@@ -72,7 +72,8 @@
       "openMenu": "Open menu",
       "langSwitcher": "Switch language",
       "themeSwitcher": "Switch color theme",
-      "buttonTitle": "Contact",
+      "contactButtonTitle": "Contact",
+      "joinButtonTitle": "Join Us",
       "home": "Home"
     },
     "routes": {

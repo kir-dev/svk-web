@@ -73,10 +73,12 @@ export const NavbarSitewide: FC<PropsWithChildren<Props>> = ({ routes }) => {
                   {t(`routes.${route.key}`)}
                 </NextLink>
               ))}
-              <h1>Csatlakozz</h1>
+              <h1>{t('navbar.joinButtonTitle')}</h1>
               <div className="my-5">
                 <ContactPopUp>
-                  <h1 className="bg-blue-500 rounded-full p-3">Kapcsolatok</h1>
+                  <h1 className="bg-blue-500 rounded-full p-3">
+                    {t('navbar.contactButtonTitle')}
+                  </h1>
                 </ContactPopUp>
               </div>
             </div>
@@ -94,9 +96,12 @@ export const NavbarSitewide: FC<PropsWithChildren<Props>> = ({ routes }) => {
                 {t(`routes.${route.key}`)}
               </NextLink>
             ))}
-            <h1>Csatlakozz</h1>
+            <h1>{t('navbar.joinButtonTitle')}</h1>
             <ContactPopUp>
-              <h1 className="bg-blue-500 rounded-full p-3">Kapcsolatok</h1>
+              <h1 className="bg-blue-500 rounded-full p-3">
+                {' '}
+                {t('navbar.contactButtonTitle')}
+              </h1>
             </ContactPopUp>
           </div>
 
