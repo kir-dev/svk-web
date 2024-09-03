@@ -30,7 +30,7 @@ export const Footer: FC<PropsWithChildren<Props>> = ({ routes }) => {
   const { pathname } = router
 
   return (
-    <footer className="flex flex-col gap-2 p-2 pt-5 pb-24">
+    <footer className="flex flex-col gap-2 p-2 pt-5 pb-24 bg-black z-10">
       <Container>
         <div className="flex justify-between gap-8 sm:gap-3 flex-col-reverse sm:flex-row text-xl m-10">
           <div className="flex flex-col gap-5 sm:gap-2 text-center sm:text-left">
