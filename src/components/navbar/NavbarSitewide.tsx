@@ -11,6 +11,7 @@ import { ContactPopUp } from '~/components/contact-components/ContactPopUp'
 import { MailIconSvg } from '~/components/svg-components/MailIconSvg'
 import NextLink from 'next/link'
 import { Button } from '@nextui-org/react'
+import { HamburgerIcon } from '~/components/svg-components/HamburgerIcon'
 
 export interface Props {
   routes: Route[]
@@ -44,10 +45,13 @@ export const NavbarSitewide: FC<PropsWithChildren<Props>> = ({ routes }) => {
             <MailIconSvg />
           </ContactPopUp>
         </div>
-        <div className="w-fit flex justify-around gap-10 items-center">
+        <div className="w-fit flex justify-around gap-5 md:gap-10 items-center text-small">
           <div className="block md:hidden h-fit">
-            <Button onClick={() => setOpenDropdown(!openDropdown)}>
-              Dropdwon
+            <Button
+              onClick={() => setOpenDropdown(!openDropdown)}
+              className="bg-transparent"
+            >
+              <HamburgerIcon />
             </Button>
             <div
               className={`${openDropdown ? 'block' : 'hidden'} absolute -bottom-15 bg-black p-5 rounded`}
@@ -63,31 +67,37 @@ export const NavbarSitewide: FC<PropsWithChildren<Props>> = ({ routes }) => {
                   {t(`routes.${route.key}`)}
                 </NextLink>
               ))}
+              <h1>Csatlakozz</h1>
+              <div className="my-5">
+                <ContactPopUp>
+                  <h1 className="bg-blue-500 rounded-full p-3">Kapcsolatok</h1>
+                </ContactPopUp>
+              </div>
             </div>
           </div>
 
-          <div className="hidden md:flex justify-around gap-10">
+          <div className="hidden md:flex justify-around gap-10 items-center">
             {routes.map((route) => (
               <NextLink
                 key={route.key}
                 color="foreground"
-                className="text-md"
+                className={` ${route.href == pathname ? 'underline' : ''}`}
                 href={route.href ?? ''}
                 aria-label={t(`routes.${route.key}`)}
               >
                 {t(`routes.${route.key}`)}
               </NextLink>
             ))}
+            <div>
+              <h1>Csatlakozz</h1>
+            </div>
+            <div>
+              <ContactPopUp>
+                <h1 className="bg-blue-500 rounded-full p-3">Kapcsolatok</h1>
+              </ContactPopUp>
+            </div>
           </div>
 
-          <div>
-            <h1>Csatlakozz</h1>
-          </div>
-          <div>
-            <ContactPopUp>
-              <h1 className="bg-blue-500 rounded-full p-3">Kapcsolatok</h1>
-            </ContactPopUp>
-          </div>
           <div>
             <Button
               isIconOnly
