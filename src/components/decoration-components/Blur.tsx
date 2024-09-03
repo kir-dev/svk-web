@@ -1,15 +1,14 @@
 import { FC } from 'react'
 
 interface Props {
-  w : number
-  h : number
+  width : number
+  height : number
   top : number
   left : number
 }
 
-export const Blur: FC<Props> = ({ w, h, top, left }) => {
-  //blur-3xl w-[${w}px] h-[${h}px] top-[${top}%] left-[${left}%] bg-[#0d9488] overflow-hidden fixed
+export const Blur: FC<Props> = ({ width, height, top, left }) => {
   return(
-    <div className={`bg-[#0d9488] overflow-hidden fixed blur-3xl rounded-full`} style={{ width: `${w}rem`, height: `${h}rem`, top: `${top}%`, left: `${left}%` }} />
+    <div className={`bg-[#0d9488] overflow-hidden fixed blur-3xl rounded-full`} style={{ width: `${width}rem`, height: `${height}rem`, top: `${top}%`, left: `${left}%` }} />
   )
 }
