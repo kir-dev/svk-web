@@ -1,6 +1,5 @@
 'use client'
 
-import { useTheme } from 'next-themes'
 import { useRouter } from 'next/router'
 import { FC, PropsWithChildren, useEffect, useState } from 'react'
 
@@ -12,6 +11,7 @@ import { MailIconSvg } from '~/components/svg-components/MailIconSvg'
 import NextLink from 'next/link'
 import { Button } from '@nextui-org/react'
 import { HamburgerIcon } from '~/components/svg-components/HamburgerIcon'
+import { CloseMenuIcon } from '~/components/svg-components/CloseMenuIcon'
 
 export interface Props {
   routes: Route[]
@@ -21,7 +21,6 @@ export const NavbarSitewide: FC<PropsWithChildren<Props>> = ({ routes }) => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean | undefined>(false)
   const router = useRouter()
   const { pathname, asPath, query, locales, locale } = router
-  const { setTheme, theme } = useTheme()
 
   useEffect(() => {
     if (isMenuOpen) {
@@ -39,22 +38,29 @@ export const NavbarSitewide: FC<PropsWithChildren<Props>> = ({ routes }) => {
 
   return (
     <nav className="sticky top-0">
-      <div className="flex justify-between w-screen px-5 md:px-20 py-3 bg-blue-950">
-        <div className="w-fit">
-          <ContactPopUp>
-            <MailIconSvg />
-          </ContactPopUp>
-        </div>
-        <div className="w-fit flex justify-around gap-5 md:gap-10 items-center text-small">
+      <div className="flex justify-between w-screen px-5 md:px-10 lg:px-20 py-3 bg-black">
+        <ContactPopUp>
+          <MailIconSvg />
+        </ContactPopUp>
+        <div className="flex w-fit justify-around items-center gap-5 lg:gap-10 text-md lg:text-lg">
           <div className="block md:hidden h-fit">
             <Button
               onClick={() => setOpenDropdown(!openDropdown)}
               className="bg-transparent"
             >
-              <HamburgerIcon />
+              <div
+                className={`absolute transition-all ${openDropdown ? 'opacity-0' : 'opacity-100'}`}
+              >
+                <HamburgerIcon />
+              </div>
+              <div
+                className={`absolute transition-all ${openDropdown ? 'opacity-100' : 'opacity-0'}`}
+              >
+                <CloseMenuIcon />
+              </div>
             </Button>
             <div
-              className={`${openDropdown ? 'block' : 'hidden'} absolute -bottom-15 bg-black p-5 rounded`}
+              className={` transition-all ${openDropdown ? 'visible opacity-100' : 'invisible opacity-0'} absolute -bottom-15 bg-black p-5 rounded`}
             >
               {routes.map((route) => (
                 <NextLink
@@ -88,14 +94,10 @@ export const NavbarSitewide: FC<PropsWithChildren<Props>> = ({ routes }) => {
                 {t(`routes.${route.key}`)}
               </NextLink>
             ))}
-            <div>
-              <h1>Csatlakozz</h1>
-            </div>
-            <div>
-              <ContactPopUp>
-                <h1 className="bg-blue-500 rounded-full p-3">Kapcsolatok</h1>
-              </ContactPopUp>
-            </div>
+            <h1>Csatlakozz</h1>
+            <ContactPopUp>
+              <h1 className="bg-blue-500 rounded-full p-3">Kapcsolatok</h1>
+            </ContactPopUp>
           </div>
 
           <div>
