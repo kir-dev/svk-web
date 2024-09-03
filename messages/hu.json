@@ -2,6 +2,7 @@
   "Index": {
     "ourName": "Kir-Dev",
     "mainTitle": "Schönherz Vállalati Kapcsolatok.",
+    "motto": "Kommunikációs hidat teremtünk a hallgatók és a cégek között",
     "terminalTexts": {
       "line5": "A Schönherz webfejlesztő köre.",
       "line6": "Fő technológiáink: Node.js és React."
