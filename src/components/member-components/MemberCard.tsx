@@ -22,7 +22,7 @@ export const MemberCard: FC<Props> = ({
 
   return (
     <div
-      className="relative transition-all grid-rows-2 bg-blue-950 rounded-md text-center justify-between overflow-y-hidden w-64 h-80 mx-auto"
+      className="transition-all grid-rows-2 bg-blue-950 rounded-md text-center justify-between overflow-y-hidden w-64 h-80 mx-auto"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
