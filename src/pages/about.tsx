@@ -60,7 +60,6 @@ export default function AboutUsPage(
       </section>
       <section>Carousel</section>
       <section>
-        Tagok
         <MembersGrid>
           {members.map((member) => (
             <MemberCard
