@@ -37,7 +37,7 @@ export const NavbarSitewide: FC<PropsWithChildren<Props>> = ({ routes }) => {
   const [openDropdown, setOpenDropdown] = useState<boolean>(false)
 
   return (
-    <nav className="sticky top-0">
+    <nav className="sticky top-0 z-40">
       <div className="flex justify-between w-screen px-5 md:px-10 lg:px-20 py-3 bg-black">
         <ContactPopUp>
           <MailIconSvg />
