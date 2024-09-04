@@ -8,6 +8,7 @@ import { useTranslations } from 'next-intl'
 import { PartnersSection } from '~/components/partners-components/PartnersSection'
 import { getClient } from '~/lib/sanity.client'
 import { getPartners } from '~/lib/queries/partner.queries'
+import React, { useEffect, useState } from 'react'
 
 export const getStaticProps = async ({ draftMode = false, locale }) => {
   const client = getClient()
@@ -26,13 +27,46 @@ export default function IndexPage(
   props: InferGetStaticPropsType<typeof getStaticProps>,
 ) {
   const t = useTranslations('Index')
-
   const partners = props.partners
+  const [index, setIndex] = useState<number>(0)
+  const [isTimerCalled, setIsTimerCalled] = useState<boolean>(false)
+  const urls = new Array<string>()
+
+  urls.push(
+    'https://imgs.search.brave.com/XKUD749tjOvSP2maFZkPmTckY7mAfnglBg7J6YgWEgg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/aXN0b2NrcGhvdG8u/Y29tL3Jlc291cmNl/cy9pbWFnZXMvSG9t/ZVBhZ2UvRm91clBh/Y2svQzItUGhvdG9z/LWlTdG9jay0xMzU2/MTk3Njk1LmpwZw',
+  )
+
+  urls.push(
+    'https://imgs.search.brave.com/v_mrZG-rmhumyNGaCvYsxB5Kv-DcLFlGlBnpswJifbI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMuY3RmYXNzZXRz/Lm5ldC9ocmx0eDEy/cGw4aHEvMlN3UDBa/NDZVRTRVMlljNE1n/YWEydy80ZTVjMzQ0/OTI4MzhjNDI1ZWUz/MzY0YTdlZjliOGMw/NS9qcGctcG5nLXBk/Zi5qcGc_Zml0PWZp/bGwmdz00ODAmaD0y/NzA',
+  )
+
+  urls.push(
+    'https://imgs.search.brave.com/XKUD749tjOvSP2maFZkPmTckY7mAfnglBg7J6YgWEgg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/aXN0b2NrcGhvdG8u/Y29tL3Jlc291cmNl/cy9pbWFnZXMvSG9t/ZVBhZ2UvRm91clBh/Y2svQzItUGhvdG9z/LWlTdG9jay0xMzU2/MTk3Njk1LmpwZw',
+  )
+
+  urls.push(
+    'https://imgs.search.brave.com/v_mrZG-rmhumyNGaCvYsxB5Kv-DcLFlGlBnpswJifbI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMuY3RmYXNzZXRz/Lm5ldC9ocmx0eDEy/cGw4aHEvMlN3UDBa/NDZVRTRVMlljNE1n/YWEydy80ZTVjMzQ0/OTI4MzhjNDI1ZWUz/MzY0YTdlZjliOGMw/NS9qcGctcG5nLXBk/Zi5qcGc_Zml0PWZp/bGwmdz00ODAmaD0y/NzA',
+  )
+
+  urls.push(
+    'https://imgs.search.brave.com/XKUD749tjOvSP2maFZkPmTckY7mAfnglBg7J6YgWEgg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/aXN0b2NrcGhvdG8u/Y29tL3Jlc291cmNl/cy9pbWFnZXMvSG9t/ZVBhZ2UvRm91clBh/Y2svQzItUGhvdG9z/LWlTdG9jay0xMzU2/MTk3Njk1LmpwZw',
+  )
+
+  urls.push(
+    'https://imgs.search.brave.com/v_mrZG-rmhumyNGaCvYsxB5Kv-DcLFlGlBnpswJifbI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMuY3RmYXNzZXRz/Lm5ldC9ocmx0eDEy/cGw4aHEvMlN3UDBa/NDZVRTRVMlljNE1n/YWEydy80ZTVjMzQ0/OTI4MzhjNDI1ZWUz/MzY0YTdlZjliOGMw/NS9qcGctcG5nLXBk/Zi5qcGc_Zml0PWZp/bGwmdz00ODAmaD0y/NzA',
+  )
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIndex(() => (index === urls.length - 1 ? 0 : index + 1))
+      console.log(index)
+    }, 5000)
+  }, [index])
 
   return (
     <Layout>
       <section className=" items-center h-[90vh] sm:h-[96vh] justify-center px-6 sm:px-0 pb-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 w-5/6 items-center mx-auto my-16 lg:my-56">
+        <div className="grid grid-cols-1 lg:grid-cols-2 w-5/6 items-center mx-auto my-16yr lg:my-56">
           <div className={' justify-center'}>
             <h1 className="mb-6 text-md lg:text-2xl font-extrabold leading-none tracking-tight">
               {t('mainTitle')}
@@ -41,11 +75,22 @@ export default function IndexPage(
               {t('motto')}
             </h1>
           </div>
-          <div className={'w-full justify-center'}>
-            <img
-              src="https://imgs.search.brave.com/nyh3wzw-YJg-Nl8sZEz0T1-qpsr-RLjJGTiLaFP5ryE/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5saWNkbi5jb20v/ZG1zL2ltYWdlL0M1/MTFCQVFINDRhaUly/aXU0ZUEvY29tcGFu/eS1iYWNrZ3JvdW5k/XzEwMDAwLzAvMTU4/NDQyMDAyMDQ1Ni9z/dmtfdGVjaG5vbG9n/eV9zb2x1dGlvbnNf/aW5jX2NvdmVyP2U9/MjE0NzQ4MzY0NyZ2/PWJldGEmdD04NFRy/TmE3c2NBSkMtZTZY/VFB0YlowaDJZTlBJ/OWtBRkJnS2dZLWw1/WFFV"
-              className="rounded-xl mx-auto"
-            ></img>
+          <div
+            className={
+              'w-full  overflow-y-hidden overflow-hidden rounded-xl justify-start aspect-video'
+            }
+          >
+            <div
+              className={` flex flex-nowrap transition-all -translate-x-[${index}00%]`}
+            >
+              {urls.map((url) => (
+                <img
+                  src={url}
+                  className="object-cover min-h-full min-w-full"
+                  alt=""
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>
