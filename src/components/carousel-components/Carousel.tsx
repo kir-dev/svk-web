@@ -14,9 +14,7 @@ export const Carousel: React.FC<Props> = ({ children }: Props) => {
   }, [index, children.length])
   return (
     <div
-      className={
-        'w-full  overflow-y-hidden overflow-hidden rounded-xl justify-start aspect-video'
-      }
+      className={'w-full overflow-hidden rounded-xl justify-start aspect-video'}
     >
       <div
         style={{ transform: `translateX(${index * -100}%)` }}

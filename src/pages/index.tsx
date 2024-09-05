@@ -37,8 +37,8 @@ export default function IndexPage(
   const images = props.images
   return (
     <Layout>
-      <section className=" items-center h-[90vh] sm:h-[96vh] justify-center px-6 sm:px-0 pb-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 w-5/6 items-center mx-auto my-16yr lg:my-56">
+      <section className=" items-center h-fit justify-center px-6 sm:px-0 pb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 w-5/6 items-center mx-auto my-8 lg:my-56">
           <div className={' justify-center'}>
             <h1 className="mb-6 text-md lg:text-2xl font-extrabold leading-none tracking-tight">
               {t('mainTitle')}
