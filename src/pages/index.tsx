@@ -11,7 +11,7 @@ import { getPartners } from '~/lib/queries/partner.queries'
 import React from 'react'
 import { getImages } from '~/lib/queries/image.queries'
 import { Picture } from '~/lib/sanity.types'
-import { Carousel } from '~/components/Carousel'
+import { Carousel } from '~/components/carousel-components/Carousel'
 import { CarouselImage } from '~/components/carousel-components/CarouselImage'
 
 export const getStaticProps = async ({ draftMode = false, locale }) => {

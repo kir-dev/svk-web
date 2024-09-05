@@ -11,7 +11,7 @@ export const Carousel: React.FC<Props> = ({ children }: Props) => {
     setTimeout(() => {
       setIndex(() => (index === children.length - 1 ? 0 : index + 1))
     }, 5000)
-  }, [index])
+  }, [index, children.length])
   return (
     <div
       className={
