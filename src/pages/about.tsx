@@ -6,7 +6,6 @@ import { Member } from '~/lib/sanity.types'
 import { MemberCard } from '~/components/member-components/MemberCard'
 import { MembersGrid } from '~/components/member-components/MembersGrid'
 import { useEffect, useState } from 'react'
-import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 
 export const getStaticProps = async ({ locale }) => {
