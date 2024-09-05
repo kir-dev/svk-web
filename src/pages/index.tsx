@@ -8,15 +8,16 @@ import { useTranslations } from 'next-intl'
 import { PartnersSection } from '~/components/partners-components/PartnersSection'
 import { getClient } from '~/lib/sanity.client'
 import { getPartners } from '~/lib/queries/partner.queries'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { getImages } from '~/lib/queries/image.queries'
-import { Image } from '~/lib/sanity.types'
-import { urlForImage } from '~/lib/sanity.image'
+import { Picture } from '~/lib/sanity.types'
+import { Carousel } from '~/components/Carousel'
+import { CarouselImage } from '~/components/carousel-components/CarouselImage'
 
 export const getStaticProps = async ({ draftMode = false, locale }) => {
   const client = getClient()
   const partners = await getPartners(client)
-  const images: Image[] = await getImages(client)
+  const images: Picture[] = await getImages(client)
   return {
     props: {
       draftMode,
@@ -34,14 +35,6 @@ export default function IndexPage(
   const t = useTranslations('Index')
   const partners = props.partners
   const images = props.images
-  const [index, setIndex] = useState<number>(0)
-
-  useEffect(() => {
-    setTimeout(() => {
-      setIndex(() => (index === images.length - 1 ? 0 : index + 1))
-    }, 5000)
-  }, [index])
-  console.log(images.length)
   return (
     <Layout>
       <section className=" items-center h-[90vh] sm:h-[96vh] justify-center px-6 sm:px-0 pb-8">
@@ -54,23 +47,11 @@ export default function IndexPage(
               {t('motto')}
             </h1>
           </div>
-          <div
-            className={
-              'w-full  overflow-y-hidden overflow-hidden rounded-xl justify-start aspect-video'
-            }
-          >
-            <div
-              className={` flex flex-nowrap transition-all -translate-x-[${index}00%]`}
-            >
-              {images.map((image) => (
-                <img
-                  src={urlForImage(image.image)?.url()}
-                  className="object-cover min-h-full min-w-full"
-                  alt=""
-                />
-              ))}
-            </div>
-          </div>
+          <Carousel>
+            {images.map((image) => (
+              <CarouselImage image={image} key={image._id} />
+            ))}
+          </Carousel>
         </div>
       </section>
       <section className="bg-gradient-to-r from-foreground-50 to-foreground-200 border-gray-300 border-y-1 py-24">

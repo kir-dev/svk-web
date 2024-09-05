@@ -49,7 +49,9 @@ export interface EventFull extends EventSummary {
   lecturer?: Lecturer
 }
 
-export interface Image {
+export interface Picture {
+  _type: 'picture'
+  _id: string
   title: string
   image: ImageAsset
 }
