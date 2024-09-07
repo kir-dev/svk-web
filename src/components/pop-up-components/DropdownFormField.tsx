@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslations } from 'next-intl'
 
 interface Props {
   title: string
@@ -17,6 +18,7 @@ export const DropdownFormField = ({
   value,
   onChange,
 }: Props) => {
+  const t = useTranslations('common.joinUs.form')
   return (
     <div className="p-3 px-6 w-full">
       <label htmlFor={id} className="text-md block uppercase text-gray-600">
@@ -30,7 +32,7 @@ export const DropdownFormField = ({
         onChange={onChange}
       >
         <option value={incorrectValue} disabled hidden>
-          Válassz
+          {t('defaultDropdownOption')}
         </option>
         {options.map((option) => (
           <option value={option} key={option}>

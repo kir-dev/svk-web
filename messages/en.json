@@ -68,6 +68,25 @@
         "success": "Sent successfully",
         "failure": "Send failure, please try again later"
       }
+    },
+    "joinUs": {
+      "mainTitle": "Join Us",
+      "form": {
+        "name": "Name",
+        "exampleName": "Example John",
+        "email": "Email",
+        "exampleEmail": "examplejohn@email.com",
+        "defaultDropdownOption": "Choose...",
+        "study": "Study",
+        "studyOptions": "BME-Vik;Other",
+        "activeSemesterCount": "Number of your active semesters",
+        "cancel": "Cancel",
+        "submit": "Send"
+      },
+      "feedback": {
+        "success": "Sent successfully",
+        "failure": "Send failure, please try again later"
+      }
     }
   }
 }

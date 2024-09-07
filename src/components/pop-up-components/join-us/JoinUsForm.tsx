@@ -31,7 +31,7 @@ export const JoinUsFrom: React.FC<ModalFormProps> = ({
     activeSemesterCount: false,
   }
 
-  const t = useTranslations('common.contact.form')
+  const t = useTranslations('common.joinUs.form')
 
   const [validForm, setValidForm] = useState<boolean>(false)
   const [formData, setFormData] = useState<JoinUsFormFields>(formInitState)
@@ -112,8 +112,8 @@ export const JoinUsFrom: React.FC<ModalFormProps> = ({
         />
         <DropdownFormField
           id="study"
-          title="Tanulmány"
-          options={['BME-Vik', 'Egyéb']}
+          title={t('study')}
+          options={t('studyOptions').split(';')}
           value={formData.study}
           onChange={(event) => {
             handleChange(event)
@@ -121,7 +121,7 @@ export const JoinUsFrom: React.FC<ModalFormProps> = ({
         />
         <DropdownFormField
           id="activeSemesterCount"
-          title="Aktív féléveid száma"
+          title={t('activeSemesterCount')}
           options={['1', '2', '3', '4', '5', '6', '7', '7+']}
           value={formData.activeSemesterCount}
           onChange={(event) => {
