@@ -1,5 +1,5 @@
 import { mailOptions, transporter } from '~/config/nodemailer'
-import { FormFields, validateField } from '~/utils/contact-form-validation'
+import { ContactFormFields, validateField } from '~/utils/form-validation'
 
 const CONTACT_MESSAGE_FIELDS = {
   name: 'Név',
@@ -10,7 +10,7 @@ const CONTACT_MESSAGE_FIELDS = {
   message: 'Üzenet',
 }
 
-const generateEmailContent = (data: FormFields) => {
+const generateEmailContent = (data: ContactFormFields) => {
   const stringData = Object.entries(data).reduce(
     (str: string, [key, val]) =>
       str + `${CONTACT_MESSAGE_FIELDS[key]}:${val}\n`,
@@ -31,7 +31,7 @@ const generateEmailContent = (data: FormFields) => {
 }
 
 const handler = async (req, res) => {
-  const data: FormFields = req.body
+  const data: ContactFormFields = req.body
   const entries = Object.entries(data)
   const valid =
     entries

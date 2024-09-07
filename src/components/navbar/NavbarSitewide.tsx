@@ -6,12 +6,13 @@ import { FC, PropsWithChildren, useEffect, useState } from 'react'
 import { Route } from '~/utils/routes'
 
 import { useTranslations } from 'next-intl'
-import { ContactPopUp } from '~/components/contact-components/ContactPopUp'
 import { MailIconSvg } from '~/components/svg-components/MailIconSvg'
 import NextLink from 'next/link'
 import { Button } from '@nextui-org/react'
 import { HamburgerIcon } from '~/components/svg-components/HamburgerIcon'
 import { CloseMenuIcon } from '~/components/svg-components/CloseMenuIcon'
+import { ContactPopUp } from '~/components/pop-up-components/contact/ContactPopUp'
+import { JoinUsPopUp } from '~/components/pop-up-components/join-us/JoinUsPopUp'
 
 export interface Props {
   routes: Route[]
@@ -73,7 +74,9 @@ export const NavbarSitewide: FC<PropsWithChildren<Props>> = ({ routes }) => {
                   {t(`routes.${route.key}`)}
                 </NextLink>
               ))}
-              <h1>{t('navbar.joinButtonTitle')}</h1>
+              <JoinUsPopUp>
+                <h1>{t('navbar.joinButtonTitle')}</h1>
+              </JoinUsPopUp>
               <div className="my-5">
                 <ContactPopUp>
                   <h1 className="bg-blue-500 rounded-full p-3">
@@ -96,7 +99,9 @@ export const NavbarSitewide: FC<PropsWithChildren<Props>> = ({ routes }) => {
                 {t(`routes.${route.key}`)}
               </NextLink>
             ))}
-            <h1>{t('navbar.joinButtonTitle')}</h1>
+            <JoinUsPopUp>
+              <h1>{t('navbar.joinButtonTitle')}</h1>
+            </JoinUsPopUp>
             <ContactPopUp>
               <h1 className="bg-blue-500 rounded-full p-3">
                 {' '}

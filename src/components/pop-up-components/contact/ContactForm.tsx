@@ -1,25 +1,23 @@
-import { ContactFormField } from '~/components/contact-components/ContactFormField'
+import { FormField } from '~/components/pop-up-components/FormField'
 import React, { ChangeEvent, useEffect, useState } from 'react'
 import { sendContactFrom } from '~/lib/api'
 import {
-  FieldsValidity,
-  FormFields,
+  ContactFieldsValidity,
+  ContactFormFields,
   validateField,
-} from '~/utils/contact-form-validation'
+} from '~/utils/form-validation'
 import { useTranslations } from 'next-intl'
+import { ContactSubmissionIndicator } from '~/components/pop-up-components/ContactSubmissionIndicator'
+import { CircularProgress } from '@nextui-org/progress'
 
-interface Props {
+export interface ModalFormProps {
   closeModal: () => void
-  setSuccess: (success: boolean) => void
-  setSubmitted: (submitted: boolean) => void
 }
 
-export const ContactForm = ({
+export const ContactForm: React.FC<ModalFormProps> = ({
   closeModal,
-  setSuccess,
-  setSubmitted,
-}: Props) => {
-  const formInitState: FormFields = {
+}: ModalFormProps) => {
+  const formInitState: ContactFormFields = {
     name: '',
     email: '',
     phoneNumber: '',
@@ -28,7 +26,7 @@ export const ContactForm = ({
     message: '',
   }
 
-  const validityInitState: FieldsValidity = {
+  const validityInitState: ContactFieldsValidity = {
     name: false,
     email: false,
     phoneNumber: false,
@@ -40,13 +38,24 @@ export const ContactForm = ({
   const t = useTranslations('common.contact.form')
 
   const [validForm, setValidForm] = useState<boolean>(false)
-  const [formData, setFormData] = useState<FormFields>(formInitState)
+  const [formData, setFormData] = useState<ContactFormFields>(formInitState)
   const [validFields, setValidFields] =
-    useState<FieldsValidity>(validityInitState)
+    useState<ContactFieldsValidity>(validityInitState)
+  const [isSuccess, setSuccess] = useState<boolean>(true)
+  const [isSubmitted, setSubmitted] = useState<boolean>(false)
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     setValidForm(Object.values(validFields).every(Boolean))
   }, [validFields])
+
+  useEffect(() => {
+    if (isSubmitted) {
+      setTimeout(() => {
+        setSubmitted(false)
+      }, 5000)
+    }
+  }, [isSubmitted])
 
   const handleChange = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -61,6 +70,7 @@ export const ContactForm = ({
 
   const handleSubmit = async () => {
     try {
+      setIsLoading(true)
       await sendContactFrom(formData)
       setSuccess(true)
       setFormData(formInitState)
@@ -69,13 +79,19 @@ export const ContactForm = ({
       setSuccess(false)
     } finally {
       setSubmitted(true)
+      setIsLoading(false)
     }
   }
 
   return (
     <form onSubmit={(e) => e.preventDefault()} className="my-5">
+      <div
+        className={`transition-opacity ${isSubmitted ? 'opacity-100' : 'opacity-0'}`}
+      >
+        <ContactSubmissionIndicator isSuccess={isSuccess} />
+      </div>
       <div className="grid grid-cols-1 sm:grid-cols-2">
-        <ContactFormField
+        <FormField
           title={t('name')}
           type="text"
           id="name"
@@ -85,7 +101,7 @@ export const ContactForm = ({
             handleChange(event)
           }}
         />
-        <ContactFormField
+        <FormField
           title={t('email')}
           type="email"
           id="email"
@@ -95,7 +111,7 @@ export const ContactForm = ({
             handleChange(event)
           }}
         />
-        <ContactFormField
+        <FormField
           title={t('phoneNumber')}
           type="tel"
           id="phoneNumber"
@@ -106,7 +122,7 @@ export const ContactForm = ({
             handleChange(event)
           }}
         />
-        <ContactFormField
+        <FormField
           title={t('companyName')}
           type="text"
           id="companyName"
@@ -116,7 +132,7 @@ export const ContactForm = ({
             handleChange(event)
           }}
         />
-        <ContactFormField
+        <FormField
           title={t('title')}
           type="text"
           id="title"
@@ -139,7 +155,7 @@ export const ContactForm = ({
           id="message"
           value={formData.message}
           placeholder={t('exampleMessage')}
-          className="w-full h-20 rounded text-gray-600 invalid:border-red-600 border-2 valid:border-blue-500 p-1"
+          className="w-full h-20 rounded bg-white text-gray-600 invalid:border-red-600 border-2 valid:border-blue-500 p-1"
           onChange={(event) => {
             handleChange(event)
           }}
@@ -159,7 +175,11 @@ export const ContactForm = ({
           onClick={handleSubmit}
           disabled={!validForm}
         >
-          {t('submit')}
+          {isLoading ? (
+            <CircularProgress color="default" aria-label="Loading..." />
+          ) : (
+            t('submit')
+          )}
         </button>
       </div>
     </form>
