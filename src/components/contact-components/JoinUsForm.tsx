@@ -1,46 +1,42 @@
 import { FormField } from '~/components/contact-components/FormField'
 import React, { ChangeEvent, useEffect, useState } from 'react'
-import { sendContactFrom } from '~/lib/api'
 import {
-  ContactFieldsValidity,
-  ContactFormFields,
+  JoinUSFieldsValidity,
+  JoinUsFormFields,
   validateField,
 } from '~/utils/form-validation'
 import { useTranslations } from 'next-intl'
 import { ContactSubmissionIndicator } from '~/components/contact-components/ContactSubmissionIndicator'
 import { CircularProgress } from '@nextui-org/progress'
+import { DropdownFormField } from '~/components/contact-components/DropdownFormField'
 
 export interface ModalFormProps {
   closeModal: () => void
 }
 
-export const ContactForm: React.FC<ModalFormProps> = ({
+export const JoinUsFrom: React.FC<ModalFormProps> = ({
   closeModal,
 }: ModalFormProps) => {
-  const formInitState: ContactFormFields = {
+  const formInitState: JoinUsFormFields = {
     name: '',
     email: '',
-    phoneNumber: '',
-    companyName: '',
-    title: '',
-    message: '',
+    study: '',
+    activeSemesterCount: 0,
   }
 
-  const validityInitState: ContactFieldsValidity = {
+  const validityInitState: JoinUSFieldsValidity = {
     name: false,
     email: false,
-    phoneNumber: false,
-    companyName: false,
-    title: false,
-    message: false,
+    study: false,
+    activeSemesterCount: false,
   }
 
   const t = useTranslations('common.contact.form')
 
   const [validForm, setValidForm] = useState<boolean>(false)
-  const [formData, setFormData] = useState<ContactFormFields>(formInitState)
+  const [formData, setFormData] = useState<JoinUsFormFields>(formInitState)
   const [validFields, setValidFields] =
-    useState<ContactFieldsValidity>(validityInitState)
+    useState<JoinUSFieldsValidity>(validityInitState)
   const [isSuccess, setSuccess] = useState<boolean>(true)
   const [isSubmitted, setSubmitted] = useState<boolean>(false)
   const [isLoading, setIsLoading] = useState(false)
@@ -71,7 +67,7 @@ export const ContactForm: React.FC<ModalFormProps> = ({
   const handleSubmit = async () => {
     try {
       setIsLoading(true)
-      await sendContactFrom(formData)
+      //await sendContactFrom(formData)
       setSuccess(true)
       setFormData(formInitState)
       setValidFields(validityInitState)
@@ -111,51 +107,18 @@ export const ContactForm: React.FC<ModalFormProps> = ({
             handleChange(event)
           }}
         />
-        <FormField
-          title={t('phoneNumber')}
-          type="tel"
-          id="phoneNumber"
-          placeHolder="06012345678"
-          value={formData.phoneNumber}
-          pattern="^(?:\+36|06)?\s?[1-9]\d\s?\d{3}\s?\d{3,4}$|^(?:\+36|06)?\s?((1|20|30|31|50|70|90)\d)\s?\d{3}\s?\d{3,4}$"
+        <DropdownFormField
+          id="study"
+          title="Tanulmány"
+          options={['Válassz', 'BME-Vik', 'Egyéb']}
           onChange={(event) => {
             handleChange(event)
           }}
         />
-        <FormField
-          title={t('companyName')}
-          type="text"
-          id="companyName"
-          placeHolder={t('exampleCompanyName')}
-          value={formData.companyName}
-          onChange={(event) => {
-            handleChange(event)
-          }}
-        />
-        <FormField
-          title={t('title')}
-          type="text"
-          id="title"
-          placeHolder={t('exampleTitle')}
-          value={formData.title}
-          onChange={(event) => {
-            handleChange(event)
-          }}
-        />
-      </div>
-      <div className="p-3 px-6 w-full">
-        <label
-          htmlFor="message"
-          className="text-md block uppercase text-gray-600"
-        >
-          {t('message')}
-        </label>
-        <textarea
-          required={true}
-          id="message"
-          value={formData.message}
-          placeholder={t('exampleMessage')}
-          className="w-full h-20 rounded bg-white text-gray-600 invalid:border-red-600 border-2 valid:border-blue-500 p-1"
+        <DropdownFormField
+          id="activeSemesterCount"
+          title="Aktív féléveid száma"
+          options={['Válassz', '1', '2', '3', '4', '5', '6', '7', '7+']}
           onChange={(event) => {
             handleChange(event)
           }}

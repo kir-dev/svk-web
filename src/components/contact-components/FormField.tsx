@@ -10,7 +10,7 @@ interface Props {
   onChange: (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
 }
 
-export const ContactFormField = ({
+export const FormField = ({
   title,
   type = 'text',
   id,

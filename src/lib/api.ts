@@ -1,6 +1,6 @@
-import { FormFields } from '~/utils/contact-form-validation'
+import { ContactFormFields } from '~/utils/form-validation'
 
-export const sendContactFrom = async (data: FormFields) =>
+export const sendContactFrom = async (data: ContactFormFields) =>
   fetch('/api/contact', {
     method: 'POST',
     body: JSON.stringify(data),
