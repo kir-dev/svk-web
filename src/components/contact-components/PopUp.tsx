@@ -1,14 +1,20 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment } from 'react'
 
 interface Props {
   title: string
   children: React.ReactNode
   button: React.ReactNode
+  isOpen: boolean
+  setIsOpen: (open: boolean) => void
 }
 
-export const PopUp = ({ title, children, button }: Props) => {
-  const [isOpen, setIsOpen] = useState(false)
-
+export const PopUp = ({
+  title,
+  children,
+  button,
+  isOpen,
+  setIsOpen,
+}: Props) => {
   return (
     <Fragment>
       <button onClick={() => setIsOpen(!isOpen)}>{button}</button>

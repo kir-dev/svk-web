@@ -11,7 +11,7 @@ import { CircularProgress } from '@nextui-org/progress'
 import { DropdownFormField } from '~/components/contact-components/DropdownFormField'
 
 export interface ModalFormProps {
-  closeModal: () => void
+  closeModal?: (param: any) => void
 }
 
 export const JoinUsFrom: React.FC<ModalFormProps> = ({

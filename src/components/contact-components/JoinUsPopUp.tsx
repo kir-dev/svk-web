@@ -1,5 +1,5 @@
 import { PopUp } from '~/components/contact-components/PopUp'
-import React from 'react'
+import React, { useState } from 'react'
 import { JoinUsFrom } from '~/components/contact-components/JoinUsForm'
 
 interface Props {
@@ -7,13 +7,15 @@ interface Props {
 }
 
 export const JoinUsPopUp = ({ children }: Props) => {
+  const [isOpen, setIsOpen] = useState(false)
   return (
-    <PopUp button={children} title={'Csatlakozás'}>
-      <JoinUsFrom
-        closeModal={() => {
-          //Todo
-        }}
-      />
+    <PopUp
+      button={children}
+      title={'Csatlakozás'}
+      isOpen={isOpen}
+      setIsOpen={setIsOpen}
+    >
+      <JoinUsFrom closeModal={() => setIsOpen(false)} />
     </PopUp>
   )
 }
