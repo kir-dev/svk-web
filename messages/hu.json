@@ -16,6 +16,9 @@
   },
   "Members": {
     "title": "Tagjaink",
+    "about0": "Csoportunk az employer branding területén tevékenykedik a Schönherz Kollégium és az ipar meghatározó résztvevői között.",
+    "about1": "Ennek eredményeként a hallgatók már az egyetemi éveik alatt megismerik és megértik a cégek portfólióját, ami jelentősen megkönnyíti számukra az elhelyezkedést a munka világában.",
+    "about2": "Fő célunk, hogy egy olyan hatékony kommunikációs hidat hozzunk létre a hallgatók és a cégek között, amellyel kölcsönösen megismerhetik egymást.",
     "nameFormat": "{lastName} {firstName}",
     "imageAlt": "{lastName} {firstName} profilképe"
   },
