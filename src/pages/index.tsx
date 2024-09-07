@@ -58,9 +58,23 @@ export default function IndexPage(
         <Container className="relative">Carousel</Container>
       </section>
       <section>
-        <Container>Mivel foglalkozunk</Container>
+        <Container>
+            <div className="p-6 sm:p-16 md:p-24 lg:p-32 gap-2 2xl:flex">
+                <p className="font-bold text-3xl sm:text-4xl md:text-5xl text-nowrap text-center 2xl:text-start pb-4">
+                    {t('mission.title')}
+                </p>
+                <div className="text-justify flex flex-col gap-4 leading-loose text-gray-300 text-md sm:text-lg">
+                    <p>
+                        {t('mission.body0')}
+                    </p>
+                    <p>
+                        {t('mission.body1')}
+                    </p>
+                </div>
+            </div>
+        </Container>
       </section>
-      <section className="py-24">
+      <section className="pb-24">
         <PartnersSection partners={partners} title={t('partnersTitle')} />
       </section>
     </Layout>

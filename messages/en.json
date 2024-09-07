@@ -5,9 +5,9 @@
     "joinUs": "Join us",
     "motto": "We create communication bridge between students and companies",
     "mission": {
-      "title": "Kir-Dev's mission is to create useful webapps for the students of Schönherz.",
-      "body": "In addition to web development, we also train ourselves in mobile development and DevOps. Every spring, we run courses in Hungarian to help interested parties join the group.",
-      "action": "Get to know us better"
+      "title": "What do we do?",
+      "body0": "Our goal is to create an efficient communication bridge between students and companies, which allows both parties to get to know each other mutually. As a result, students get to know and understand the business areas of companies during their university years, which significantly facilitates their job placement in the working world.",
+      "body1": "In this process, we pay special attention to providing media presence for companies at the largest campus events, such as the Simonyi Conference, the Schönherz Qpa, Freshman Camp, and Freshman Ball, as well as at our own events, such as professional lectures, courses, and company visits. This way, we provide companies with the opportunity to establish direct contact with talented students and showcase their services and opportunities to the future workforce."
     },
     "partnersTitle": "Our partners"
   },
