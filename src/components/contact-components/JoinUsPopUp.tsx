@@ -8,7 +8,7 @@ interface Props {
 
 export const JoinUsPopUp = ({ children }: Props) => {
   return (
-    <PopUp button={children}>
+    <PopUp button={children} title={'Csatlakozás'}>
       <JoinUsFrom
         closeModal={() => {
           //Todo

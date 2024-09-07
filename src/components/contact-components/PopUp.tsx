@@ -1,14 +1,12 @@
 import React, { Fragment, useState } from 'react'
-import { useTranslations } from 'next-intl'
 
 interface Props {
+  title: string
   children: React.ReactNode
   button: React.ReactNode
 }
 
-export const PopUp = ({ children, button }: Props) => {
-  const tc = useTranslations('common.contact')
-
+export const PopUp = ({ title, children, button }: Props) => {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
@@ -24,7 +22,7 @@ export const PopUp = ({ children, button }: Props) => {
             className={`w-full md:w-3/4 lg:w-1/2 max-h-screen h-auto bg-white fixed inset-x-0 mx-auto rounded-lg py-8 pb-32  md:pb-8 my-5 shadow-md text-white transition-all duration-500 overflow-y-auto ${isOpen ? 'scale-100 opacity-100' : 'scale-125 opacity-0'}`}
           >
             <h1 className="text-center text-4xl font-bold text-gray-600">
-              {tc('mainTitle')}
+              {title}
             </h1>
             {children}
           </div>

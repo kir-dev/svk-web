@@ -25,10 +25,10 @@ export interface JoinUsFormFields {
   name: string
   email: string
   study: string
-  activeSemesterCount: number
+  activeSemesterCount: string
 }
 
-export interface JoinUSFieldsValidity {
+export interface JoinUsFieldsValidity {
   name: boolean
   email: boolean
   study: boolean
@@ -54,7 +54,7 @@ export const validateField = (field: string, value: string): boolean => {
     case 'title':
     case 'message':
     case 'study':
-    case 'activeSemestersCount':
+    case 'activeSemesterCount':
       return validateRequired(value)
     case 'email':
       return validateEmail(value)

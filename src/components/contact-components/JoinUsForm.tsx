@@ -1,7 +1,7 @@
 import { FormField } from '~/components/contact-components/FormField'
 import React, { ChangeEvent, useEffect, useState } from 'react'
 import {
-  JoinUSFieldsValidity,
+  JoinUsFieldsValidity,
   JoinUsFormFields,
   validateField,
 } from '~/utils/form-validation'
@@ -21,10 +21,10 @@ export const JoinUsFrom: React.FC<ModalFormProps> = ({
     name: '',
     email: '',
     study: '',
-    activeSemesterCount: 0,
+    activeSemesterCount: '',
   }
 
-  const validityInitState: JoinUSFieldsValidity = {
+  const validityInitState: JoinUsFieldsValidity = {
     name: false,
     email: false,
     study: false,
@@ -36,7 +36,7 @@ export const JoinUsFrom: React.FC<ModalFormProps> = ({
   const [validForm, setValidForm] = useState<boolean>(false)
   const [formData, setFormData] = useState<JoinUsFormFields>(formInitState)
   const [validFields, setValidFields] =
-    useState<JoinUSFieldsValidity>(validityInitState)
+    useState<JoinUsFieldsValidity>(validityInitState)
   const [isSuccess, setSuccess] = useState<boolean>(true)
   const [isSubmitted, setSubmitted] = useState<boolean>(false)
   const [isLoading, setIsLoading] = useState(false)
@@ -54,7 +54,9 @@ export const JoinUsFrom: React.FC<ModalFormProps> = ({
   }, [isSubmitted])
 
   const handleChange = (
-    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    event: ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
   ) => {
     const { id, value } = event.target
     setFormData({ ...formData, [id]: value })
@@ -62,11 +64,13 @@ export const JoinUsFrom: React.FC<ModalFormProps> = ({
       ...validFields,
       [id]: validateField(id, value),
     }))
+    console.log(formData)
   }
 
   const handleSubmit = async () => {
     try {
       setIsLoading(true)
+      //Todo
       //await sendContactFrom(formData)
       setSuccess(true)
       setFormData(formInitState)
@@ -110,7 +114,7 @@ export const JoinUsFrom: React.FC<ModalFormProps> = ({
         <DropdownFormField
           id="study"
           title="Tanulmány"
-          options={['Válassz', 'BME-Vik', 'Egyéb']}
+          options={['BME-Vik', 'Egyéb']}
           onChange={(event) => {
             handleChange(event)
           }}
@@ -118,7 +122,7 @@ export const JoinUsFrom: React.FC<ModalFormProps> = ({
         <DropdownFormField
           id="activeSemesterCount"
           title="Aktív féléveid száma"
-          options={['Válassz', '1', '2', '3', '4', '5', '6', '7', '7+']}
+          options={['1', '2', '3', '4', '5', '6', '7', '7+']}
           onChange={(event) => {
             handleChange(event)
           }}
