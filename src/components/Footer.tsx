@@ -6,12 +6,12 @@ import { FacebookSvg } from './svg-components/FacebookSvg'
 import { InstagramSvg } from './svg-components/InstagramSvg'
 import { Route } from '~/utils/routes'
 import NextLink from 'next/link'
-import { FC, PropsWithChildren } from 'react'
+import React, { FC, PropsWithChildren } from 'react'
 import { useRouter } from 'next/router'
 import { LinkedInSvg } from '~/components/svg-components/LinkedInSvg'
-import { MailIconSvg } from '~/components/svg-components/MailIconSvg'
-import { ContactPopUp } from '~/components/contact-components/ContactPopUp'
 import SocialIcon from '~/components/SocialIcon'
+import { ContactPopUp } from '~/components/contact-components/ContactPopUp'
+import { MailIconSvg } from '~/components/svg-components/MailIconSvg'
 
 export interface Props {
   routes: Route[]

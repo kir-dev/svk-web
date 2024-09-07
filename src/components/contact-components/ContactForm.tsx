@@ -7,18 +7,16 @@ import {
   validateField,
 } from '~/utils/contact-form-validation'
 import { useTranslations } from 'next-intl'
+import { ContactSubmissionIndicator } from '~/components/contact-components/ContactSubmissionIndicator'
+import { CircularProgress } from '@nextui-org/progress'
 
-interface Props {
+export interface ModalFormProps {
   closeModal: () => void
-  setSuccess: (success: boolean) => void
-  setSubmitted: (submitted: boolean) => void
 }
 
-export const ContactForm = ({
+export const ContactForm: React.FC<ModalFormProps> = ({
   closeModal,
-  setSuccess,
-  setSubmitted,
-}: Props) => {
+}: ModalFormProps) => {
   const formInitState: FormFields = {
     name: '',
     email: '',
@@ -43,10 +41,21 @@ export const ContactForm = ({
   const [formData, setFormData] = useState<FormFields>(formInitState)
   const [validFields, setValidFields] =
     useState<FieldsValidity>(validityInitState)
+  const [isSuccess, setSuccess] = useState<boolean>(true)
+  const [isSubmitted, setSubmitted] = useState<boolean>(false)
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     setValidForm(Object.values(validFields).every(Boolean))
   }, [validFields])
+
+  useEffect(() => {
+    if (isSubmitted) {
+      setTimeout(() => {
+        setSubmitted(false)
+      }, 5000)
+    }
+  }, [isSubmitted])
 
   const handleChange = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -61,6 +70,7 @@ export const ContactForm = ({
 
   const handleSubmit = async () => {
     try {
+      setIsLoading(true)
       await sendContactFrom(formData)
       setSuccess(true)
       setFormData(formInitState)
@@ -69,11 +79,17 @@ export const ContactForm = ({
       setSuccess(false)
     } finally {
       setSubmitted(true)
+      setIsLoading(false)
     }
   }
 
   return (
     <form onSubmit={(e) => e.preventDefault()} className="my-5">
+      <div
+        className={`transition-opacity ${isSubmitted ? 'opacity-100' : 'opacity-0'}`}
+      >
+        <ContactSubmissionIndicator isSuccess={isSuccess} />
+      </div>
       <div className="grid grid-cols-1 sm:grid-cols-2">
         <ContactFormField
           title={t('name')}
@@ -139,7 +155,7 @@ export const ContactForm = ({
           id="message"
           value={formData.message}
           placeholder={t('exampleMessage')}
-          className="w-full h-20 rounded text-gray-600 invalid:border-red-600 border-2 valid:border-blue-500 p-1"
+          className="w-full h-20 rounded bg-white text-gray-600 invalid:border-red-600 border-2 valid:border-blue-500 p-1"
           onChange={(event) => {
             handleChange(event)
           }}
@@ -159,7 +175,11 @@ export const ContactForm = ({
           onClick={handleSubmit}
           disabled={!validForm}
         >
-          {t('submit')}
+          {isLoading ? (
+            <CircularProgress color="default" aria-label="Loading..." />
+          ) : (
+            t('submit')
+          )}
         </button>
       </div>
     </form>

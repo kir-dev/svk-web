@@ -6,12 +6,12 @@ import { FC, PropsWithChildren, useEffect, useState } from 'react'
 import { Route } from '~/utils/routes'
 
 import { useTranslations } from 'next-intl'
-import { ContactPopUp } from '~/components/contact-components/ContactPopUp'
 import { MailIconSvg } from '~/components/svg-components/MailIconSvg'
 import NextLink from 'next/link'
 import { Button } from '@nextui-org/react'
 import { HamburgerIcon } from '~/components/svg-components/HamburgerIcon'
 import { CloseMenuIcon } from '~/components/svg-components/CloseMenuIcon'
+import { ContactPopUp } from '~/components/contact-components/ContactPopUp'
 
 export interface Props {
   routes: Route[]
