@@ -20,7 +20,7 @@ export const DropdownFormField = ({
 }: Props) => {
   const t = useTranslations('common.joinUs.form')
   return (
-    <div className="p-3 px-6 w-full">
+    <div className="p-3 px-6 w-full mt-auto">
       <label htmlFor={id} className="text-md block uppercase text-gray-600">
         {title}
       </label>
