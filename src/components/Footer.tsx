@@ -10,7 +10,7 @@ import React, { FC, PropsWithChildren } from 'react'
 import { useRouter } from 'next/router'
 import { LinkedInSvg } from '~/components/svg-components/LinkedInSvg'
 import SocialIcon from '~/components/SocialIcon'
-import { ContactPopUp } from '~/components/contact-components/ContactPopUp'
+import { ContactPopUp } from '~/components/pop-up-components/contact/ContactPopUp'
 import { MailIconSvg } from '~/components/svg-components/MailIconSvg'
 
 export interface Props {

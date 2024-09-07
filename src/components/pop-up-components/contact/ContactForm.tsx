@@ -1,4 +1,4 @@
-import { FormField } from '~/components/contact-components/FormField'
+import { FormField } from '~/components/pop-up-components/FormField'
 import React, { ChangeEvent, useEffect, useState } from 'react'
 import { sendContactFrom } from '~/lib/api'
 import {
@@ -7,7 +7,7 @@ import {
   validateField,
 } from '~/utils/form-validation'
 import { useTranslations } from 'next-intl'
-import { ContactSubmissionIndicator } from '~/components/contact-components/ContactSubmissionIndicator'
+import { ContactSubmissionIndicator } from '~/components/pop-up-components/ContactSubmissionIndicator'
 import { CircularProgress } from '@nextui-org/progress'
 
 export interface ModalFormProps {

@@ -1,5 +1,5 @@
-import { PopUp } from '~/components/contact-components/PopUp'
-import { ContactForm } from '~/components/contact-components/ContactForm'
+import { PopUp } from '~/components/pop-up-components/PopUp'
+import { ContactForm } from '~/components/pop-up-components/contact/ContactForm'
 import React, { useState } from 'react'
 import { useTranslations } from 'next-intl'
 

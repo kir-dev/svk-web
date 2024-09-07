@@ -11,8 +11,8 @@ import NextLink from 'next/link'
 import { Button } from '@nextui-org/react'
 import { HamburgerIcon } from '~/components/svg-components/HamburgerIcon'
 import { CloseMenuIcon } from '~/components/svg-components/CloseMenuIcon'
-import { ContactPopUp } from '~/components/contact-components/ContactPopUp'
-import { JoinUsPopUp } from '~/components/contact-components/JoinUsPopUp'
+import { ContactPopUp } from '~/components/pop-up-components/contact/ContactPopUp'
+import { JoinUsPopUp } from '~/components/pop-up-components/join-us/JoinUsPopUp'
 
 export interface Props {
   routes: Route[]

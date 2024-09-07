@@ -1,4 +1,4 @@
-import { FormField } from '~/components/contact-components/FormField'
+import { FormField } from '~/components/pop-up-components/FormField'
 import React, { ChangeEvent, useEffect, useState } from 'react'
 import {
   JoinUsFieldsValidity,
@@ -6,9 +6,9 @@ import {
   validateField,
 } from '~/utils/form-validation'
 import { useTranslations } from 'next-intl'
-import { ContactSubmissionIndicator } from '~/components/contact-components/ContactSubmissionIndicator'
+import { ContactSubmissionIndicator } from '~/components/pop-up-components/ContactSubmissionIndicator'
 import { CircularProgress } from '@nextui-org/progress'
-import { DropdownFormField } from '~/components/contact-components/DropdownFormField'
+import { DropdownFormField } from '~/components/pop-up-components/DropdownFormField'
 
 export interface ModalFormProps {
   closeModal?: (param: any) => void
@@ -64,7 +64,6 @@ export const JoinUsFrom: React.FC<ModalFormProps> = ({
       ...validFields,
       [id]: validateField(id, value),
     }))
-    console.log(formData)
   }
 
   const handleSubmit = async () => {
@@ -115,6 +114,7 @@ export const JoinUsFrom: React.FC<ModalFormProps> = ({
           id="study"
           title="Tanulmány"
           options={['BME-Vik', 'Egyéb']}
+          value={formData.study}
           onChange={(event) => {
             handleChange(event)
           }}
@@ -123,6 +123,7 @@ export const JoinUsFrom: React.FC<ModalFormProps> = ({
           id="activeSemesterCount"
           title="Aktív féléveid száma"
           options={['1', '2', '3', '4', '5', '6', '7', '7+']}
+          value={formData.activeSemesterCount}
           onChange={(event) => {
             handleChange(event)
           }}

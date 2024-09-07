@@ -1,6 +1,6 @@
-import { PopUp } from '~/components/contact-components/PopUp'
+import { PopUp } from '~/components/pop-up-components/PopUp'
 import React, { useState } from 'react'
-import { JoinUsFrom } from '~/components/contact-components/JoinUsForm'
+import { JoinUsFrom } from '~/components/pop-up-components/join-us/JoinUsForm'
 
 interface Props {
   children: React.ReactNode
