@@ -12,7 +12,6 @@ import type { AppProps } from 'next/app'
 import { Inter } from 'next/font/google'
 import { useRouter } from 'next/router'
 import Script from 'next/script'
-import { lazy } from 'react'
 import Refractor from 'react-refractor'
 import { RefractorSyntax } from 'refractor'
 import bash from 'refractor/lang/bash'
@@ -49,7 +48,7 @@ export default function App({
   Component,
   pageProps,
 }: AppProps<SharedPageProps>) {
-  const { draftMode, token } = pageProps
+  const { draftMode } = pageProps
   loadLangs([
     bash,
     docker,
