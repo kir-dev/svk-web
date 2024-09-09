@@ -12,7 +12,6 @@ import type { AppProps } from 'next/app'
 import { Inter } from 'next/font/google'
 import { useRouter } from 'next/router'
 import Script from 'next/script'
-import { lazy } from 'react'
 import Refractor from 'react-refractor'
 import { RefractorSyntax } from 'refractor'
 import bash from 'refractor/lang/bash'
@@ -37,8 +36,6 @@ export interface SharedPageProps {
   messages: Record<string, string>
 }
 
-const PreviewProvider = lazy(() => import('~/components/PreviewProvider'))
-
 const inter = Inter({
   subsets: ['latin'],
   weight: ['500', '700', '800'],
@@ -51,7 +48,7 @@ export default function App({
   Component,
   pageProps,
 }: AppProps<SharedPageProps>) {
-  const { draftMode, token } = pageProps
+  const { draftMode } = pageProps
   loadLangs([
     bash,
     docker,
@@ -111,9 +108,7 @@ export default function App({
             >
               <main>
                 {draftMode ? (
-                  <PreviewProvider token={token}>
                     <Component {...pageProps} />
-                  </PreviewProvider>
                 ) : (
                   <Component className="flex-1 pb-10" {...pageProps} />
                 )}

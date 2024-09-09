@@ -10,18 +10,6 @@ const config = withPlausibleProxy({
       { hostname: 'betteruptime.com' },
     ],
   },
-  redirects: async () => [
-    {
-      source: '/about',
-      destination: '/about/history',
-      permanent: true,
-    },
-    {
-      source: '/ly/:short',
-      destination: 'https://api.shorz.kir-dev.hu/ly/:short',
-      permanent: true
-    }
-  ],
   i18n: {
     locales: ['hu', 'en'],
     defaultLocale: 'hu',
