@@ -2,12 +2,10 @@ import { Link as UiLink } from '@nextui-org/react'
 import { PortableTextReactComponents } from '@portabletext/react'
 import config from 'next-seo.config'
 import { PortableActionButton } from '~/components/ActionButton'
-import { PortableYoutubeEmbed } from '~/components/YoutubeEmbed'
 
 export const commonSerializer = {
   types: {
-    actionButton: PortableActionButton,
-    youtubeEmbed: PortableYoutubeEmbed,
+    actionButton: PortableActionButton
   },
   block: {
     h1: ({ children }) => (

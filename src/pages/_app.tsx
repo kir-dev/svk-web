@@ -37,8 +37,6 @@ export interface SharedPageProps {
   messages: Record<string, string>
 }
 
-const PreviewProvider = lazy(() => import('~/components/PreviewProvider'))
-
 const inter = Inter({
   subsets: ['latin'],
   weight: ['500', '700', '800'],
@@ -111,9 +109,7 @@ export default function App({
             >
               <main>
                 {draftMode ? (
-                  <PreviewProvider token={token}>
                     <Component {...pageProps} />
-                  </PreviewProvider>
                 ) : (
                   <Component className="flex-1 pb-10" {...pageProps} />
                 )}
