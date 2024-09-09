@@ -49,8 +49,8 @@ export default function IndexPage(
             </h1>
           </div>
           <Carousel>
-            {images.map((image) => (
-              <CarouselImage image={image} key={image._id} />
+            {images.map((image, index) => (
+              <CarouselImage image={image} key={image._id + index} />
             ))}
           </Carousel>
         </div>
