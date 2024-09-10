@@ -1,7 +1,8 @@
 import { ImageAsset } from 'sanity'
-import { FC, useState } from 'react'
+import React, { FC, useState } from 'react'
 import { urlForImage } from '~/lib/sanity.image'
 import { LinkedInSvg } from '~/components/svg-components/LinkedInSvg'
+import Image from 'next/image'
 
 interface Props {
   picture?: ImageAsset
@@ -9,6 +10,7 @@ interface Props {
   position?: string
   description?: string
   linkedIN?: string
+  linkedInQr?: ImageAsset
 }
 
 export const MemberCard: FC<Props> = ({
@@ -17,8 +19,11 @@ export const MemberCard: FC<Props> = ({
   position,
   description,
   linkedIN,
+  linkedInQr,
 }: Props) => {
   const [hovered, setHovered] = useState<boolean>(false)
+
+  console.log(linkedInQr)
 
   return (
     <div
@@ -52,7 +57,16 @@ export const MemberCard: FC<Props> = ({
           {linkedIN && (
             <a href={linkedIN} target="_blank">
               <div className="w-fit mx-auto m-5">
-                <LinkedInSvg />
+                {linkedInQr != null ? (
+                  <Image
+                    src={urlForImage(linkedInQr)?.url() ?? ''}
+                    alt=""
+                    width={100}
+                    height={100}
+                  />
+                ) : (
+                  <LinkedInSvg />
+                )}
               </div>
             </a>
           )}

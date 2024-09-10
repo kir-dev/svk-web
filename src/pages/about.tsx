@@ -171,6 +171,7 @@ export default function AboutUsPage(
               description={member.description}
               picture={member.picture}
               linkedIN={member.linkedIn}
+              linkedInQr={member.linkedInQr}
             />
           ))}
         </MembersGrid>
