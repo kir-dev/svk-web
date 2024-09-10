@@ -9,7 +9,10 @@ import { PartnersSection } from '~/components/partners-components/PartnersSectio
 import { getClient } from '~/lib/sanity.client'
 import { getPartners } from '~/lib/queries/partner.queries'
 import React from 'react'
-import { getImages } from '~/lib/queries/image.queries'
+import {
+  getHomeMultiCarouselImages,
+  getMiniCarouselImages,
+} from '~/lib/queries/images'
 import { Picture } from '~/lib/sanity.types'
 import { Carousel } from '~/components/carousel-components/Carousel'
 import { CarouselImage } from '~/components/carousel-components/CarouselImage'
@@ -18,14 +21,17 @@ import { MultiCarousel } from '~/components/big-carousel-components/MultiCarouse
 export const getStaticProps = async ({ draftMode = false, locale }) => {
   const client = getClient()
   const partners = await getPartners(client)
-  const images: Picture[] = await getImages(client)
+  const miniCarouselImages: Picture[] = await getMiniCarouselImages(client)
+  const multiCarouselImages: Picture[] =
+    await getHomeMultiCarouselImages(client)
   return {
     props: {
       draftMode,
       token: draftMode ? readToken : '',
       messages: (await import(`../../messages/${locale}.json`)).default,
       partners: partners,
-      images: images,
+      miniCarouselImages: miniCarouselImages,
+      multiCarouselImages: multiCarouselImages,
     },
   }
 }
@@ -35,7 +41,8 @@ export default function IndexPage(
 ) {
   const t = useTranslations('Index')
   const partners = props.partners
-  const images = props.images
+  const miniCarouselImages = props.miniCarouselImages
+  const multiCarouselImages = props.multiCarouselImages
   return (
     <Layout>
       <section className=" items-center h-fit justify-center px-6 sm:px-0 pb-8">
@@ -49,7 +56,7 @@ export default function IndexPage(
             </h1>
           </div>
           <Carousel>
-            {images.map((image, index) => (
+            {miniCarouselImages.map((image, index) => (
               <CarouselImage image={image} key={image._id + index} />
             ))}
           </Carousel>
@@ -58,7 +65,7 @@ export default function IndexPage(
       <section className="bg-gradient-to-r from-foreground-50 to-foreground-200 border-gray-300 border-y-1 py-24">
         {' '}
         <MultiCarousel>
-          {images.map((image) => (
+          {multiCarouselImages.map((image) => (
             <CarouselImage image={image} key={image._id} />
           ))}
         </MultiCarousel>
