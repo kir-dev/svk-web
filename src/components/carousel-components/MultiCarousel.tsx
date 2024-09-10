@@ -67,8 +67,8 @@ export const MultiCarousel: React.FC<Props> = ({ children }: Props) => {
   }, [children])
 
   return (
-    <div className="relative w-full overflow-hidden p-[10%]">
-      <div className="absolute left-0 top-0 bottom-0 right-0 flex justify-between items-center px-20 z-20">
+    <div className="relative w-full overflow-hidden px-[10%] ">
+      <div className="absolute left-0 top-0 bottom-0 right-0 flex justify-between items-center px-0 md:px-20 z-20">
         <Button className="bg-transparent" onClick={decreaseIndex}>
           <ChevronLeftIcon />
         </Button>

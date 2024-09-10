@@ -8,7 +8,7 @@ import { MembersGrid } from '~/components/member-components/MembersGrid'
 import { useEffect, useState } from 'react'
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
-import { MultiCarousel } from '~/components/big-carousel-components/MultiCarousel'
+import { MultiCarousel } from '~/components/carousel-components/MultiCarousel'
 import { getAboutMultiCarouselImages } from '~/lib/queries/images'
 import { CarouselImage } from '~/components/carousel-components/CarouselImage'
 

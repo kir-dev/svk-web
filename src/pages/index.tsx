@@ -16,7 +16,7 @@ import {
 import { Picture } from '~/lib/sanity.types'
 import { Carousel } from '~/components/carousel-components/Carousel'
 import { CarouselImage } from '~/components/carousel-components/CarouselImage'
-import { MultiCarousel } from '~/components/big-carousel-components/MultiCarousel'
+import { MultiCarousel } from '~/components/carousel-components/MultiCarousel'
 
 export const getStaticProps = async ({ draftMode = false, locale }) => {
   const client = getClient()
@@ -62,8 +62,7 @@ export default function IndexPage(
           </Carousel>
         </div>
       </section>
-      <section className="bg-gradient-to-r from-foreground-50 to-foreground-200 border-gray-300 border-y-1 py-24">
-        {' '}
+      <section className="">
         <MultiCarousel>
           {multiCarouselImages.map((image) => (
             <CarouselImage image={image} key={image._id} />
