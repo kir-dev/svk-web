@@ -9,7 +9,7 @@ interface Props {
 
 export const PartnersSection = ({ title, partners }: Props) => {
   return (
-    <div className="bg-white text-black py-10">
+    <div className="bg-gray-500 text-black py-10">
       <PartnersCounter title={title} length={partners.length} />
       <div className="flex flex-wrap items-center gap-5">
         {partners.map((partner) => (
