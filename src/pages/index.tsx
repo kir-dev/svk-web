@@ -9,22 +9,29 @@ import { PartnersSection } from '~/components/partners-components/PartnersSectio
 import { getClient } from '~/lib/sanity.client'
 import { getPartners } from '~/lib/queries/partner.queries'
 import React from 'react'
-import { getImages } from '~/lib/queries/image.queries'
+import {
+  getHomeMultiCarouselImages,
+  getMiniCarouselImages,
+} from '~/lib/queries/images'
 import { Picture } from '~/lib/sanity.types'
 import { Carousel } from '~/components/carousel-components/Carousel'
 import { CarouselImage } from '~/components/carousel-components/CarouselImage'
+import { MultiCarousel } from '~/components/carousel-components/MultiCarousel'
 
 export const getStaticProps = async ({ draftMode = false, locale }) => {
   const client = getClient()
   const partners = await getPartners(client)
-  const images: Picture[] = await getImages(client)
+  const miniCarouselImages: Picture[] = await getMiniCarouselImages(client)
+  const multiCarouselImages: Picture[] =
+    await getHomeMultiCarouselImages(client)
   return {
     props: {
       draftMode,
       token: draftMode ? readToken : '',
       messages: (await import(`../../messages/${locale}.json`)).default,
       partners: partners,
-      images: images,
+      miniCarouselImages: miniCarouselImages,
+      multiCarouselImages: multiCarouselImages,
     },
   }
 }
@@ -34,7 +41,8 @@ export default function IndexPage(
 ) {
   const t = useTranslations('Index')
   const partners = props.partners
-  const images = props.images
+  const miniCarouselImages = props.miniCarouselImages
+  const multiCarouselImages = props.multiCarouselImages
   return (
     <Layout>
       <section className=" items-center h-fit justify-center px-6 sm:px-0 pb-8">
@@ -48,30 +56,30 @@ export default function IndexPage(
             </h1>
           </div>
           <Carousel>
-            {images.map((image) => (
-              <CarouselImage image={image} key={image._id} />
+            {miniCarouselImages.map((image, index) => (
+              <CarouselImage image={image} key={image._id + index} />
             ))}
           </Carousel>
         </div>
       </section>
-      <section className="bg-gradient-to-r from-foreground-50 to-foreground-200 border-gray-300 border-y-1 py-24">
-        <Container className="relative">Carousel</Container>
+      <section className="">
+        <MultiCarousel>
+          {multiCarouselImages.map((image) => (
+            <CarouselImage image={image} key={image._id} />
+          ))}
+        </MultiCarousel>
       </section>
       <section>
         <Container>
-            <div className="p-6 sm:p-16 md:p-24 lg:p-32 gap-2 2xl:flex">
-                <p className="font-bold text-3xl sm:text-4xl md:text-5xl text-nowrap text-center 2xl:text-start pb-4">
-                    {t('mission.title')}
-                </p>
-                <div className="text-justify flex flex-col gap-4 leading-loose text-gray-300 text-md sm:text-lg">
-                    <p>
-                        {t('mission.body0')}
-                    </p>
-                    <p>
-                        {t('mission.body1')}
-                    </p>
-                </div>
+          <div className="p-6 sm:p-16 md:p-24 lg:p-32 gap-2 2xl:flex">
+            <p className="font-bold text-3xl sm:text-4xl md:text-5xl text-nowrap text-center 2xl:text-start pb-4">
+              {t('mission.title')}
+            </p>
+            <div className="text-justify flex flex-col gap-4 leading-loose text-gray-300 text-md sm:text-lg">
+              <p>{t('mission.body0')}</p>
+              <p>{t('mission.body1')}</p>
             </div>
+          </div>
         </Container>
       </section>
       <section className="pb-24">

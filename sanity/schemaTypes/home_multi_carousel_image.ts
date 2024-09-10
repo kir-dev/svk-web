@@ -1,8 +1,8 @@
 import { defineField, defineType } from 'sanity'
 
 export default defineType({
-  name: 'picture',
-  title: 'Picture',
+  name: 'home_multi_carousel_images',
+  title: 'Home Multi Carousel Images',
   type: 'document',
   fields: [
     defineField({
