@@ -23,8 +23,6 @@ export const MemberCard: FC<Props> = ({
 }: Props) => {
   const [hovered, setHovered] = useState<boolean>(false)
 
-  console.log(linkedInQr)
-
   return (
     <div
       className="transition-all grid-rows-2 bg-blue-950 rounded-md text-center justify-between overflow-y-hidden w-64 h-80 mx-auto"
