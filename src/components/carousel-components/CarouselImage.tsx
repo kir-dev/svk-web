@@ -11,7 +11,7 @@ export const CarouselImage = ({ image }: Props) => {
     <img
       alt={image.title}
       src={urlForImage(image.image)?.url() ?? ''}
-      className="object-cover min-h-full min-w-full"
+      className="object-cover min-h-full min-w-full rounded-lg"
     />
   )
 }

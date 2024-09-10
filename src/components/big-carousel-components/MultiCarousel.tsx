@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { Button } from '@nextui-org/react'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid'
 
@@ -10,6 +10,53 @@ export const MultiCarousel: React.FC<Props> = ({ children }: Props) => {
   const [index, setIndex] = useState<number>(1)
   const [carouselItems, setCarouselItems] = useState<React.ReactNode[]>([])
   const [movingRight, setMovingRight] = useState<boolean>(true)
+  const [timeOutID, setCurrentTimeout] = useState<NodeJS.Timeout>()
+
+  const adjustIndex = useCallback(
+    (value: number) => {
+      if (value === carouselItems.length - 1) {
+        setIndex(1)
+        setTimeout(() => setIndex(2), 100)
+        return
+      }
+      if (value === 0) {
+        setIndex(carouselItems.length - 2)
+        setTimeout(() => setIndex(carouselItems.length - 3), 100)
+        return
+      }
+      setIndex(value)
+    },
+    [carouselItems.length],
+  )
+
+  const increaseIndex = useCallback(() => {
+    setMovingRight(true)
+    adjustIndex(index + 1)
+  }, [adjustIndex, index])
+
+  const decreaseIndex = useCallback(() => {
+    setMovingRight(false)
+    adjustIndex(index - 1)
+  }, [adjustIndex, index])
+
+  function transitionNeeded() {
+    return (
+      (index === 1 && movingRight) ||
+      (index === carouselItems.length - 2 && !movingRight)
+    )
+  }
+
+  useEffect(() => {
+    if (timeOutID) {
+      clearTimeout(timeOutID)
+    }
+    const timeoutID = setTimeout(() => increaseIndex(), 5000)
+    setCurrentTimeout(timeOutID)
+
+    return () => {
+      clearTimeout(timeoutID)
+    }
+  }, [increaseIndex, index, timeOutID])
 
   useEffect(() => {
     const first = children[0]
@@ -18,30 +65,6 @@ export const MultiCarousel: React.FC<Props> = ({ children }: Props) => {
     const modifiedChildren = [last, ...children, first, second]
     setCarouselItems(modifiedChildren)
   }, [children])
-
-  const increaseIndex = () => {
-    setMovingRight(true)
-    adjustIndex(index + 1)
-  }
-
-  const decreaseIndex = () => {
-    setMovingRight(false)
-    adjustIndex(index - 1)
-  }
-
-  const adjustIndex = (value: number) => {
-    if (value === carouselItems.length - 1) {
-      setIndex(1)
-      setTimeout(() => setIndex(2), 0)
-      return
-    }
-    if (value === 0) {
-      setIndex(carouselItems.length - 2)
-      setTimeout(() => setIndex(carouselItems.length - 3), 0)
-      return
-    }
-    setIndex(value)
-  }
 
   return (
     <div className="relative w-full overflow-hidden p-[10%]">
@@ -56,12 +79,12 @@ export const MultiCarousel: React.FC<Props> = ({ children }: Props) => {
 
       <div
         style={{ transform: `translateX(${index * -100}%)` }}
-        className={`flex flex-nowrap  ${(index === 1 && movingRight) || (index === carouselItems.length - 2 && !movingRight) ? 'transition-none' : 'transition-all'}`}
+        className={`flex flex-nowrap  ${transitionNeeded() ? 'transition-none' : 'transition-all'}`}
       >
         {carouselItems.map((item, currentIndex) => (
           <div
             key={currentIndex}
-            className={`min-w-full min-h-full ${(index === 1 && movingRight) || (index === carouselItems.length - 2 && !movingRight) ? 'transition-none' : 'transition-all'}  ${index === currentIndex ? 'scale-[80%] md:scale-[60%] z-10' : `scale-[45%] md:scale-[25%] ${currentIndex != index - 1 ? '-translate-x-[60%]' : 'translate-x-[60%]'}`}`}
+            className={`min-w-full min-h-full ${transitionNeeded() ? 'transition-none' : 'transition-all'}  ${index === currentIndex ? 'scale-[80%] md:scale-[60%] z-10' : `scale-[45%] md:scale-[25%] ${currentIndex != index - 1 ? '-translate-x-[60%]' : 'translate-x-[60%]'}`}`}
           >
             {item}
           </div>
