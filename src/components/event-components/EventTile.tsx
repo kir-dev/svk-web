@@ -1,25 +1,97 @@
-import { EventSummary } from '~/lib/sanity.types'
-import { FC } from 'react'
+import { EventFull } from '~/lib/sanity.types'
+import React, { FC, useState } from 'react'
 import { EventCoverPicture } from '~/components/event-components/EventCoverPicture'
 import { CalendarIcon } from '~/components/svg-components/CalendarIcon'
 import { PictureIcon } from '~/components/svg-components/PictureIcon'
 import { DocumentIcon } from '~/components/svg-components/DocumentIcon'
 import { IconBox } from '~/components/event-components/IconBox'
+import { CalendarAndClockIcon } from '~/components/svg-components/CalendarAndClockIcon'
+import { LocationIcon } from '~/components/svg-components/LocationIcon'
+import { LecturerIcon } from '~/components/svg-components/LecturerIcon'
+import { ChevronUpIcon } from '@heroicons/react/24/solid'
+import { DateTime } from 'groq-js'
 
 interface Props {
-  eventSummary: EventSummary
+  eventSummary: EventFull
 }
 
 export const EventTile: FC<Props> = ({ eventSummary }) => {
+  const [hovered, setHovered] = useState<boolean>(false)
+
+  function formatDateTime(datetime: DateTime): String {
+    return datetime
+      .toString()
+      .substring(0, 16)
+      .replace('T', ' ')
+      .replaceAll('-', '.')
+  }
+
   return (
-    <div className="bg-blue-950 rounded-md max-w-2xl ">
+    <div
+      className={`relative transition-all bg-gray-900  rounded-md max-w-2xl overflow-y-hidden ${hovered ? 'md:scale-105 shadow-cyan-400 shadow-lg' : ''} `}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
       {eventSummary.image && (
-        <EventCoverPicture
-          image={eventSummary.image}
-          title={eventSummary.title}
-        />
+        <div
+          className={`transition-all relative z-10 ${hovered ? '-translate-y-[105%]' : ''}`}
+        >
+          <EventCoverPicture
+            image={eventSummary.image}
+            title={eventSummary.title}
+          />
+          <div className="absolute bottom-0 right-0 left-0 w-full">
+            <ChevronUpIcon className="w-10 mx-auto" />
+          </div>
+        </div>
       )}
-      <div className="grid grid-cols-[80%_20%] text-white p-4">
+
+      <div
+        className={`absolute transition-all bottom-0 left-0 top-0 right-0 ${hovered ? 'px-10' : 'px-0'} `}
+      >
+        <h1
+          className={`transition-all  my-5 text-center ${hovered ? 'text-xl' : 'text-sm'} `}
+        >
+          {eventSummary.title}
+        </h1>
+        {eventSummary.datetime && (
+          <div className="flex flex-nowrap justify-between my-2">
+            <div>
+              <CalendarAndClockIcon />
+            </div>
+            <div>
+              <span className="text-lg mt-5">
+                {formatDateTime(eventSummary.datetime)}
+              </span>
+            </div>
+          </div>
+        )}
+        {eventSummary.location && (
+          <div className="flex flex-nowrap justify-between my-2">
+            <div>
+              <LocationIcon />
+            </div>
+            <div>
+              <span className=" text-lg mt-5">{eventSummary.location}</span>
+            </div>
+          </div>
+        )}
+
+        {eventSummary.lecturer?.name && (
+          <div className="flex flex-nowrap justify-between my-2">
+            <div>
+              <LecturerIcon />
+            </div>
+            <div>
+              <span className="text-lg mt-5">{eventSummary.lecturer.name}</span>
+            </div>
+          </div>
+        )}
+      </div>
+
+      <div
+        className={`transition-all grid grid-cols-[80%_20%]  text-white p-4`}
+      >
         <div>
           <p className="text-justify">{eventSummary.description}</p>
         </div>
