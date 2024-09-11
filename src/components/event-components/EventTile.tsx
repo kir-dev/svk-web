@@ -28,7 +28,7 @@ export const EventTile: FC<Props> = ({ eventSummary }) => {
 
   return (
     <div
-      className={`relative transition-all bg-gray-900  rounded-md max-w-2xl overflow-y-hidden ${hovered ? 'md:scale-105 shadow-cyan-400 shadow-lg' : ''} `}
+      className={`relative transition-all bg-gray-900  rounded-md max-w-2xl overflow-y-hidden ${hovered ? 'md:scale-105 ' : ''} `}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
