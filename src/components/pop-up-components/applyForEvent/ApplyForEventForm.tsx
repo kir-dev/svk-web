@@ -8,32 +8,11 @@ import {
 import { ContactSubmissionIndicator } from '~/components/pop-up-components/ContactSubmissionIndicator'
 import { CircularProgress } from '@nextui-org/progress'
 import { Applicant } from '~/lib/sanity.types'
+import { applyForEvent } from '~/lib/queries/applyForEvent'
 
 export interface ApplyForEventFormProps {
   closeModal?: (param: any) => void
   eventID: string
-}
-
-const handleApplyForEvent = async (applicant: Applicant) => {
-  try {
-    const response = await fetch('/api/applyForEvent', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-
-      body: JSON.stringify(applicant),
-    })
-
-    if (!response.ok) {
-      throw new Error('Failed to apply for event')
-    }
-
-    const data = await response.json()
-    console.log('Event application successful:', data)
-  } catch (error) {
-    console.error('Error:', error)
-  }
 }
 
 export const ApplyForEventForm: React.FC<ApplyForEventFormProps> = ({
@@ -93,7 +72,7 @@ export const ApplyForEventForm: React.FC<ApplyForEventFormProps> = ({
         name: formData.name,
         email: formData.email,
       }
-      await handleApplyForEvent(applicant)
+      await applyForEvent(applicant)
       setSuccess(true)
       setFormData(formInitState)
       setValidFields(validityInitState)

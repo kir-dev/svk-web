@@ -1,6 +1,14 @@
 import { groq, SanityClient } from 'next-sanity'
 import { EventFull, EventPreview, EventSummary } from '~/lib/sanity.types'
 
+export const eventsTitleAndID = groq`*[_type == 'event']{title, _id}`
+
+export const getEventTitles = async (
+  client: SanityClient,
+): Promise<EventPreview[]> => {
+  return await client.fetch(eventsTitleAndID)
+}
+
 export const currentEventsPreview = groq`*[_type == event && datetime > now()] {title, datetime, image}`
 
 export const getCurrentEventsPreview = async (

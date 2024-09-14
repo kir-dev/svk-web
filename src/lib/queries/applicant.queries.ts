@@ -1,4 +1,4 @@
-import { SanityClient } from 'next-sanity'
+import { groq, SanityClient } from 'next-sanity'
 import { Applicant } from '~/lib/sanity.types'
 
 export const applyForEvent = async (
@@ -6,4 +6,13 @@ export const applyForEvent = async (
   applicant: Applicant,
 ) => {
   return await client.create(applicant)
+}
+
+export const getApplicantsForEvent = async (
+  client: SanityClient,
+  eventID: string,
+): Promise<Applicant[]> => {
+  return await client.fetch(
+    groq`*[_type == 'applicant' && eventID == '${eventID}']{name,email}`,
+  )
 }
