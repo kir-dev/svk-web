@@ -60,5 +60,6 @@ export interface Picture {
 export interface Applicant {
   _type: 'applicant'
   name: string
+  email: string
   eventID: string
 }

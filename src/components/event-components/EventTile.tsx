@@ -1,43 +1,16 @@
-import { Applicant, EventSummary } from '~/lib/sanity.types'
+import { EventSummary } from '~/lib/sanity.types'
 import { EventCoverPicture } from '~/components/event-components/EventCoverPicture'
 import { CalendarIcon } from '~/components/svg-components/CalendarIcon'
 import { PictureIcon } from '~/components/svg-components/PictureIcon'
 import { DocumentIcon } from '~/components/svg-components/DocumentIcon'
 import { IconBox } from '~/components/event-components/IconBox'
-import { Button } from '@nextui-org/react'
+import { ApplyForEventPopUp } from '~/components/pop-up-components/applyForEvent/ApplyForEventPopUp'
 
 interface Props {
   eventSummary: EventSummary
 }
 
-const handleApplyForEvent = async (eventSummary: EventSummary) => {
-  try {
-    const applicant: Applicant = {
-      eventID: eventSummary._id,
-      name: 'random person',
-      _type: 'applicant',
-    }
-    const response = await fetch('/api/applyForEvent', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-
-      body: JSON.stringify(applicant),
-    })
-
-    if (!response.ok) {
-      throw new Error('Failed to apply for event')
-    }
-
-    const data = await response.json()
-    console.log('Event application successful:', data)
-  } catch (error) {
-    console.error('Error:', error)
-  }
-}
-
-export const EventTile = ({ eventSummary }) => {
+export const EventTile = ({ eventSummary }: Props) => {
   return (
     <div className="bg-blue-950 rounded-md max-w-2xl ">
       {eventSummary.image && (
@@ -68,9 +41,9 @@ export const EventTile = ({ eventSummary }) => {
           )}
         </div>
       </div>
-      <Button onClick={() => handleApplyForEvent(eventSummary)}>
-        Jelentkezés
-      </Button>
+      <ApplyForEventPopUp eventID={eventSummary._id}>
+        <h1>Jelentkezés</h1>
+      </ApplyForEventPopUp>
     </div>
   )
 }
