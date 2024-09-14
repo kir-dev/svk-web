@@ -1,3 +1,4 @@
+import { Applicant, EventSummary } from '~/lib/sanity.types'
 import { EventFull } from '~/lib/sanity.types'
 import React, { FC, useState } from 'react'
 import { EventCoverPicture } from '~/components/event-components/EventCoverPicture'
@@ -10,9 +11,37 @@ import { LocationIcon } from '~/components/svg-components/LocationIcon'
 import { LecturerIcon } from '~/components/svg-components/LecturerIcon'
 import { ChevronUpIcon } from '@heroicons/react/24/solid'
 import { DateTime } from 'groq-js'
+import { Button } from '@nextui-org/react'
 
 interface Props {
   eventSummary: EventFull
+}
+
+const handleApplyForEvent = async (eventSummary: EventSummary) => {
+  try {
+    const applicant: Applicant = {
+      eventID: eventSummary._id,
+      name: 'random person',
+      _type: 'applicant',
+    }
+    const response = await fetch('/api/applyForEvent', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+
+      body: JSON.stringify(applicant),
+    })
+
+    if (!response.ok) {
+      throw new Error('Failed to apply for event')
+    }
+
+    const data = await response.json()
+    console.log('Event application successful:', data)
+  } catch (error) {
+    console.error('Error:', error)
+  }
 }
 
 export const EventTile: FC<Props> = ({ eventSummary }) => {
@@ -113,6 +142,9 @@ export const EventTile: FC<Props> = ({ eventSummary }) => {
           )}
         </div>
       </div>
+      <Button onClick={() => handleApplyForEvent(eventSummary)}>
+        Jelentkezés
+      </Button>
     </div>
   )
 }
