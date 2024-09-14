@@ -28,10 +28,13 @@ export interface Lecturer {
   image?: ImageAsset
 }
 
-export interface EventPreview {
+export interface EventTitleAndID {
   _type: 'event'
   _id: string
   title: string
+}
+
+export interface EventPreview extends EventTitleAndID {
   slug: Slug
   datetime?: DateTime
   image?: ImageAsset
