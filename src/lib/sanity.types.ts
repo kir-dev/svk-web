@@ -56,3 +56,9 @@ export interface Picture {
   title: string
   image: ImageAsset
 }
+
+export interface Applicant {
+  _type: 'applicant'
+  name: string
+  eventID: string
+}
