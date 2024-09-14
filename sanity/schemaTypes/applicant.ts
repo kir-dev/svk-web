@@ -10,11 +10,20 @@ export default defineType({
       title: 'Name',
       type: 'string',
       validation: (rule) => rule.required(),
+      readOnly: true,
+    }),
+    defineField({
+      name: 'email',
+      title: 'Email',
+      type: 'string',
+      validation: (rule) => rule.required(),
+      readOnly: true,
     }),
     defineField({
       name: 'eventID',
       title: 'Event ID',
       type: 'string',
+      readOnly: true,
     }),
   ],
   preview: {

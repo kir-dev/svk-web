@@ -1,6 +1,7 @@
 import { Applicant, EventSummary } from '~/lib/sanity.types'
 import { EventFull } from '~/lib/sanity.types'
 import React, { FC, useState } from 'react'
+import { EventSummary } from '~/lib/sanity.types'
 import { EventCoverPicture } from '~/components/event-components/EventCoverPicture'
 import { CalendarIcon } from '~/components/svg-components/CalendarIcon'
 import { PictureIcon } from '~/components/svg-components/PictureIcon'
@@ -12,6 +13,7 @@ import { LecturerIcon } from '~/components/svg-components/LecturerIcon'
 import { ChevronUpIcon } from '@heroicons/react/24/solid'
 import { DateTime } from 'groq-js'
 import { Button } from '@nextui-org/react'
+import { ApplyForEventPopUp } from '~/components/pop-up-components/applyForEvent/ApplyForEventPopUp'
 
 interface Props {
   eventSummary: EventFull
@@ -142,9 +144,9 @@ export const EventTile: FC<Props> = ({ eventSummary }) => {
           )}
         </div>
       </div>
-      <Button onClick={() => handleApplyForEvent(eventSummary)}>
-        Jelentkezés
-      </Button>
+      <ApplyForEventPopUp eventID={eventSummary._id}>
+        <h1>Jelentkezés</h1>
+      </ApplyForEventPopUp>
     </div>
   )
 }

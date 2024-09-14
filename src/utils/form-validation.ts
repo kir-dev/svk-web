@@ -35,6 +35,16 @@ export interface JoinUsFieldsValidity {
   activeSemesterCount: boolean
 }
 
+export interface ApplyForEventFormFields {
+  name: string
+  email: string
+}
+
+export interface ApplyForEventValidity {
+  name: boolean
+  email: boolean
+}
+
 const validateRequired = (text: string): boolean => !(!text || !text.trim())
 
 const validateEmail = (email: string): boolean =>
