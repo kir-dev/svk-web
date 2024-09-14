@@ -144,10 +144,7 @@ export const ContactForm: React.FC<ModalFormProps> = ({
         />
       </div>
       <div className="p-3 px-6 w-full">
-        <label
-          htmlFor="message"
-          className="text-md block uppercase text-gray-600"
-        >
+        <label htmlFor="message" className="text-md block uppercase text-white">
           {t('message')}
         </label>
         <textarea
