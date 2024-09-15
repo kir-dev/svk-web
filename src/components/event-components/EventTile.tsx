@@ -1,6 +1,3 @@
-import { Applicant, EventSummary } from '~/lib/sanity.types'
-import { EventFull } from '~/lib/sanity.types'
-import React, { FC, useState } from 'react'
 import { EventSummary } from '~/lib/sanity.types'
 import { EventCoverPicture } from '~/components/event-components/EventCoverPicture'
 import { CalendarIcon } from '~/components/svg-components/CalendarIcon'
@@ -13,6 +10,7 @@ import { LecturerIcon } from '~/components/svg-components/LecturerIcon'
 import { ChevronUpIcon } from '@heroicons/react/24/solid'
 import { DateTime } from 'groq-js'
 import { Button } from '@nextui-org/react'
+import { ApplyForEventPopUp } from '~/components/pop-up-components/applyForEvent/ApplyForEventPopUp'
 import { ApplyForEventPopUp } from '~/components/pop-up-components/applyForEvent/ApplyForEventPopUp'
 
 interface Props {
