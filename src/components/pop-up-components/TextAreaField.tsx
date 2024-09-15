@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 interface Props {
   id: string
@@ -16,13 +16,6 @@ export const TextAreaField = ({
   onChange,
 }: Props) => {
   const [touched, setTouched] = useState<boolean>(false)
-  const [valid, setValid] = useState<boolean>(false)
-
-  useEffect(() => {
-    if (value == '') {
-      setValid(false)
-    }
-  }, [value])
 
   return (
     <div className="p-3 px-6 w-full">
@@ -37,10 +30,8 @@ export const TextAreaField = ({
         className={`w-full h-20 rounded bg-white text-gray-600 border-4 p-1 ${touched ? 'invalid:border-red-600 valid:border-blue-500' : ''}`}
         onSubmit={() => {
           setTouched(false)
-          setValid(false)
         }}
         onChange={(event) => {
-          setValid(event.target.validity.valid)
           setTouched(true)
           onChange(event)
         }}
