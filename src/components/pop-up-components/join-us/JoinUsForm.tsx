@@ -32,6 +32,7 @@ export const JoinUsFrom: React.FC<ModalFormProps> = ({
   }
 
   const t = useTranslations('common.joinUs.form')
+  const ti = useTranslations('common.invalidMessage')
 
   const [validForm, setValidForm] = useState<boolean>(false)
   const [formData, setFormData] = useState<JoinUsFormFields>(formInitState)
@@ -95,7 +96,7 @@ export const JoinUsFrom: React.FC<ModalFormProps> = ({
           type="text"
           id="name"
           placeHolder={t('exampleName')}
-          invalidMessage={'Kötelező kitölteni'}
+          invalidMessage={ti('required')}
           value={formData.name}
           onChange={(event) => {
             handleChange(event)
@@ -106,7 +107,7 @@ export const JoinUsFrom: React.FC<ModalFormProps> = ({
           type="email"
           id="email"
           placeHolder={t('exampleEmail')}
-          invalidMessage={'Kötelező kitölteni\nHelyes email címnek kell lennie'}
+          invalidMessage={ti('required') + '\n' + t('email')}
           value={formData.email}
           onChange={(event) => {
             handleChange(event)
