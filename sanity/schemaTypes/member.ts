@@ -22,13 +22,28 @@ export default defineType({
       type: 'string',
     }),
     defineField({
+      name: 'picture',
+      title: 'Profile picture',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+      fields: [
+        {
+          name: 'alt',
+          type: 'string',
+          title: 'Alternative Text',
+        },
+      ],
+    }),
+    defineField({
       name: 'linkedIn',
       title: 'LinkedIn',
       type: 'url',
     }),
     defineField({
-      name: 'picture',
-      title: 'Profile picture',
+      name: 'linkedInQr',
+      title: 'Qr code of LinkedIn profile',
       type: 'image',
       options: {
         hotspot: true,

@@ -9,6 +9,7 @@ import {
 import { useTranslations } from 'next-intl'
 import { ContactSubmissionIndicator } from '~/components/pop-up-components/ContactSubmissionIndicator'
 import { CircularProgress } from '@nextui-org/progress'
+import { TextAreaField } from '~/components/pop-up-components/TextAreaField'
 
 export interface ModalFormProps {
   closeModal: () => void
@@ -36,6 +37,7 @@ export const ContactForm: React.FC<ModalFormProps> = ({
   }
 
   const t = useTranslations('common.contact.form')
+  const ti = useTranslations('common.invalidMessage')
 
   const [validForm, setValidForm] = useState<boolean>(false)
   const [formData, setFormData] = useState<ContactFormFields>(formInitState)
@@ -96,6 +98,7 @@ export const ContactForm: React.FC<ModalFormProps> = ({
           type="text"
           id="name"
           placeHolder={t('exampleName')}
+          invalidMessage={ti('required')}
           value={formData.name}
           onChange={(event) => {
             handleChange(event)
@@ -106,6 +109,7 @@ export const ContactForm: React.FC<ModalFormProps> = ({
           type="email"
           id="email"
           placeHolder={t('exampleEmail')}
+          invalidMessage={ti('required') + '\n' + ti('email')}
           value={formData.email}
           onChange={(event) => {
             handleChange(event)
@@ -118,6 +122,7 @@ export const ContactForm: React.FC<ModalFormProps> = ({
           placeHolder="06012345678"
           value={formData.phoneNumber}
           pattern="^(?:\+36|06)?\s?[1-9]\d\s?\d{3}\s?\d{3,4}$|^(?:\+36|06)?\s?((1|20|30|31|50|70|90)\d)\s?\d{3}\s?\d{3,4}$"
+          invalidMessage={ti('required') + '\n' + ti('phone')}
           onChange={(event) => {
             handleChange(event)
           }}
@@ -127,6 +132,7 @@ export const ContactForm: React.FC<ModalFormProps> = ({
           type="text"
           id="companyName"
           placeHolder={t('exampleCompanyName')}
+          invalidMessage={ti('required')}
           value={formData.companyName}
           onChange={(event) => {
             handleChange(event)
@@ -137,30 +143,22 @@ export const ContactForm: React.FC<ModalFormProps> = ({
           type="text"
           id="title"
           placeHolder={t('exampleTitle')}
+          invalidMessage={ti('required')}
           value={formData.title}
           onChange={(event) => {
             handleChange(event)
           }}
         />
       </div>
-      <div className="p-3 px-6 w-full">
-        <label
-          htmlFor="message"
-          className="text-md block uppercase text-gray-600"
-        >
-          {t('message')}
-        </label>
-        <textarea
-          required={true}
-          id="message"
-          value={formData.message}
-          placeholder={t('exampleMessage')}
-          className="w-full h-20 rounded bg-white text-gray-600 invalid:border-red-600 border-2 valid:border-blue-500 p-1"
-          onChange={(event) => {
-            handleChange(event)
-          }}
-        />
-      </div>
+      <TextAreaField
+        id="message"
+        title={t('message')}
+        value={formData.message}
+        placeholder={t('exampleMessage')}
+        onChange={(event) => {
+          handleChange(event)
+        }}
+      />
       <div className="flex justify-around w-full">
         <button
           type="button"

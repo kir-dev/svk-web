@@ -87,6 +87,11 @@
         "success": "Sikeres jelentkezés",
         "failure": "Sikertelen, kérem késöbb próbálja újra"
       }
+    },
+    "invalidMessage": {
+      "required": "A mező kitöltése kötelező",
+      "email": "Helyes email cím megadása szükséges",
+      "phone": "Helyes telefonszám megadása szükséges"
     }
   }
 }

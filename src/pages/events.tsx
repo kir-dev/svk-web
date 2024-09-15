@@ -1,8 +1,5 @@
 import Layout from '~/components/Layout'
-import {
-  getCurrentEventsSummary,
-  getPreviousEventsSummary,
-} from '~/lib/queries'
+import { getCurrentEvents, getPreviousEvents } from '~/lib/queries'
 import { getClient } from '~/lib/sanity.client'
 import { InferGetStaticPropsType } from 'next'
 import { EventTile } from '~/components/event-components/EventTile'
@@ -11,8 +8,8 @@ import { useTranslations } from 'next-intl'
 
 export const getStaticProps = async ({ locale }) => {
   const client = getClient()
-  const currentEvents = await getCurrentEventsSummary(client)
-  const previousEvents = await getPreviousEventsSummary(client)
+  const currentEvents = await getCurrentEvents(client)
+  const previousEvents = await getPreviousEvents(client)
   return {
     props: {
       currentEvents: currentEvents,
@@ -27,7 +24,7 @@ export default function EventsPage(
 ) {
   const currentEvents = props.currentEvents
   const previousEvents = props.previousEvents
-  const t = useTranslations("Events")
+  const t = useTranslations('Events')
 
   return (
     <Layout>
@@ -39,7 +36,7 @@ export default function EventsPage(
           <h1 className="text-center text-2xl">{t('none')}</h1>
         )}
         <h1 className="text-2xl my-10">{t('past')}</h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 text-sm">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 text-sm mb-[10%]">
           {previousEvents.map((event) => (
             <EventTile key={event._id} eventSummary={event} />
           ))}

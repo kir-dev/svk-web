@@ -17,6 +17,7 @@ export interface Member {
   description?: string
   linkedIn?: string
   picture?: ImageAsset
+  linkedInQr?: ImageAsset
 }
 
 export interface Lecturer {

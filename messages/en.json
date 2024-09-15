@@ -87,6 +87,11 @@
         "success": "Sent successfully",
         "failure": "Send failure, please try again later"
       }
+    },
+    "invalidMessage": {
+      "required": "This field is required",
+      "email": "Valid email format is required",
+      "phone": "Valid phone format is required"
     }
   }
 }

@@ -25,8 +25,18 @@ export const getPreviousEventsSummary = async (
   return await client.fetch(previousEventsSummary)
 }
 
-export const events = groq`*[_type == 'event']{title,datetime,image,description,spotLink,externalLink,exportLink,location,host,lecturer->{name, title, image}}`
+export const currentEvents = groq`*[_type == 'event' && datetime > now()]{title,datetime,image,description,spotLink,externalLink,exportLink,location,host,lecturer->{name, title, image}}`
 
-export const getEvents = async (client: SanityClient): Promise<EventFull[]> => {
-  return await client.fetch(events)
+export const getCurrentEvents = async (
+  client: SanityClient,
+): Promise<EventFull[]> => {
+  return await client.fetch(currentEvents)
+}
+
+export const previousEvents = groq`*[_type == 'event' && datetime < now()]{title,datetime,image,description,spotLink,externalLink,exportLink,location,host,lecturer->{name, title, image}}`
+
+export const getPreviousEvents = async (
+  client: SanityClient,
+): Promise<EventFull[]> => {
+  return await client.fetch(previousEvents)
 }
