@@ -95,6 +95,7 @@ export const JoinUsFrom: React.FC<ModalFormProps> = ({
           type="text"
           id="name"
           placeHolder={t('exampleName')}
+          invalidMessage={'Kötelező kitölteni'}
           value={formData.name}
           onChange={(event) => {
             handleChange(event)
@@ -105,6 +106,7 @@ export const JoinUsFrom: React.FC<ModalFormProps> = ({
           type="email"
           id="email"
           placeHolder={t('exampleEmail')}
+          invalidMessage={'Kötelező kitölteni\nHelyes email címnek kell lennie'}
           value={formData.email}
           onChange={(event) => {
             handleChange(event)

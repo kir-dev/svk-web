@@ -97,6 +97,7 @@ export const ContactForm: React.FC<ModalFormProps> = ({
           type="text"
           id="name"
           placeHolder={t('exampleName')}
+          invalidMessage={'Kötelező kitölteni'}
           value={formData.name}
           onChange={(event) => {
             handleChange(event)
@@ -107,6 +108,7 @@ export const ContactForm: React.FC<ModalFormProps> = ({
           type="email"
           id="email"
           placeHolder={t('exampleEmail')}
+          invalidMessage={'Kötelező kitölteni\nHelyes email címnek kell lennie'}
           value={formData.email}
           onChange={(event) => {
             handleChange(event)
@@ -119,6 +121,9 @@ export const ContactForm: React.FC<ModalFormProps> = ({
           placeHolder="06012345678"
           value={formData.phoneNumber}
           pattern="^(?:\+36|06)?\s?[1-9]\d\s?\d{3}\s?\d{3,4}$|^(?:\+36|06)?\s?((1|20|30|31|50|70|90)\d)\s?\d{3}\s?\d{3,4}$"
+          invalidMessage={
+            'Kötelező kitölteni\nHelyes telefonszámnak kell lennie'
+          }
           onChange={(event) => {
             handleChange(event)
           }}
@@ -128,6 +133,7 @@ export const ContactForm: React.FC<ModalFormProps> = ({
           type="text"
           id="companyName"
           placeHolder={t('exampleCompanyName')}
+          invalidMessage={'Kötelező kitölteni'}
           value={formData.companyName}
           onChange={(event) => {
             handleChange(event)
@@ -138,6 +144,7 @@ export const ContactForm: React.FC<ModalFormProps> = ({
           type="text"
           id="title"
           placeHolder={t('exampleTitle')}
+          invalidMessage={'Kötelező kitölteni'}
           value={formData.title}
           onChange={(event) => {
             handleChange(event)

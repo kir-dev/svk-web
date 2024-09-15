@@ -9,6 +9,7 @@ interface Props {
   pattern?: string
   value: string
   placeHolder: string
+  invalidMessage?: string
   onChange: (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
 }
 
@@ -19,6 +20,8 @@ export const FormField = ({
   value,
   placeHolder,
   pattern = '.*',
+  invalidMessage = '',
+
   onChange,
 }: Props) => {
   const [touched, setTouched] = useState<boolean>(false)
@@ -60,6 +63,7 @@ export const FormField = ({
           <TickIcon />
         </div>
         <div
+          title={invalidMessage}
           className={`absolute inset-y-0 end-0 flex items-center rounded transition-all bg-red-600 ${!valid && touched ? '' : '-translate-y-20'}`}
         >
           <ExclamationMarkIcon />
