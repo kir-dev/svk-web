@@ -107,7 +107,7 @@ export const JoinUsFrom: React.FC<ModalFormProps> = ({
           type="email"
           id="email"
           placeHolder={t('exampleEmail')}
-          invalidMessage={ti('required') + '\n' + t('email')}
+          invalidMessage={ti('required') + '\n' + ti('email')}
           value={formData.email}
           onChange={(event) => {
             handleChange(event)
