@@ -9,6 +9,7 @@ import {
 import { useTranslations } from 'next-intl'
 import { ContactSubmissionIndicator } from '~/components/pop-up-components/ContactSubmissionIndicator'
 import { CircularProgress } from '@nextui-org/progress'
+import { TextAreaField } from '~/components/pop-up-components/TextAreaField'
 
 export interface ModalFormProps {
   closeModal: () => void
@@ -143,21 +144,15 @@ export const ContactForm: React.FC<ModalFormProps> = ({
           }}
         />
       </div>
-      <div className="p-3 px-6 w-full">
-        <label htmlFor="message" className="text-md block uppercase text-white">
-          {t('message')}
-        </label>
-        <textarea
-          required={true}
-          id="message"
-          value={formData.message}
-          placeholder={t('exampleMessage')}
-          className="w-full h-20 rounded bg-white text-gray-600 invalid:border-red-600 border-2 valid:border-blue-500 p-1"
-          onChange={(event) => {
-            handleChange(event)
-          }}
-        />
-      </div>
+      <TextAreaField
+        id="message"
+        title={t('message')}
+        value={formData.message}
+        placeholder={t('exampleMessage')}
+        onChange={(event) => {
+          handleChange(event)
+        }}
+      />
       <div className="flex justify-around w-full">
         <button
           type="button"
