@@ -26,8 +26,6 @@ export default function AboutUsPage(
 ) {
   const [applicants, setApplicants] = useState<Applicant[]>([])
   const [loggedIn, setLoggedIn] = useState<boolean>(false)
-  const [userData, setUserData] = useState<any>(null)
-  const [accessToken, setAccessToken] = useState<string | null>(null)
   const eventTitles = props.eventTitles
   const router = useRouter()
 
