@@ -3,9 +3,12 @@ import { getClient } from '~/lib/sanity.client'
 import type { InferGetStaticPropsType } from 'next'
 import { Applicant, EventTitleAndID } from '~/lib/sanity.types'
 import { getEventTitles } from '~/lib/queries'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { handleGetApplicantsForEvent } from '~/lib/queries/getApplicantsForEvent'
 import { ApplicantTable } from '~/components/table_components/ApplicantTable'
+import { useRouter } from 'next/router'
+import { getAuthSchUrl } from '~/lib/queries/getAuthSchUrl'
+import { Button } from '@nextui-org/react'
 
 export const getStaticProps = async ({ locale }) => {
   const client = getClient()
@@ -22,7 +25,26 @@ export default function AboutUsPage(
   props: InferGetStaticPropsType<typeof getStaticProps>,
 ) {
   const [applicants, setApplicants] = useState<Applicant[]>([])
+  const [loggedIn, setLoggedIn] = useState<boolean>(false)
+  const [userData, setUserData] = useState<any>(null)
+  const [accessToken, setAccessToken] = useState<string | null>(null)
   const eventTitles = props.eventTitles
+  const router = useRouter()
+
+  async function login() {
+    const url = await getAuthSchUrl()
+    router.push(url)
+  }
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search)
+    const authCode = urlParams.get('code')
+
+    //!!!
+    if (authCode) {
+      setLoggedIn(true)
+    }
+  }, [])
 
   const getApplicants = async (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedEventID = event.target.value
@@ -32,9 +54,23 @@ export default function AboutUsPage(
     }
   }
 
+  if (!loggedIn) {
+    return (
+      <div className="text-center pt-20">
+        <h1 className="text-3xl mb-10">Admin page login</h1>
+        <h1 className="text-3xl">|</h1>
+        <h1 className="text-3xl mb-10">V</h1>
+        <Button className="text-lg" onClick={() => login()}>
+          Login
+        </Button>
+      </div>
+    )
+  }
+
   return (
     <Layout>
       <h1 className="text-5xl text-center my-16">Admin page</h1>
+
       <div className="w-fit mx-auto bg-white text-slate-700 p-16 rounded-lg">
         <select
           className={
