@@ -10,6 +10,7 @@ interface Props {
 export const ContactPopUp = ({ children }: Props) => {
   const t = useTranslations('common.contact')
   const [isOpen, setIsOpen] = useState(false)
+
   return (
     <PopUp
       button={children}
