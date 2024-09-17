@@ -11,6 +11,9 @@ interface Props {
 export const JoinUsPopUp = ({ children }: Props) => {
   const searchParams = useSearchParams()
 
+  const t = useTranslations('common.joinUs')
+  const [isOpen, setIsOpen] = useState(false)
+
   useEffect(() => {
     if (!searchParams || typeof window === 'undefined') {
       return
@@ -19,10 +22,8 @@ export const JoinUsPopUp = ({ children }: Props) => {
     if (!isOpen && modalParams == 'joinus') {
       setIsOpen(true)
     }
-  }, [searchParams])
+  }, [isOpen, searchParams])
 
-  const t = useTranslations('common.joinUs')
-  const [isOpen, setIsOpen] = useState(false)
   return (
     <PopUp
       button={children}
