@@ -6,13 +6,13 @@ import { FC, PropsWithChildren, useEffect, useState } from 'react'
 import { Route } from '~/utils/routes'
 
 import { useTranslations } from 'next-intl'
-import { MailIconSvg } from '~/components/svg-components/MailIconSvg'
 import NextLink from 'next/link'
 import { Button } from '@nextui-org/react'
 import { HamburgerIcon } from '~/components/svg-components/HamburgerIcon'
 import { CloseMenuIcon } from '~/components/svg-components/CloseMenuIcon'
 import { ContactPopUp } from '~/components/pop-up-components/contact/ContactPopUp'
 import { JoinUsPopUp } from '~/components/pop-up-components/join-us/JoinUsPopUp'
+import { LogoIcon } from '~/components/svg-components/LogoIcon'
 
 export interface Props {
   routes: Route[]
@@ -40,9 +40,7 @@ export const NavbarSitewide: FC<PropsWithChildren<Props>> = ({ routes }) => {
   return (
     <nav className="sticky top-0 z-40">
       <div className="flex justify-between w-screen px-5 md:px-10 lg:px-20 py-3 bg-black">
-        <ContactPopUp>
-          <MailIconSvg />
-        </ContactPopUp>
+        <LogoIcon />
         <div className="flex w-fit justify-around items-center gap-5 lg:gap-10 text-md lg:text-lg">
           <div className="block md:hidden h-fit">
             <Button
