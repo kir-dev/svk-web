@@ -3,7 +3,11 @@ const emailRegexp =
 
 const phoneNumberRegexp = /^[+]*[(]?[0-9]{1,4}[)]?[-\s.\/0-9]*$/
 
-export interface ContactFormFields {
+export interface FormFields {
+  sheet: string
+}
+
+export interface ContactFormFields extends FormFields {
   name: string
   email: string
   phoneNumber: string
@@ -21,7 +25,7 @@ export interface ContactFieldsValidity {
   message: boolean
 }
 
-export interface JoinUsFormFields {
+export interface JoinUsFormFields extends FormFields {
   name: string
   email: string
   study: string

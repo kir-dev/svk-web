@@ -9,6 +9,7 @@ import { useTranslations } from 'next-intl'
 import { ContactSubmissionIndicator } from '~/components/pop-up-components/ContactSubmissionIndicator'
 import { CircularProgress } from '@nextui-org/progress'
 import { DropdownFormField } from '~/components/pop-up-components/DropdownFormField'
+import { submitForm } from '~/lib/api'
 
 export interface ModalFormProps {
   closeModal?: (param: any) => void
@@ -18,6 +19,7 @@ export const JoinUsFrom: React.FC<ModalFormProps> = ({
   closeModal,
 }: ModalFormProps) => {
   const formInitState: JoinUsFormFields = {
+    sheet: 'Jelentkezesek',
     name: '',
     email: '',
     study: '',
@@ -71,7 +73,7 @@ export const JoinUsFrom: React.FC<ModalFormProps> = ({
     try {
       setIsLoading(true)
       //Todo
-      //await sendContactFrom(formData)
+      await submitForm(formData)
       setSuccess(true)
       setFormData(formInitState)
       setValidFields(validityInitState)

@@ -1,4 +1,5 @@
 import { ContactFormFields } from '~/utils/form-validation'
+import axios from 'axios'
 
 export const sendContactFrom = async (data: ContactFormFields) =>
   fetch('/api/contact', {
@@ -11,3 +12,13 @@ export const sendContactFrom = async (data: ContactFormFields) =>
     }
     return res.json()
   })
+
+export const submitForm = async (data) => {
+  axios.post(`/api/form-submit`, data)
+    .then(function (response) {
+    console.log(response);
+  })
+    .catch(function (error) {
+      console.log(error);
+    });
+}

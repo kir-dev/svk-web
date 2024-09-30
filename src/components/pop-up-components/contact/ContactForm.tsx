@@ -1,6 +1,6 @@
 import { FormField } from '~/components/pop-up-components/FormField'
 import React, { ChangeEvent, useEffect, useState } from 'react'
-import { sendContactFrom } from '~/lib/api'
+import { submitForm } from '~/lib/api'
 import {
   ContactFieldsValidity,
   ContactFormFields,
@@ -19,6 +19,7 @@ export const ContactForm: React.FC<ModalFormProps> = ({
   closeModal,
 }: ModalFormProps) => {
   const formInitState: ContactFormFields = {
+    sheet: 'Kapcsolat',
     name: '',
     email: '',
     phoneNumber: '',
@@ -73,11 +74,12 @@ export const ContactForm: React.FC<ModalFormProps> = ({
   const handleSubmit = async () => {
     try {
       setIsLoading(true)
-      await sendContactFrom(formData)
+      await submitForm(formData)
       setSuccess(true)
       setFormData(formInitState)
       setValidFields(validityInitState)
     } catch (error) {
+      console.log(error)
       setSuccess(false)
     } finally {
       setSubmitted(true)
