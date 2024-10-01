@@ -18,7 +18,7 @@ export const Wave: FC<Props> = ({ top, left, rotate  }) => {
   };
 
   return(
-    <div className={`overflow-hidden absolute`} style={{ top: `${top}%`, left:`${left}%`, rotate: `${rotate}deg`, width: `100%`, height: `100%`}}>
+    <div className={`overflow-hidden fixed`} style={{ top: `${top}%`, left:`${left}%`, rotate: `${rotate}deg`, width: `200%`, height: `200%`}}>
         <Lottie options={defaultOptions}  />
     </div>
   )
