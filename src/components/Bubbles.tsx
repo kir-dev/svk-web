@@ -1,6 +1,8 @@
 import {useTranslations} from "next-intl";
-import Image from "next/image";
 import React from "react";
+import {PeopleSvg} from "~/components/svg-components/PeopleSvg";
+import {TasksSvg} from "~/components/svg-components/TasksSvg";
+import {GoalSvg} from "~/components/svg-components/GoalSvg";
 
 export default function Bubbles() {
     const t = useTranslations("Members")
@@ -9,19 +11,19 @@ export default function Bubbles() {
         {
             key: '0',
             text: t(`about0`),
-            href: '/images/people.avif',
+            image: PeopleSvg,
             altHref: 'Our Team',
         },
         {
             key: '1',
             text: t(`about1`),
-            href: '/images/board.avif',
+            image: TasksSvg,
             altHref: 'What we achieve',
         },
         {
             key: '2',
             text: t(`about2`),
-            href: '/images/bullseye.avif',
+            image: GoalSvg,
             altHref: 'Goal',
         },
     ]
@@ -34,12 +36,7 @@ export default function Bubbles() {
                     className="relative flex-1 flex-col mx-auto justify-center max-w-lg bg-black bg-opacity-50 rounded-3xl p-5 gap-20"
                 >
                     <div className="relative mx-auto w-[70px] h-[70px]">
-                        <Image
-                            src={section.href}
-                            alt={section.altHref}
-                            fill={true}
-                            className="w-full h-auto object-contain"
-                        />
+                        <section.image/>
                     </div>
                     <div className="w-0.5 h-5 bg-white mx-auto my-2.5"/>
                     <p className="text-justify text-base md:text-lg lg:text-base xl:text-lg basis-[100%] sm:basis-[90%]">
