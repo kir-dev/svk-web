@@ -4,11 +4,6 @@
     "mainTitle": "Schönherz Corporate Relations.",
     "joinUs": "Join us",
     "motto": "We create communication bridge between students and companies",
-    "mission": {
-      "title": "What do we do?",
-      "body0": "Our goal is to create an efficient communication bridge between students and companies, which allows both parties to get to know each other mutually. As a result, students get to know and understand the business areas of companies during their university years, which significantly facilitates their job placement in the working world.",
-      "body1": "In this process, we pay special attention to providing media presence for companies at the largest campus events, such as the Simonyi Conference, the Schönherz Qpa, Freshman Camp, and Freshman Ball, as well as at our own events, such as professional lectures, courses, and company visits. This way, we provide companies with the opportunity to establish direct contact with talented students and showcase their services and opportunities to the future workforce."
-    },
     "partnersTitle": "Our partners"
   },
   "Contact": {
@@ -20,7 +15,12 @@
     "about1": "As a result, students will already in their university years become familiar with and understand the portfolios of companies, which significantly eases their job placement in the world of work.",
     "about2": "Our main goal is to create an effective communication bridge between students and companies, through which they can get to know each other mutually. ",
     "nameFormat": "{firstName} {lastName}",
-    "imageAlt": "{firstName} {lastName}'s profile picture"
+    "imageAlt": "{firstName} {lastName}'s profile picture",
+    "mission": {
+      "title": "What do we do?",
+      "body0": "Our goal is to create an efficient communication bridge between students and companies, which allows both parties to get to know each other mutually. As a result, students get to know and understand the business areas of companies during their university years, which significantly facilitates their job placement in the working world.",
+      "body1": "In this process, we pay special attention to providing media presence for companies at the largest campus events, such as the Simonyi Conference, the Schönherz Qpa, Freshman Camp, and Freshman Ball, as well as at our own events, such as professional lectures, courses, and company visits. This way, we provide companies with the opportunity to establish direct contact with talented students and showcase their services and opportunities to the future workforce."
+    }
   },
   "Events": {
     "current": "Current events",

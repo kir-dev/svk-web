@@ -4,11 +4,6 @@
     "mainTitle": "Schönherz Vállalati Kapcsolatok.",
     "motto": "Kommunikációs hidat teremtünk a hallgatók és a cégek között",
     "joinUs": "Csatlakozz",
-    "mission": {
-      "title": "Mivel foglalkozunk?",
-      "body0": "A célunk, hogy egy hatékony kommunikációs híd jöjjön létre a hallgatók és a vállalatok között, amely lehetővé teszi mindkét fél számára, hogy kölcsönösen megismerjék egymást. Ennek eredményeként a hallgatók már az egyetemi éveik alatt megismerik és megértik a cégek tevékenységi területeit, ami jelentősen megkönnyíti számukra az elhelyezkedést a munka világában.",
-      "body1": "Ebben a folyamatban kiemelt figyelmet fordítunk arra, hogy médiajelenlétet biztosítsunk a cégeknek a legnagyobb campus rendezvényeken, mint például a Simonyi Konferencia, a Schönherz Qpa, a Gólyatábor és a Gólyabál, valamint saját szervezésű eseményeinken, mint például szakmai előadások, tanfolyamok és vállalatlátogatások. Ezáltal lehetőséget teremtünk a cégeknek arra, hogy közvetlen kapcsolatot alakítsanak ki a tehetséges hallgatókkal, és bemutassák szolgáltatásaikat és lehetőségeiket a jövő munkaerőjének."
-    },
     "partnersTitle": "Partnereink"
   },
   "Contact": {
@@ -20,7 +15,12 @@
     "about1": "Ennek eredményeként a hallgatók már az egyetemi éveik alatt megismerik és megértik a cégek portfólióját, ami jelentősen megkönnyíti számukra az elhelyezkedést a munka világában.",
     "about2": "Fő célunk, hogy egy olyan hatékony kommunikációs hidat hozzunk létre a hallgatók és a cégek között, amellyel kölcsönösen megismerhetik egymást.",
     "nameFormat": "{lastName} {firstName}",
-    "imageAlt": "{lastName} {firstName} profilképe"
+    "imageAlt": "{lastName} {firstName} profilképe",
+    "mission": {
+      "title": "Mivel foglalkozunk?",
+      "body0": "A célunk, hogy egy hatékony kommunikációs híd jöjjön létre a hallgatók és a vállalatok között, amely lehetővé teszi mindkét fél számára, hogy kölcsönösen megismerjék egymást. Ennek eredményeként a hallgatók már az egyetemi éveik alatt megismerik és megértik a cégek tevékenységi területeit, ami jelentősen megkönnyíti számukra az elhelyezkedést a munka világában.",
+      "body1": "Ebben a folyamatban kiemelt figyelmet fordítunk arra, hogy médiajelenlétet biztosítsunk a cégeknek a legnagyobb campus rendezvényeken, mint például a Simonyi Konferencia, a Schönherz Qpa, a Gólyatábor és a Gólyabál, valamint saját szervezésű eseményeinken, mint például szakmai előadások, tanfolyamok és vállalatlátogatások. Ezáltal lehetőséget teremtünk a cégeknek arra, hogy közvetlen kapcsolatot alakítsanak ki a tehetséges hallgatókkal, és bemutassák szolgáltatásaikat és lehetőségeiket a jövő munkaerőjének."
+    }
   },
   "Events": {
     "current": "Aktuális esemény",
