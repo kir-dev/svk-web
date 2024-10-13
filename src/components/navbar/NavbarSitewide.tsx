@@ -39,7 +39,7 @@ export const NavbarSitewide: FC<PropsWithChildren<Props>> = ({ routes }) => {
 
   return (
     <nav className="sticky top-0 z-40">
-      <div className="flex justify-between w-screen px-5 md:px-10 lg:px-20 py-3 bg-black">
+      <div className="flex justify-between w-screen px-[8.5%] py-3 bg-black">
         <LogoIcon />
         <div className="flex w-fit justify-around items-center gap-5 lg:gap-10 text-md lg:text-lg">
           <div className="block md:hidden h-fit">
