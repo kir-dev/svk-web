@@ -36,7 +36,7 @@ export default function AboutUsPage(
     <Layout>
       <section>
         <div className="mx-auto h-min gap-2 w-[83%] py-24">
-          <p className="font-bold text-3xl sm:text-4xl md:text-5xl text-nowrap text-center 2xl:text-start pb-4">
+          <p className="text-3xl sm:text-4xl md:text-5xl text-nowrap text-center 2xl:text-start pb-4">
             {t('mission.title')}
           </p>
           <div className="text-justify flex flex-col gap-4 leading-loose text-gray-300 text-md sm:text-lg">
