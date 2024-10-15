@@ -9,7 +9,7 @@ import PlausibleProvider from 'next-plausible'
 import { DefaultSeo } from 'next-seo'
 import { ThemeProvider } from 'next-themes'
 import type { AppProps } from 'next/app'
-import { Inter } from 'next/font/google'
+import { Montserrat } from 'next/font/google'
 import { useRouter } from 'next/router'
 import Script from 'next/script'
 import Refractor from 'react-refractor'
@@ -36,9 +36,9 @@ export interface SharedPageProps {
   messages: Record<string, string>
 }
 
-const inter = Inter({
+const montserrat = Montserrat({
   subsets: ['latin'],
-  weight: ['500', '700', '800'],
+  weight: ['400', '100', '900'],
 })
 
 const loadLangs = (langs: RefractorSyntax[]) =>
@@ -87,7 +87,7 @@ export default function App({
       />
       <style jsx global>{`
         html {
-          font-family: ${inter.style.fontFamily};
+          font-family: ${montserrat.style.fontFamily};
         }
       `}</style>
       <NextUIProvider navigate={router.push}>

@@ -39,9 +39,10 @@ export const NavbarSitewide: FC<PropsWithChildren<Props>> = ({ routes }) => {
 
   return (
     <nav className="sticky top-0 z-40">
-      <div className="flex justify-between w-screen px-5 md:px-10 lg:px-20 py-3 bg-black">
+      <div className="flex justify-between w-screen px-[8.5%] py-3 bg-black">
         <LogoIcon />
-        <div className="flex w-fit justify-around items-center gap-5 lg:gap-10 text-md lg:text-lg">
+        <div className="flex w-fit justify-around items-center gap-5 lg:gap-10 text-xl">
+
           <div className="block md:hidden h-fit">
             <Button
               onClick={() => setOpenDropdown(!openDropdown)}
@@ -85,7 +86,7 @@ export const NavbarSitewide: FC<PropsWithChildren<Props>> = ({ routes }) => {
             </div>
           </div>
 
-          <div className="hidden md:flex justify-around gap-10 items-center">
+          <div className="hidden md:flex justify-around gap-5 items-center">
             {routes.map((route) => (
               <NextLink
                 key={route.key}
