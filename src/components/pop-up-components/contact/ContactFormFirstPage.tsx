@@ -1,6 +1,5 @@
 import { FormField } from '~/components/pop-up-components/FormField'
 import React, { ChangeEvent, useEffect, useState } from 'react'
-import { sendContactFrom } from '~/lib/api'
 import {
   ContactFieldsValidity,
   ContactFormFields,
@@ -9,14 +8,15 @@ import {
 import { useTranslations } from 'next-intl'
 import { ContactSubmissionIndicator } from '~/components/pop-up-components/ContactSubmissionIndicator'
 import { CircularProgress } from '@nextui-org/progress'
-import { TextAreaField } from '~/components/pop-up-components/TextAreaField'
 
 export interface ModalFormProps {
   closeModal: () => void
+  submit?: () => void
 }
 
-export const ContactForm: React.FC<ModalFormProps> = ({
+export const ContactFormFirstPage: React.FC<ModalFormProps> = ({
   closeModal,
+  submit,
 }: ModalFormProps) => {
   const formInitState: ContactFormFields = {
     name: '',
@@ -30,11 +30,14 @@ export const ContactForm: React.FC<ModalFormProps> = ({
   const validityInitState: ContactFieldsValidity = {
     name: false,
     email: false,
-    phoneNumber: false,
-    companyName: false,
-    title: false,
-    message: false,
+    phoneNumber: true,
+    companyName: true,
+    title: true,
+    message: true,
   }
+
+  //Todo look for a better place for this variable
+  const contactFormLocalStorageID: string = 'contactFormLocalStorageID'
 
   const t = useTranslations('common.contact.form')
   const ti = useTranslations('common.invalidMessage')
@@ -46,6 +49,15 @@ export const ContactForm: React.FC<ModalFormProps> = ({
   const [isSuccess, setSuccess] = useState<boolean>(true)
   const [isSubmitted, setSubmitted] = useState<boolean>(false)
   const [isLoading, setIsLoading] = useState(false)
+
+  useEffect(() => {
+    const data = localStorage.getItem(contactFormLocalStorageID)
+    if (data) {
+      const fields = JSON.parse(data)
+      setFormData({ ...formData, ...fields })
+      //Todo validate name and email
+    }
+  }, [])
 
   useEffect(() => {
     setValidForm(Object.values(validFields).every(Boolean))
@@ -71,17 +83,9 @@ export const ContactForm: React.FC<ModalFormProps> = ({
   }
 
   const handleSubmit = async () => {
-    try {
-      setIsLoading(true)
-      await sendContactFrom(formData)
-      setSuccess(true)
-      setFormData(formInitState)
-      setValidFields(validityInitState)
-    } catch (error) {
-      setSuccess(false)
-    } finally {
-      setSubmitted(true)
-      setIsLoading(false)
+    if (submit) {
+      submit()
+      localStorage.setItem(contactFormLocalStorageID, JSON.stringify(formData))
     }
   }
 
@@ -115,50 +119,7 @@ export const ContactForm: React.FC<ModalFormProps> = ({
             handleChange(event)
           }}
         />
-        <FormField
-          title={t('phoneNumber')}
-          type="tel"
-          id="phoneNumber"
-          placeHolder="06012345678"
-          value={formData.phoneNumber}
-          pattern="^(?:\+36|06)?\s?[1-9]\d\s?\d{3}\s?\d{3,4}$|^(?:\+36|06)?\s?((1|20|30|31|50|70|90)\d)\s?\d{3}\s?\d{3,4}$"
-          invalidMessage={ti('required') + '\n' + ti('phone')}
-          onChange={(event) => {
-            handleChange(event)
-          }}
-        />
-        <FormField
-          title={t('companyName')}
-          type="text"
-          id="companyName"
-          placeHolder={t('exampleCompanyName')}
-          invalidMessage={ti('required')}
-          value={formData.companyName}
-          onChange={(event) => {
-            handleChange(event)
-          }}
-        />
-        <FormField
-          title={t('title')}
-          type="text"
-          id="title"
-          placeHolder={t('exampleTitle')}
-          invalidMessage={ti('required')}
-          value={formData.title}
-          onChange={(event) => {
-            handleChange(event)
-          }}
-        />
       </div>
-      <TextAreaField
-        id="message"
-        title={t('message')}
-        value={formData.message}
-        placeholder={t('exampleMessage')}
-        onChange={(event) => {
-          handleChange(event)
-        }}
-      />
       <div className="flex justify-around w-full">
         <button
           type="button"
@@ -176,7 +137,7 @@ export const ContactForm: React.FC<ModalFormProps> = ({
           {isLoading ? (
             <CircularProgress color="default" aria-label="Loading..." />
           ) : (
-            t('submit')
+            t('next')
           )}
         </button>
       </div>

@@ -81,7 +81,9 @@
         "studyOptions": "BME-Vik;Other",
         "activeSemesterCount": "Number of your active semesters",
         "cancel": "Cancel",
-        "submit": "Send"
+        "submit": "Send",
+        "next": "Next",
+        "back": "Back"
       },
       "feedback": {
         "success": "Sent successfully",

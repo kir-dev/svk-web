@@ -62,7 +62,9 @@
         "message": "Üzenet",
         "exampleMessage": "Szeretném felvenni önökkel a kapcsolatot mert...",
         "cancel": "Mégse",
-        "submit": "Küldés"
+        "submit": "Küldés",
+        "next": "Tovább",
+        "back": "Vissza"
       },
       "feedback": {
         "success": "Sikeresen elküldve",
