@@ -46,14 +46,16 @@ export const ContactPopUp = ({ children }: Props) => {
               : 'h-0 -translate-x-[100%]'
           }`}
         >
-          <ContactFormFirstPage
-            closeModal={() => {
-              setIsOpen(false)
-            }}
-            submit={() => {
-              setModalState(FormStates.SecondPageOpen)
-            }}
-          />
+          {modalState === FormStates.FirstPageOpen && (
+            <ContactFormFirstPage
+              closeModal={() => {
+                setIsOpen(false)
+              }}
+              submit={() => {
+                setModalState(FormStates.SecondPageOpen)
+              }}
+            />
+          )}
         </div>
         <div
           className={`overflow-y-hidden transition-transform duration-1000 ease-in-o " ${
@@ -62,11 +64,13 @@ export const ContactPopUp = ({ children }: Props) => {
               : 'h-0 translate-x-[100%]'
           }`}
         >
-          <ContactFormSecondPage
-            closeModal={() => {
-              setModalState(FormStates.FirstPageOpen)
-            }}
-          />
+          {modalState === FormStates.SecondPageOpen && (
+            <ContactFormSecondPage
+              closeModal={() => {
+                setModalState(FormStates.FirstPageOpen)
+              }}
+            />
+          )}
         </div>
       </div>
     </PopUp>

@@ -9,7 +9,6 @@ export interface ContactFormFields {
   phoneNumber: string
   companyName: string
   title: string
-  message: string
 }
 
 export interface ContactFieldsValidity {
@@ -18,7 +17,6 @@ export interface ContactFieldsValidity {
   phoneNumber: boolean
   companyName: boolean
   title: boolean
-  message: boolean
 }
 
 export interface JoinUsFormFields {
@@ -52,7 +50,6 @@ export const validateField = (field: string, value: string): boolean => {
     case 'name':
     case 'companyName':
     case 'title':
-    case 'message':
     case 'study':
     case 'activeSemesterCount':
       return validateRequired(value)

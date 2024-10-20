@@ -24,7 +24,6 @@ export const ContactFormFirstPage: React.FC<ModalFormProps> = ({
     phoneNumber: '',
     companyName: '',
     title: '',
-    message: '',
   }
 
   const validityInitState: ContactFieldsValidity = {
@@ -33,7 +32,6 @@ export const ContactFormFirstPage: React.FC<ModalFormProps> = ({
     phoneNumber: true,
     companyName: true,
     title: true,
-    message: true,
   }
 
   //Todo look for a better place for this variable
@@ -53,7 +51,6 @@ export const ContactFormFirstPage: React.FC<ModalFormProps> = ({
   useEffect(() => {
     const data = localStorage.getItem(contactFormLocalStorageID)
     if (data) {
-      console.log(data)
       const fields: ContactFormFields = JSON.parse(data)
       setFormData({ ...formData, ...fields })
       let fieldsValidity: ContactFieldsValidity = validityInitState

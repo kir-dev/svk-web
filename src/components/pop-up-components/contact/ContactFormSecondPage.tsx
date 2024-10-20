@@ -23,7 +23,6 @@ export const ContactFormSecondPage: React.FC<ModalFormProps> = ({
     phoneNumber: '',
     companyName: '',
     title: '',
-    message: '',
   }
 
   //Todo look for a better place for this variable
@@ -35,7 +34,6 @@ export const ContactFormSecondPage: React.FC<ModalFormProps> = ({
     phoneNumber: false,
     companyName: false,
     title: false,
-    message: false,
   }
 
   const t = useTranslations('common.contact.form')
@@ -78,6 +76,7 @@ export const ContactFormSecondPage: React.FC<ModalFormProps> = ({
   }
 
   const setAllFormField = (initValues: ContactFormFields) => {
+    console.log('initialValues', initValues)
     setFormData({ ...formData, ...initValues })
     let fieldsValidity: ContactFieldsValidity = validityInitState
     Object.entries(initValues).forEach(([id, value]) => {
@@ -104,7 +103,10 @@ export const ContactFormSecondPage: React.FC<ModalFormProps> = ({
       setSuccess(true)
       setFormData(formInitState)
       setValidFields(validityInitState)
-      localStorage.removeItem(contactFormLocalStorageID)
+      localStorage.setItem(
+        contactFormLocalStorageID,
+        JSON.stringify(formInitState),
+      )
     } catch (error) {
       setSuccess(false)
     } finally {
@@ -160,6 +162,7 @@ export const ContactFormSecondPage: React.FC<ModalFormProps> = ({
         <button
           type="button"
           onClick={() => {
+            console.log('formData', formData)
             localStorage.setItem(
               contactFormLocalStorageID,
               JSON.stringify(formData),
