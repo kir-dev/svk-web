@@ -9,7 +9,6 @@ import {
 import { useTranslations } from 'next-intl'
 import { ContactSubmissionIndicator } from '~/components/pop-up-components/ContactSubmissionIndicator'
 import { CircularProgress } from '@nextui-org/progress'
-import { TextAreaField } from '~/components/pop-up-components/TextAreaField'
 
 export interface ModalFormProps {
   closeModal: () => void
@@ -54,8 +53,7 @@ export const ContactFormSecondPage: React.FC<ModalFormProps> = ({
     const data = localStorage.getItem(contactFormLocalStorageID)
     if (data) {
       const fields = JSON.parse(data)
-      setFormData({ ...formData, ...fields })
-      //Todo validate fields
+      setAllFormField(fields)
     } else {
       //Todo error message
     }
@@ -76,8 +74,23 @@ export const ContactFormSecondPage: React.FC<ModalFormProps> = ({
   const handleChange = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
-    const { id, value } = event.target
-    setFormData({ ...formData, [id]: value })
+    updateFormField(event.target)
+  }
+
+  const setAllFormField = (initValues: ContactFormFields) => {
+    setFormData({ ...formData, ...initValues })
+    let fieldsValidity: ContactFieldsValidity = validityInitState
+    Object.entries(initValues).forEach(([id, value]) => {
+      fieldsValidity[id] = validateField(id, value)
+    })
+    setValidFields(fieldsValidity)
+  }
+
+  const updateFormField = ({ id, value }) => {
+    setFormData({
+      ...formData,
+      [id]: value,
+    })
     setValidFields((validFields) => ({
       ...validFields,
       [id]: validateField(id, value),
@@ -143,15 +156,6 @@ export const ContactFormSecondPage: React.FC<ModalFormProps> = ({
           }}
         />
       </div>
-      <TextAreaField
-        id="message"
-        title={t('message')}
-        value={formData.message}
-        placeholder={t('exampleMessage')}
-        onChange={(event) => {
-          handleChange(event)
-        }}
-      />
       <div className="flex justify-around w-full">
         <button
           type="button"

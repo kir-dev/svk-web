@@ -53,9 +53,13 @@ export const ContactFormFirstPage: React.FC<ModalFormProps> = ({
   useEffect(() => {
     const data = localStorage.getItem(contactFormLocalStorageID)
     if (data) {
-      const fields = JSON.parse(data)
+      console.log(data)
+      const fields: ContactFormFields = JSON.parse(data)
       setFormData({ ...formData, ...fields })
-      //Todo validate name and email
+      let fieldsValidity: ContactFieldsValidity = validityInitState
+      fieldsValidity.name = validateField('name', fields.name)
+      fieldsValidity.email = validateField('email', fields.email)
+      setValidFields({ ...validFields, ...fieldsValidity })
     }
   }, [])
 
