@@ -97,7 +97,7 @@ export const JoinUsFrom: React.FC<ModalFormProps> = ({
           id="name"
           placeHolder={t('exampleName')}
           invalidMessage={ti('required')}
-          value={formData.name}
+          isChecked={formData.name}
           onChange={(event) => {
             handleChange(event)
           }}
@@ -108,7 +108,7 @@ export const JoinUsFrom: React.FC<ModalFormProps> = ({
           id="email"
           placeHolder={t('exampleEmail')}
           invalidMessage={ti('required') + '\n' + ti('email')}
-          value={formData.email}
+          isChecked={formData.email}
           onChange={(event) => {
             handleChange(event)
           }}

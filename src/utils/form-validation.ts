@@ -6,7 +6,7 @@ const phoneNumberRegexp = /^[+]*[(]?[0-9]{1,4}[)]?[-\s.\/0-9]*$/
 export interface ContactFormFields {
   name: string
   email: string
-  phoneNumber: string
+  reason: string
   companyName: string
   title: string
 }
@@ -14,7 +14,7 @@ export interface ContactFormFields {
 export interface ContactFieldsValidity {
   name: boolean
   email: boolean
-  phoneNumber: boolean
+  reason: boolean
   companyName: boolean
   title: boolean
 }
@@ -51,6 +51,7 @@ export const validateField = (field: string, value: string): boolean => {
     case 'companyName':
     case 'title':
     case 'study':
+    case 'reason':
     case 'activeSemesterCount':
       return validateRequired(value)
     case 'email':

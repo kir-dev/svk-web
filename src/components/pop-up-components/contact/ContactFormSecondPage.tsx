@@ -9,6 +9,8 @@ import {
 import { useTranslations } from 'next-intl'
 import { ContactSubmissionIndicator } from '~/components/pop-up-components/ContactSubmissionIndicator'
 import { CircularProgress } from '@nextui-org/progress'
+import { FormRadioGroup } from '~/components/pop-up-components/FormRadioGroup'
+import { DropdownFormField } from '~/components/pop-up-components/DropdownFormField'
 
 export interface ModalFormProps {
   closeModal: () => void
@@ -20,7 +22,7 @@ export const ContactFormSecondPage: React.FC<ModalFormProps> = ({
   const formInitState: ContactFormFields = {
     name: '',
     email: '',
-    phoneNumber: '',
+    reason: '',
     companyName: '',
     title: '',
   }
@@ -31,7 +33,7 @@ export const ContactFormSecondPage: React.FC<ModalFormProps> = ({
   const validityInitState: ContactFieldsValidity = {
     name: true,
     email: true,
-    phoneNumber: false,
+    reason: false,
     companyName: false,
     title: false,
   }
@@ -123,40 +125,38 @@ export const ContactFormSecondPage: React.FC<ModalFormProps> = ({
         <ContactSubmissionIndicator isSuccess={isSuccess} />
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2">
-        <FormField
-          title={t('phoneNumber')}
-          type="tel"
-          id="phoneNumber"
-          placeHolder="06012345678"
-          value={formData.phoneNumber}
-          pattern="^(?:\+36|06)?\s?[1-9]\d\s?\d{3}\s?\d{3,4}$|^(?:\+36|06)?\s?((1|20|30|31|50|70|90)\d)\s?\d{3}\s?\d{3,4}$"
-          invalidMessage={ti('required') + '\n' + ti('phone')}
-          onChange={(event) => {
-            handleChange(event)
-          }}
+        <div className="col-span-2">
+          <FormField
+            title={t('reason')}
+            type="text"
+            id="reason"
+            placeHolder={t('exampleReason')}
+            value={formData.reason}
+            invalidMessage={ti('required')}
+            onChange={(event) => {
+              handleChange(event)
+            }}
+          />
+        </div>
+        <FormRadioGroup
+          title={t('employeeNumber')}
+          elements={['1 - 10', '11 - 50', '51 - 250', '250+']}
         />
-        <FormField
-          title={t('companyName')}
-          type="text"
-          id="companyName"
-          placeHolder={t('exampleCompanyName')}
-          invalidMessage={ti('required')}
-          value={formData.companyName}
-          onChange={(event) => {
-            handleChange(event)
-          }}
+        <FormRadioGroup
+          title={t('translatedAmount')}
+          elements={['0.5M - 1M', '1M - 2M', '2M - 3M', '3M+']}
         />
-        <FormField
-          title={t('title')}
-          type="text"
-          id="title"
-          placeHolder={t('exampleTitle')}
-          invalidMessage={ti('required')}
-          value={formData.title}
-          onChange={(event) => {
-            handleChange(event)
-          }}
-        />
+        <div className="col-span-2">
+          <DropdownFormField
+            title={t('source')}
+            id="source"
+            value={formData.reason}
+            onChange={(event) => {
+              handleChange(event)
+            }}
+            options={[t('sourceFromAcquaintance'), 'Facebook', 'LinkedIn']}
+          />
+        </div>
       </div>
       <div className="flex justify-around w-full">
         <button

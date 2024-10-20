@@ -21,7 +21,7 @@ export const ContactFormFirstPage: React.FC<ModalFormProps> = ({
   const formInitState: ContactFormFields = {
     name: '',
     email: '',
-    phoneNumber: '',
+    reason: '',
     companyName: '',
     title: '',
   }
@@ -29,7 +29,7 @@ export const ContactFormFirstPage: React.FC<ModalFormProps> = ({
   const validityInitState: ContactFieldsValidity = {
     name: false,
     email: false,
-    phoneNumber: true,
+    reason: true,
     companyName: true,
     title: true,
   }
@@ -104,7 +104,7 @@ export const ContactFormFirstPage: React.FC<ModalFormProps> = ({
           id="name"
           placeHolder={t('exampleName')}
           invalidMessage={ti('required')}
-          value={formData.name}
+          isChecked={formData.name}
           onChange={(event) => {
             handleChange(event)
           }}
@@ -115,7 +115,7 @@ export const ContactFormFirstPage: React.FC<ModalFormProps> = ({
           id="email"
           placeHolder={t('exampleEmail')}
           invalidMessage={ti('required') + '\n' + ti('email')}
-          value={formData.email}
+          isChecked={formData.email}
           onChange={(event) => {
             handleChange(event)
           }}

@@ -11,8 +11,6 @@ interface Props {
   placeHolder: string
   invalidMessage?: string
   onChange: (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
-  touchedInit?: boolean
-  validInit?: boolean
 }
 
 export const FormField = ({
