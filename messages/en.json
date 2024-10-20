@@ -61,7 +61,9 @@
         "source": "Where did you hear about us?",
         "sourceFromAcquaintance": "From acquaintance",
         "cancel": "Cancel",
-        "submit": "Send"
+        "submit": "Send",
+        "next": "Next",
+        "back": "Back"
       },
       "feedback": {
         "success": "Sent successfully",
