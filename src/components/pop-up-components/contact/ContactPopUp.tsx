@@ -28,7 +28,7 @@ export const ContactPopUp = ({ children }: Props) => {
   }, [modalState])
 
   if (modalState === FormStates.Closed) {
-    return
+    return null
   }
 
   return (
@@ -38,23 +38,37 @@ export const ContactPopUp = ({ children }: Props) => {
       isOpen={isOpen}
       setIsOpen={setIsOpen}
     >
-      {modalState === FormStates.FirstPageOpen && (
-        <ContactFormFirstPage
-          closeModal={() => {
-            setIsOpen(false)
-          }}
-          submit={() => {
-            setModalState(FormStates.SecondPageOpen)
-          }}
-        />
-      )}
-      {modalState === FormStates.SecondPageOpen && (
-        <ContactFormSecondPage
-          closeModal={() => {
-            setModalState(FormStates.FirstPageOpen)
-          }}
-        />
-      )}
+      <div className="overflow-x-hidden">
+        <div
+          className={`overflow-y-hidden transition-transform duration-1000 ease-in-out " ${
+            modalState === FormStates.FirstPageOpen
+              ? ''
+              : 'h-0 -translate-x-[100%]'
+          }`}
+        >
+          <ContactFormFirstPage
+            closeModal={() => {
+              setIsOpen(false)
+            }}
+            submit={() => {
+              setModalState(FormStates.SecondPageOpen)
+            }}
+          />
+        </div>
+        <div
+          className={`overflow-y-hidden transition-transform duration-1000 ease-in-o " ${
+            modalState === FormStates.SecondPageOpen
+              ? ''
+              : 'h-0 translate-x-[100%]'
+          }`}
+        >
+          <ContactFormSecondPage
+            closeModal={() => {
+              setModalState(FormStates.FirstPageOpen)
+            }}
+          />
+        </div>
+      </div>
     </PopUp>
   )
 }
