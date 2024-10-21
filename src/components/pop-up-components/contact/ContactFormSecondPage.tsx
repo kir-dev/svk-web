@@ -1,16 +1,15 @@
 import { FormField } from '~/components/pop-up-components/FormField'
-import React, { ChangeEvent, useEffect, useState } from 'react'
-import { sendContactFrom } from '~/lib/api'
+import React, { ChangeEvent, useEffect } from 'react'
 import {
   ContactFieldsValidity,
   ContactFormFields,
-  validateField,
 } from '~/utils/form-validation'
 import { useTranslations } from 'next-intl'
 import { ContactSubmissionIndicator } from '~/components/pop-up-components/ContactSubmissionIndicator'
 import { CircularProgress } from '@nextui-org/progress'
 import { FormRadioGroup } from '~/components/pop-up-components/FormRadioGroup'
 import { DropdownFormField } from '~/components/pop-up-components/DropdownFormField'
+import { useContactForm } from '~/lib/hooks/useContactFrom'
 
 export interface ModalFormProps {
   closeModal: () => void
@@ -43,35 +42,20 @@ export const ContactFormSecondPage: React.FC<ModalFormProps> = ({
   const t = useTranslations('common.contact.form')
   const ti = useTranslations('common.invalidMessage')
 
-  const [validForm, setValidForm] = useState<boolean>(false)
-  const [formData, setFormData] = useState<ContactFormFields>(formInitState)
-  const [validFields, setValidFields] =
-    useState<ContactFieldsValidity>(validityInitState)
-  const [isSuccess, setSuccess] = useState<boolean>(true)
-  const [isSubmitted, setSubmitted] = useState<boolean>(false)
-  const [isLoading, setIsLoading] = useState(false)
+  const {
+    formData,
+    isSuccess,
+    isSubmitted,
+    isLoading,
+    validForm,
+    handleSubmit,
+    updateFormField,
+    validateFields,
+  } = useContactForm(formInitState, validityInitState)
 
   useEffect(() => {
-    const data = localStorage.getItem(contactFormLocalStorageID)
-    if (data) {
-      const fields = JSON.parse(data)
-      setAllFormField(fields)
-    } else {
-      //Todo error message
-    }
+    validateFields(true)
   }, [])
-
-  useEffect(() => {
-    setValidForm(Object.values(validFields).every(Boolean))
-  }, [validFields])
-
-  useEffect(() => {
-    if (isSubmitted) {
-      setTimeout(() => {
-        setSubmitted(false)
-      }, 5000)
-    }
-  }, [isSubmitted])
 
   const handleChange = (
     event: ChangeEvent<
@@ -79,45 +63,6 @@ export const ContactFormSecondPage: React.FC<ModalFormProps> = ({
     >,
   ) => {
     updateFormField(event.target)
-  }
-
-  const setAllFormField = (initValues: ContactFormFields) => {
-    setFormData({ ...formData, ...initValues })
-    let fieldsValidity: ContactFieldsValidity = validityInitState
-    Object.entries(initValues).forEach(([id, value]) => {
-      fieldsValidity[id] = validateField(id, value)
-    })
-    setValidFields(fieldsValidity)
-  }
-
-  const updateFormField = ({ id, value }) => {
-    setFormData({
-      ...formData,
-      [id]: value,
-    })
-    setValidFields((validFields) => ({
-      ...validFields,
-      [id]: validateField(id, value),
-    }))
-  }
-
-  const handleSubmit = async () => {
-    try {
-      setIsLoading(true)
-      await sendContactFrom(formData)
-      setSuccess(true)
-      setFormData(formInitState)
-      setValidFields(validityInitState)
-      localStorage.setItem(
-        contactFormLocalStorageID,
-        JSON.stringify(formInitState),
-      )
-    } catch (error) {
-      setSuccess(false)
-    } finally {
-      setSubmitted(true)
-      setIsLoading(false)
-    }
   }
 
   return (
