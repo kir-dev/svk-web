@@ -36,9 +36,6 @@ export const ContactFormFirstPage: React.FC<ModalFormProps> = ({
     employees: true,
   }
 
-  //Todo look for a better place for this variable
-  const contactFormLocalStorageID: string = 'contactFormLocalStorageID'
-
   const t = useTranslations('common.contact.form')
   const ti = useTranslations('common.invalidMessage')
 
