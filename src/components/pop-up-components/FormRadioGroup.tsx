@@ -1,25 +1,43 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { FormRadioButton } from '~/components/pop-up-components/FormRadioButton'
 
 interface Props {
+  id: string
   title: string
   elements: string[]
+  onChange: (id: string, value: string) => void
+  value: string
 }
 
-export const FormRadioGroup = ({ title, elements }: Props) => {
-  const [selectedOption, setSelectedOption] = React.useState<string>('1 - 10')
+export const FormRadioGroup = ({
+  id,
+  title,
+  elements,
+  onChange,
+  value,
+}: Props) => {
+  const [selectedOption, setSelectedOption] = React.useState<string>()
 
   const handleChanges = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     setSelectedOption(event.target.id)
+    onChange(id, event.target.id)
   }
+
+  useEffect(() => {
+    if (value && value != '') {
+      setSelectedOption(value)
+    } else {
+      setSelectedOption(elements[0])
+    }
+  }, [elements, value])
 
   return (
     <div className="p-3 px-6 w-full">
       <div>
         <h1 className="text-md block uppercase text-white mb-2">{title}</h1>
-        <form>
+        <form id={id}>
           {elements.map((option) => (
             <FormRadioButton
               key={option}

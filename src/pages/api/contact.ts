@@ -4,10 +4,10 @@ import { ContactFormFields, validateField } from '~/utils/form-validation'
 const CONTACT_MESSAGE_FIELDS = {
   name: 'Név',
   email: 'Email',
-  phoneNumber: 'Telefonszám',
-  companyName: 'Cég neve',
-  title: 'Titulus',
-  message: 'Üzenet',
+  reason: 'Megkeresés oka',
+  source: 'Innen hallot az SVK-ról',
+  money: 'Ráfordított összeg',
+  employees: 'Alklamazottak száma',
 }
 
 const generateEmailContent = (data: ContactFormFields) => {

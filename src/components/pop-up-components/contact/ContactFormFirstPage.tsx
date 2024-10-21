@@ -22,16 +22,18 @@ export const ContactFormFirstPage: React.FC<ModalFormProps> = ({
     name: '',
     email: '',
     reason: '',
-    companyName: '',
-    title: '',
+    money: '',
+    employees: '',
+    source: '',
   }
 
   const validityInitState: ContactFieldsValidity = {
     name: false,
     email: false,
     reason: true,
-    companyName: true,
-    title: true,
+    source: true,
+    money: true,
+    employees: true,
   }
 
   //Todo look for a better place for this variable
@@ -52,6 +54,7 @@ export const ContactFormFirstPage: React.FC<ModalFormProps> = ({
     const data = localStorage.getItem(contactFormLocalStorageID)
     if (data) {
       const fields: ContactFormFields = JSON.parse(data)
+      console.log(fields)
       setFormData({ ...formData, ...fields })
       let fieldsValidity: ContactFieldsValidity = validityInitState
       fieldsValidity.name = validateField('name', fields.name)
@@ -104,7 +107,7 @@ export const ContactFormFirstPage: React.FC<ModalFormProps> = ({
           id="name"
           placeHolder={t('exampleName')}
           invalidMessage={ti('required')}
-          isChecked={formData.name}
+          value={formData.name}
           onChange={(event) => {
             handleChange(event)
           }}
@@ -115,7 +118,7 @@ export const ContactFormFirstPage: React.FC<ModalFormProps> = ({
           id="email"
           placeHolder={t('exampleEmail')}
           invalidMessage={ti('required') + '\n' + ti('email')}
-          isChecked={formData.email}
+          value={formData.email}
           onChange={(event) => {
             handleChange(event)
           }}

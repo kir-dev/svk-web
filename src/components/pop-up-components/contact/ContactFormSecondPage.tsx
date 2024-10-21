@@ -23,8 +23,9 @@ export const ContactFormSecondPage: React.FC<ModalFormProps> = ({
     name: '',
     email: '',
     reason: '',
-    companyName: '',
-    title: '',
+    source: '',
+    money: '',
+    employees: '',
   }
 
   //Todo look for a better place for this variable
@@ -34,8 +35,9 @@ export const ContactFormSecondPage: React.FC<ModalFormProps> = ({
     name: true,
     email: true,
     reason: false,
-    companyName: false,
-    title: false,
+    source: false,
+    money: false,
+    employees: false,
   }
 
   const t = useTranslations('common.contact.form')
@@ -72,13 +74,14 @@ export const ContactFormSecondPage: React.FC<ModalFormProps> = ({
   }, [isSubmitted])
 
   const handleChange = (
-    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    event: ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
   ) => {
     updateFormField(event.target)
   }
 
   const setAllFormField = (initValues: ContactFormFields) => {
-    console.log('initialValues', initValues)
     setFormData({ ...formData, ...initValues })
     let fieldsValidity: ContactFieldsValidity = validityInitState
     Object.entries(initValues).forEach(([id, value]) => {
@@ -118,7 +121,7 @@ export const ContactFormSecondPage: React.FC<ModalFormProps> = ({
   }
 
   return (
-    <form onSubmit={(e) => e.preventDefault()} className="my-5">
+    <form onSubmit={(event) => event.preventDefault()} className="my-5">
       <div
         className={`transition-opacity ${isSubmitted ? 'opacity-100' : 'opacity-0'}`}
       >
@@ -139,18 +142,24 @@ export const ContactFormSecondPage: React.FC<ModalFormProps> = ({
           />
         </div>
         <FormRadioGroup
+          id="employees"
           title={t('employeeNumber')}
           elements={['1 - 10', '11 - 50', '51 - 250', '250+']}
+          onChange={(id, value) => updateFormField({ id, value })}
+          value={formData.employees}
         />
         <FormRadioGroup
+          id="money"
           title={t('translatedAmount')}
+          value={formData.money}
           elements={['0.5M - 1M', '1M - 2M', '2M - 3M', '3M+']}
+          onChange={(id, value) => updateFormField({ id, value })}
         />
         <div className="col-span-2">
           <DropdownFormField
             title={t('source')}
             id="source"
-            value={formData.reason}
+            value={formData.source}
             onChange={(event) => {
               handleChange(event)
             }}
@@ -161,8 +170,14 @@ export const ContactFormSecondPage: React.FC<ModalFormProps> = ({
       <div className="flex justify-around w-full">
         <button
           type="button"
+          onClick={() => {}}
+          className="rounded-lg p-3 bg-white border-red-600 border-2 text-red-600 hover:bg-red-600 hover:text-white transition-colors"
+        >
+          {'Debug'}
+        </button>
+        <button
+          type="button"
           onClick={() => {
-            console.log('formData', formData)
             localStorage.setItem(
               contactFormLocalStorageID,
               JSON.stringify(formData),
