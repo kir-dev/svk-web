@@ -52,7 +52,7 @@ export const ContactFormFirstPage: React.FC<ModalFormProps> = ({
 
   useEffect(() => {
     validateFields(false, ['name', 'email'])
-  }, [])
+  }, [validateFields])
 
   const handleChange = (
     event: ChangeEvent<

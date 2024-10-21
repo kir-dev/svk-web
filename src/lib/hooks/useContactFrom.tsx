@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { sendContactFrom } from '~/lib/api'
 import {
   ContactFieldsValidity,
@@ -20,35 +20,46 @@ export const useContactForm = (
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [validForm, setValidForm] = useState<boolean>(false)
 
-  const validateFields = (
-    validateAll: boolean,
-    fieldsToValidate?: string[],
-  ) => {
-    const data = localStorage.getItem(contactFormLocalStorageID)
-    if (!data) {
-      return
-    }
-    const fields: ContactFormFields = JSON.parse(data)
-    if (validateAll) {
-      setAllFormField(fields)
-      return
-    }
-    if (fieldsToValidate) {
-      validateSomeFields(fields, fieldsToValidate)
-    }
-  }
+  const validateSomeFields = useCallback(
+    (fields: ContactFormFields, fieldsToValidate: string[]) => {
+      setFormData((prevData) => ({ ...prevData, ...fields }))
+      setValidFields((prevValidity) => {
+        const fieldsValidity = { ...prevValidity }
+        fieldsToValidate.forEach((field) => {
+          fieldsValidity[field] = validateField(field, fields[field])
+        })
+        return fieldsValidity
+      })
+    },
+    [],
+  )
 
-  const validateSomeFields = (
-    fields: ContactFormFields,
-    fieldsToValidate: string[],
-  ) => {
-    setFormData({ ...formData, ...fields })
-    let fieldsValidity: ContactFieldsValidity = validityInitState
-    fieldsToValidate.forEach(
-      (field) => (fieldsValidity[field] = validateField(field, fields[field])),
-    )
-    setValidFields({ ...validFields, ...fieldsValidity })
-  }
+  const setAllFormField = useCallback((initValues: ContactFormFields) => {
+    setFormData((prevData) => ({ ...prevData, ...initValues }))
+    setValidFields((prevValidity) => {
+      const fieldsValidity = { ...prevValidity }
+      Object.entries(initValues).forEach(([id, value]) => {
+        fieldsValidity[id] = validateField(id, value)
+      })
+      return fieldsValidity
+    })
+  }, [])
+
+  const validateFields = useCallback(
+    (validateAll: boolean, fieldsToValidate?: string[]) => {
+      const data = localStorage.getItem(contactFormLocalStorageID)
+      if (!data) {
+        return
+      }
+      const fields: ContactFormFields = JSON.parse(data)
+      if (validateAll) {
+        setAllFormField(fields)
+      } else if (fieldsToValidate) {
+        validateSomeFields(fields, fieldsToValidate)
+      }
+    },
+    [setAllFormField, validateSomeFields],
+  )
 
   useEffect(() => {
     setValidForm(Object.values(validFields).every(Boolean))
@@ -63,20 +74,11 @@ export const useContactForm = (
     }
   }, [isSubmitted])
 
-  const setAllFormField = (initValues: ContactFormFields) => {
-    setFormData({ ...formData, ...initValues })
-    let fieldsValidity: ContactFieldsValidity = { ...validityInitState }
-    Object.entries(initValues).forEach(([id, value]) => {
-      fieldsValidity[id] = validateField(id, value)
-    })
-    setValidFields(fieldsValidity)
-  }
-
   const updateFormField = ({ id, value }) => {
-    setFormData({
-      ...formData,
+    setFormData((prevData) => ({
+      ...prevData,
       [id]: value,
-    })
+    }))
     setValidFields((current) => ({
       ...current,
       [id]: validateField(id, value),

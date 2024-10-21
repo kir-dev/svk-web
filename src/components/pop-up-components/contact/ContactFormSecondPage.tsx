@@ -55,7 +55,7 @@ export const ContactFormSecondPage: React.FC<ModalFormProps> = ({
 
   useEffect(() => {
     validateFields(true)
-  }, [])
+  }, [validateFields])
 
   const handleChange = (
     event: ChangeEvent<
