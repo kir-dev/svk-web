@@ -1,14 +1,11 @@
 import { FormField } from '~/components/pop-up-components/FormField'
-import React, { ChangeEvent, useEffect, useState } from 'react'
-import {
-  JoinUsFieldsValidity,
-  JoinUsFormFields,
-  validateField,
-} from '~/utils/form-validation'
+import React, { ChangeEvent } from 'react'
+import { JoinUsFieldsValidity, JoinUsFormFields } from '~/utils/form-validation'
 import { useTranslations } from 'next-intl'
 import { ContactSubmissionIndicator } from '~/components/pop-up-components/ContactSubmissionIndicator'
 import { CircularProgress } from '@nextui-org/progress'
 import { DropdownFormField } from '~/components/pop-up-components/DropdownFormField'
+import { useJoinUsFrom } from '~/lib/hooks/useJoinUsFrom'
 
 export interface ModalFormProps {
   closeModal?: (param: any) => void
@@ -34,53 +31,22 @@ export const JoinUsFrom: React.FC<ModalFormProps> = ({
   const t = useTranslations('common.joinUs.form')
   const ti = useTranslations('common.invalidMessage')
 
-  const [validForm, setValidForm] = useState<boolean>(false)
-  const [formData, setFormData] = useState<JoinUsFormFields>(formInitState)
-  const [validFields, setValidFields] =
-    useState<JoinUsFieldsValidity>(validityInitState)
-  const [isSuccess, setSuccess] = useState<boolean>(true)
-  const [isSubmitted, setSubmitted] = useState<boolean>(false)
-  const [isLoading, setIsLoading] = useState(false)
-
-  useEffect(() => {
-    setValidForm(Object.values(validFields).every(Boolean))
-  }, [validFields])
-
-  useEffect(() => {
-    if (isSubmitted) {
-      setTimeout(() => {
-        setSubmitted(false)
-      }, 5000)
-    }
-  }, [isSubmitted])
+  const {
+    formData,
+    isSuccess,
+    isSubmitted,
+    isLoading,
+    validForm,
+    updateFormField,
+    handleSubmit,
+  } = useJoinUsFrom(formInitState, validityInitState)
 
   const handleChange = (
     event: ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
     >,
   ) => {
-    const { id, value } = event.target
-    setFormData({ ...formData, [id]: value })
-    setValidFields((validFields) => ({
-      ...validFields,
-      [id]: validateField(id, value),
-    }))
-  }
-
-  const handleSubmit = async () => {
-    try {
-      setIsLoading(true)
-      //Todo
-      //await sendContactFrom(formData)
-      setSuccess(true)
-      setFormData(formInitState)
-      setValidFields(validityInitState)
-    } catch (error) {
-      setSuccess(false)
-    } finally {
-      setSubmitted(true)
-      setIsLoading(false)
-    }
+    updateFormField(event.target)
   }
 
   return (
@@ -143,7 +109,11 @@ export const JoinUsFrom: React.FC<ModalFormProps> = ({
         <button
           type="submit"
           className="rounded-lg p-3 bg-white border-blue-500 border-2 text-blue-600 hover:bg-blue-500 hover:text-white transition-colors disabled:border-gray-600 disabled:text-gray-600 disabled:bg-white"
-          onClick={handleSubmit}
+          onClick={() =>
+            handleSubmit(() => {
+              //Todo
+            })
+          }
           disabled={!validForm}
         >
           {isLoading ? (

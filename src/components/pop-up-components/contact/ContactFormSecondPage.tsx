@@ -115,13 +115,6 @@ export const ContactFormSecondPage: React.FC<ModalFormProps> = ({
       <div className="flex justify-around w-full">
         <button
           type="button"
-          onClick={() => {}}
-          className="rounded-lg p-3 bg-white border-red-600 border-2 text-red-600 hover:bg-red-600 hover:text-white transition-colors"
-        >
-          {'Debug'}
-        </button>
-        <button
-          type="button"
           onClick={() => {
             localStorage.setItem(
               contactFormLocalStorageID,

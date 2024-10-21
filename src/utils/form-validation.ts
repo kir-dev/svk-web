@@ -55,6 +55,8 @@ export const validateField = (field: string, value: string): boolean => {
     case 'source':
     case 'money':
     case 'employees':
+    case 'activeSemesterCount':
+    case 'study':
       return validateRequired(value)
     case 'email':
       return validateEmail(value)
