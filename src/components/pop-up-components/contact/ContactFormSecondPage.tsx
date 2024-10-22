@@ -58,45 +58,43 @@ export const ContactFormSecondPage: React.FC<ModalFormProps> = ({
       >
         <ContactSubmissionIndicator isSuccess={isSuccess} />
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2">
-        <div className="col-span-2">
-          <FormField
-            title={t('reason')}
-            type="text"
-            id="reason"
-            placeHolder={t('exampleReason')}
-            value={formData.reason}
-            invalidMessage={ti('required')}
-            onChange={(event) => {
-              handleChange(event)
-            }}
+      <div>
+        <FormField
+          title={t('reason')}
+          type="text"
+          id="reason"
+          placeHolder={t('exampleReason')}
+          value={formData.reason}
+          invalidMessage={ti('required')}
+          onChange={(event) => {
+            handleChange(event)
+          }}
+        />
+        <div className="flex flex-col justify-between md:flex-row col-span-2 md:col-span-1">
+          <FormRadioGroup
+            id="employees"
+            title={t('employeeNumber')}
+            elements={['1 - 10', '11 - 50', '51 - 250', '250+']}
+            onChange={(id, value) => updateFormField({ id, value })}
+            value={formData.employees}
+          />
+          <FormRadioGroup
+            id="money"
+            title={t('translatedAmount')}
+            value={formData.money}
+            elements={['0.5M - 1M', '1M - 2M', '2M - 3M', '3M+']}
+            onChange={(id, value) => updateFormField({ id, value })}
           />
         </div>
-        <FormRadioGroup
-          id="employees"
-          title={t('employeeNumber')}
-          elements={['1 - 10', '11 - 50', '51 - 250', '250+']}
-          onChange={(id, value) => updateFormField({ id, value })}
-          value={formData.employees}
+        <DropdownFormField
+          title={t('source')}
+          id="source"
+          value={formData.source}
+          onChange={(event) => {
+            handleChange(event)
+          }}
+          options={[t('sourceFromAcquaintance'), 'Facebook', 'LinkedIn']}
         />
-        <FormRadioGroup
-          id="money"
-          title={t('translatedAmount')}
-          value={formData.money}
-          elements={['0.5M - 1M', '1M - 2M', '2M - 3M', '3M+']}
-          onChange={(id, value) => updateFormField({ id, value })}
-        />
-        <div className="col-span-2">
-          <DropdownFormField
-            title={t('source')}
-            id="source"
-            value={formData.source}
-            onChange={(event) => {
-              handleChange(event)
-            }}
-            options={[t('sourceFromAcquaintance'), 'Facebook', 'LinkedIn']}
-          />
-        </div>
       </div>
       <div className="flex justify-around w-full">
         <button
