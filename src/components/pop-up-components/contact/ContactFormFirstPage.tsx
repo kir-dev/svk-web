@@ -1,9 +1,6 @@
 import { FormField } from '~/components/pop-up-components/FormField'
 import React, { ChangeEvent, useEffect } from 'react'
-import {
-  ContactFieldsValidity,
-  ContactFormFields,
-} from '~/utils/form-validation'
+import { ContactFieldsValidity } from '~/utils/form-validation'
 import { useTranslations } from 'next-intl'
 import { ContactSubmissionIndicator } from '~/components/pop-up-components/ContactSubmissionIndicator'
 import { CircularProgress } from '@nextui-org/progress'
@@ -18,15 +15,6 @@ export const ContactFormFirstPage: React.FC<ModalFormProps> = ({
   closeModal,
   submit,
 }: ModalFormProps) => {
-  const formInitState: ContactFormFields = {
-    name: '',
-    email: '',
-    reason: '',
-    money: '',
-    employees: '',
-    source: '',
-  }
-
   const validityInitState: ContactFieldsValidity = {
     name: false,
     email: false,
@@ -48,7 +36,7 @@ export const ContactFormFirstPage: React.FC<ModalFormProps> = ({
     handleNext,
     updateFormField,
     validateFields,
-  } = useContactForm(formInitState, validityInitState)
+  } = useContactForm(validityInitState)
 
   useEffect(() => {
     validateFields(false, ['name', 'email'])

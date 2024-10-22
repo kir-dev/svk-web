@@ -1,9 +1,6 @@
 import { FormField } from '~/components/pop-up-components/FormField'
 import React, { ChangeEvent, useEffect } from 'react'
-import {
-  ContactFieldsValidity,
-  ContactFormFields,
-} from '~/utils/form-validation'
+import { ContactFieldsValidity } from '~/utils/form-validation'
 import { useTranslations } from 'next-intl'
 import { ContactSubmissionIndicator } from '~/components/pop-up-components/ContactSubmissionIndicator'
 import { CircularProgress } from '@nextui-org/progress'
@@ -18,18 +15,6 @@ export interface ModalFormProps {
 export const ContactFormSecondPage: React.FC<ModalFormProps> = ({
   closeModal,
 }: ModalFormProps) => {
-  const formInitState: ContactFormFields = {
-    name: '',
-    email: '',
-    reason: '',
-    source: '',
-    money: '',
-    employees: '',
-  }
-
-  //Todo look for a better place for this variable
-  const contactFormLocalStorageID: string = 'contactFormLocalStorageID'
-
   const validityInitState: ContactFieldsValidity = {
     name: true,
     email: true,
@@ -50,8 +35,9 @@ export const ContactFormSecondPage: React.FC<ModalFormProps> = ({
     validForm,
     handleSubmit,
     updateFormField,
+    saveFormData,
     validateFields,
-  } = useContactForm(formInitState, validityInitState)
+  } = useContactForm(validityInitState)
 
   useEffect(() => {
     validateFields(true)
@@ -116,10 +102,7 @@ export const ContactFormSecondPage: React.FC<ModalFormProps> = ({
         <button
           type="button"
           onClick={() => {
-            localStorage.setItem(
-              contactFormLocalStorageID,
-              JSON.stringify(formData),
-            )
+            saveFormData()
             closeModal()
           }}
           className="rounded-lg p-3 bg-white border-red-600 border-2 text-red-600 hover:bg-red-600 hover:text-white transition-colors"

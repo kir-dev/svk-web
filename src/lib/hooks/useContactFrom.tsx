@@ -8,10 +8,16 @@ import {
 
 const contactFormLocalStorageID = 'contactFormLocalStorageID'
 
-export const useContactForm = (
-  formInitState: ContactFormFields,
-  validityInitState: ContactFieldsValidity,
-) => {
+const formInitState: ContactFormFields = {
+  name: '',
+  email: '',
+  reason: '',
+  source: '',
+  money: '',
+  employees: '',
+}
+
+export const useContactForm = (validityInitState: ContactFieldsValidity) => {
   const [formData, setFormData] = useState<ContactFormFields>(formInitState)
   const [validFields, setValidFields] =
     useState<ContactFieldsValidity>(validityInitState)
@@ -45,7 +51,7 @@ export const useContactForm = (
     })
   }, [])
 
-  const validateFields = useCallback(
+  const initFormFields = useCallback(
     (validateAll: boolean, fieldsToValidate?: string[]) => {
       const data = localStorage.getItem(contactFormLocalStorageID)
       if (!data) {
@@ -92,6 +98,10 @@ export const useContactForm = (
     }
   }
 
+  const saveFormData = () => {
+    localStorage.setItem(contactFormLocalStorageID, JSON.stringify(formData))
+  }
+
   const handleSubmit = async () => {
     try {
       setIsLoading(true)
@@ -121,7 +131,8 @@ export const useContactForm = (
     handleNext,
     updateFormField,
     handleSubmit,
+    saveFormData,
     setAllFormField,
-    validateFields,
+    validateFields: initFormFields,
   }
 }
