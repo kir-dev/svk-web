@@ -54,15 +54,16 @@
         "exampleName": "Example John",
         "email": "Email",
         "exampleEmail": "examplejohn@email.com",
-        "phoneNumber": "Phone number",
-        "companyName": "Company name",
-        "exampleCompanyName": "Example Corp.",
-        "title": "Title",
-        "exampleTitle": "Head of Department",
-        "message": "Message",
-        "exampleMessage": "I would like to contact you because...",
+        "reason": "Reason for contact",
+        "exampleReason": "We are looking for new employees",
+        "employeeNumber": "Number of employees",
+        "translatedAmount": "Translated amount",
+        "source": "Where did you hear about us?",
+        "sourceFromAcquaintance": "From acquaintance",
         "cancel": "Cancel",
-        "submit": "Send"
+        "submit": "Send",
+        "next": "Next",
+        "back": "Back"
       },
       "feedback": {
         "success": "Sent successfully",
@@ -81,7 +82,9 @@
         "studyOptions": "BME-Vik;Other",
         "activeSemesterCount": "Number of your active semesters",
         "cancel": "Cancel",
-        "submit": "Send"
+        "submit": "Send",
+        "next": "Next",
+        "back": "Back"
       },
       "feedback": {
         "success": "Sent successfully",
