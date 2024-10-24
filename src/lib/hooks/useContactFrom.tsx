@@ -1,14 +1,12 @@
 import { useCallback, useEffect, useState } from 'react'
-import { sendContactFrom } from '~/lib/api'
-import {
-  ContactFieldsValidity,
-  ContactFormFields,
-  validateField,
-} from '~/utils/form-validation'
+import { submitForm } from '~/lib/api'
+import { ContactFieldsValidity, ContactFormFields, validateField } from '~/utils/form-validation'
+import { convertToString, Sheets } from '~/utils/google-sheets'
 
 const contactFormLocalStorageID = 'contactFormLocalStorageID'
 
 const formInitState: ContactFormFields = {
+  sheet: convertToString(Sheets.CONTACT),
   name: '',
   email: '',
   reason: '',
@@ -105,7 +103,10 @@ export const useContactForm = (validityInitState: ContactFieldsValidity) => {
   const handleSubmit = async () => {
     try {
       setIsLoading(true)
-      await sendContactFrom(formData)
+      // Email V
+      //await sendContactFrom(formData)
+      // Sheet V
+      await submitForm(formData)
       setSuccess(true)
       setFormData(formInitState)
       setValidFields(validityInitState)
