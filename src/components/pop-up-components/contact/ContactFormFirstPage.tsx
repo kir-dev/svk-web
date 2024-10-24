@@ -1,34 +1,30 @@
 import { FormField } from '~/components/pop-up-components/FormField'
-import React, { ChangeEvent } from 'react'
-import { JoinUsFieldsValidity, JoinUsFormFields } from '~/utils/form-validation'
+import React, { ChangeEvent, useEffect } from 'react'
+import { ContactFieldsValidity } from '~/utils/form-validation'
 import { useTranslations } from 'next-intl'
 import { ContactSubmissionIndicator } from '~/components/pop-up-components/ContactSubmissionIndicator'
 import { CircularProgress } from '@nextui-org/progress'
-import { DropdownFormField } from '~/components/pop-up-components/DropdownFormField'
-import { useJoinUsFrom } from '~/lib/hooks/useJoinUsFrom'
+import { useContactForm } from '~/lib/hooks/useContactFrom'
 
 export interface ModalFormProps {
-  closeModal?: (param: any) => void
+  closeModal: () => void
+  submit?: () => void
 }
 
-export const JoinUsFrom: React.FC<ModalFormProps> = ({
+export const ContactFormFirstPage: React.FC<ModalFormProps> = ({
   closeModal,
+  submit,
 }: ModalFormProps) => {
-  const formInitState: JoinUsFormFields = {
-    name: '',
-    email: '',
-    study: '',
-    activeSemesterCount: '',
-  }
-
-  const validityInitState: JoinUsFieldsValidity = {
+  const validityInitState: ContactFieldsValidity = {
     name: false,
     email: false,
-    study: false,
-    activeSemesterCount: false,
+    reason: true,
+    source: true,
+    money: true,
+    employees: true,
   }
 
-  const t = useTranslations('common.joinUs.form')
+  const t = useTranslations('common.contact.form')
   const ti = useTranslations('common.invalidMessage')
 
   const {
@@ -37,9 +33,14 @@ export const JoinUsFrom: React.FC<ModalFormProps> = ({
     isSubmitted,
     isLoading,
     validForm,
+    handleNext,
     updateFormField,
-    handleSubmit,
-  } = useJoinUsFrom(formInitState, validityInitState)
+    validateFields,
+  } = useContactForm(validityInitState)
+
+  useEffect(() => {
+    validateFields(false, ['name', 'email'])
+  }, [validateFields])
 
   const handleChange = (
     event: ChangeEvent<
@@ -79,24 +80,6 @@ export const JoinUsFrom: React.FC<ModalFormProps> = ({
             handleChange(event)
           }}
         />
-        <DropdownFormField
-          id="study"
-          title={t('study')}
-          options={t('studyOptions').split(';')}
-          value={formData.study}
-          onChange={(event) => {
-            handleChange(event)
-          }}
-        />
-        <DropdownFormField
-          id="activeSemesterCount"
-          title={t('activeSemesterCount')}
-          options={['1', '2', '3', '4', '5', '6', '7', '7+']}
-          value={formData.activeSemesterCount}
-          onChange={(event) => {
-            handleChange(event)
-          }}
-        />
       </div>
       <div className="flex justify-around w-full">
         <button
@@ -109,17 +92,13 @@ export const JoinUsFrom: React.FC<ModalFormProps> = ({
         <button
           type="submit"
           className="rounded-lg p-3 bg-white border-blue-500 border-2 text-blue-600 hover:bg-blue-500 hover:text-white transition-colors disabled:border-gray-600 disabled:text-gray-600 disabled:bg-white"
-          onClick={() =>
-            handleSubmit(() => {
-              //Todo
-            })
-          }
+          onClick={() => handleNext(submit)}
           disabled={!validForm}
         >
           {isLoading ? (
             <CircularProgress color="default" aria-label="Loading..." />
           ) : (
-            t('submit')
+            t('next')
           )}
         </button>
       </div>

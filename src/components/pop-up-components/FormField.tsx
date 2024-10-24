@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useState } from 'react'
+import React, { ChangeEvent, useEffect, useRef, useState } from 'react'
 import { ExclamationMarkIcon } from '~/components/svg-components/ExclamationMarkIcon'
 import { TickIcon } from '~/components/svg-components/TickIcon'
 
@@ -21,15 +21,21 @@ export const FormField = ({
   placeHolder,
   pattern = '.*',
   invalidMessage = '',
-
   onChange,
 }: Props) => {
   const [touched, setTouched] = useState<boolean>(false)
   const [valid, setValid] = useState<boolean>(false)
+  const inputRef = useRef<HTMLInputElement | null>(null)
 
   useEffect(() => {
-    if (value == '') {
-      setValid(false)
+    if (value !== '') {
+      setTouched(true)
+    }
+  }, [value])
+
+  useEffect(() => {
+    if (inputRef.current) {
+      setValid(inputRef.current.validity.valid)
     }
   }, [value])
 
@@ -40,6 +46,7 @@ export const FormField = ({
       </label>
       <div className="relative overflow-hidden">
         <input
+          ref={inputRef}
           type={type}
           id={id}
           value={value}
