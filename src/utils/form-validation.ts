@@ -66,6 +66,8 @@ export const validateField = (field: string, value: string): boolean => {
       return validateEmail(value)
     case 'phoneNumber':
       return validatePhoneNumber(value)
+    case 'sheet':
+      return true
     default:
       return false
   }
