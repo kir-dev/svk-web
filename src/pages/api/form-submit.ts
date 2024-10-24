@@ -13,7 +13,7 @@ const handler = async (req, res) => {
     process.env['N8N_SHEETS_HTTP']!,
     JSON.stringify(data),
     { headers : {
-        'x-api-key': process.env['X-API-KEY'],
+        'x-api-key': process.env['X_API_KEY'],
         'Content-Type': 'application/json'
     }}
     ).catch(function (error) {
