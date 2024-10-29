@@ -29,7 +29,7 @@ export const Footer: FC<PropsWithChildren<Props>> = ({ routes }) => {
   const { pathname } = router
 
   return (
-    <footer className="flex flex-col gap-2 px-[8.5%] bg-black z-10">
+    <footer className="flex flex-col gap-2 px-[8.5%] bg-black relative z-40">
       <div className="flex justify-between gap-8 sm:gap-3 flex-col-reverse sm:flex-row my-8">
         <div className="flex flex-col gap-5 sm:gap-2 text-center sm:text-left">
           {routes.map((route) => (
