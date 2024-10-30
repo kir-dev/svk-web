@@ -1,4 +1,4 @@
-import { FormField } from '~/components/pop-up-components/FormField'
+import { TextInputField } from '~/components/formfileds/TextInputField'
 import React, { ChangeEvent, useEffect } from 'react'
 import { ContactFieldsValidity } from '~/utils/form-validation'
 import { useTranslations } from 'next-intl'
@@ -58,7 +58,7 @@ export const ContactFormFirstPage: React.FC<ModalFormProps> = ({
         <ContactSubmissionIndicator isSuccess={isSuccess} />
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2">
-        <FormField
+        <TextInputField
           title={t('name')}
           type="text"
           id="name"
@@ -69,7 +69,7 @@ export const ContactFormFirstPage: React.FC<ModalFormProps> = ({
             handleChange(event)
           }}
         />
-        <FormField
+        <TextInputField
           title={t('email')}
           type="email"
           id="email"

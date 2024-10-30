@@ -1,11 +1,11 @@
-import { FormField } from '~/components/pop-up-components/FormField'
+import { TextInputField } from '~/components/formfileds/TextInputField'
 import React, { ChangeEvent, useEffect } from 'react'
 import { ContactFieldsValidity } from '~/utils/form-validation'
 import { useTranslations } from 'next-intl'
 import { ContactSubmissionIndicator } from '~/components/pop-up-components/ContactSubmissionIndicator'
 import { CircularProgress } from '@nextui-org/progress'
-import { FormRadioGroup } from '~/components/pop-up-components/FormRadioGroup'
-import { DropdownFormField } from '~/components/pop-up-components/DropdownFormField'
+import { FormRadioGroup } from '~/components/formfileds/FormRadioGroup'
+import { DropdownFormField } from '~/components/formfileds/DropdownFormField'
 import { useContactForm } from '~/lib/hooks/useContactFrom'
 
 export interface ModalFormProps {
@@ -59,7 +59,7 @@ export const ContactFormSecondPage: React.FC<ModalFormProps> = ({
         <ContactSubmissionIndicator isSuccess={isSuccess} />
       </div>
       <div>
-        <FormField
+        <TextInputField
           title={t('reason')}
           type="text"
           id="reason"

@@ -1,10 +1,10 @@
-import { FormField } from '~/components/pop-up-components/FormField'
+import { TextInputField } from '~/components/formfileds/TextInputField'
 import React, { ChangeEvent } from 'react'
 import { JoinUsFieldsValidity, JoinUsFormFields } from '~/utils/form-validation'
 import { useTranslations } from 'next-intl'
 import { ContactSubmissionIndicator } from '~/components/pop-up-components/ContactSubmissionIndicator'
 import { CircularProgress } from '@nextui-org/progress'
-import { DropdownFormField } from '~/components/pop-up-components/DropdownFormField'
+import { DropdownFormField } from '~/components/formfileds/DropdownFormField'
 import { useJoinUsFrom } from '~/lib/hooks/useJoinUsFrom'
 
 export interface ModalFormProps {
@@ -57,7 +57,7 @@ export const JoinUsFrom: React.FC<ModalFormProps> = ({
         <ContactSubmissionIndicator isSuccess={isSuccess} />
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2">
-        <FormField
+        <TextInputField
           title={t('name')}
           type="text"
           id="name"
@@ -68,7 +68,7 @@ export const JoinUsFrom: React.FC<ModalFormProps> = ({
             handleChange(event)
           }}
         />
-        <FormField
+        <TextInputField
           title={t('email')}
           type="email"
           id="email"
