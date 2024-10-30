@@ -3,7 +3,6 @@ import { ContactFormFirstPage } from '~/components/pop-up-components/contact/Con
 import React, { useEffect, useState } from 'react'
 import { useTranslations } from 'next-intl'
 import { ContactFormSecondPage } from '~/components/pop-up-components/contact/ContactFormSecondPage'
-import { usePopUpControl } from '~/lib/hooks/usePopUpControl'
 
 interface Props {
   children: React.ReactNode
@@ -27,20 +26,17 @@ export const ContactPopUp = ({
     FormStates.FirstPageOpen,
   )
 
-  const { isOpen, setIsOpen } = usePopUpControl({
-    isOpenInit: isOpenInit,
-    onIsOpenChange: onIsOpenChange,
-  })
+  const [isOpen, setIsOpen] = useState<boolean>(isOpenInit)
 
   useEffect(() => {
-    if (modalState === FormStates.Closed) {
-      setIsOpen(false)
-    }
-  }, [modalState])
+    setIsOpen(isOpenInit)
+  }, [isOpenInit])
 
-  if (modalState === FormStates.Closed) {
-    return null
-  }
+  useEffect(() => {
+    if (onIsOpenChange) {
+      onIsOpenChange(isOpen)
+    }
+  }, [isOpen, onIsOpenChange])
 
   return (
     <PopUp

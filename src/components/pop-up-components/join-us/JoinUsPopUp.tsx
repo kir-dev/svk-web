@@ -1,9 +1,8 @@
 import { PopUp } from '~/components/pop-up-components/PopUp'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { JoinUsFrom } from '~/components/pop-up-components/join-us/JoinUsForm'
 import { useTranslations } from 'next-intl'
 import { useSearchParams } from 'next/navigation'
-import { usePopUpControl } from '~/lib/hooks/usePopUpControl'
 
 interface Props {
   children: React.ReactNode
@@ -20,10 +19,17 @@ export const JoinUsPopUp = ({
 
   const t = useTranslations('common.joinUs')
 
-  const { isOpen, setIsOpen } = usePopUpControl({
-    isOpenInit: isOpenInit,
-    onIsOpenChange: onIsOpenChange,
-  })
+  const [isOpen, setIsOpen] = useState<boolean>(isOpenInit)
+
+  useEffect(() => {
+    setIsOpen(isOpenInit)
+  }, [isOpenInit])
+
+  useEffect(() => {
+    if (onIsOpenChange) {
+      onIsOpenChange(isOpen)
+    }
+  }, [isOpen, onIsOpenChange])
 
   return (
     <PopUp
