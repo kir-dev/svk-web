@@ -7,6 +7,7 @@ import { CircularProgress } from '@nextui-org/progress'
 import { FormRadioGroup } from '~/components/formfileds/FormRadioGroup'
 import { DropdownFormField } from '~/components/formfileds/DropdownFormField'
 import { useContactForm } from '~/lib/hooks/useContactFrom'
+import { sendContactFrom } from '~/lib/api'
 
 export interface ModalFormProps {
   closeModal: () => void
@@ -110,7 +111,7 @@ export const ContactFormSecondPage: React.FC<ModalFormProps> = ({
         <button
           type="submit"
           className="rounded-lg p-3 bg-white border-blue-500 border-2 text-blue-600 hover:bg-blue-500 hover:text-white transition-colors disabled:border-gray-600 disabled:text-gray-600 disabled:bg-white"
-          onClick={handleSubmit}
+          onClick={() => handleSubmit(async () => sendContactFrom(formData))}
           disabled={!validForm}
         >
           {isLoading ? (
