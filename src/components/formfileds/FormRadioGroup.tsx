@@ -32,7 +32,7 @@ export const FormRadioGroup = ({
       setSelectedOption(elements[0])
       onChange(id, elements[0])
     }
-  }, [elements, value])
+  }, [elements, id, onChange, value])
 
   return (
     <div className="p-3 px-6 w-full">
