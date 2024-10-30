@@ -110,7 +110,7 @@ export const JoinUsFrom: React.FC<ModalFormProps> = ({
           type="submit"
           className="rounded-lg p-3 bg-white border-blue-500 border-2 text-blue-600 hover:bg-blue-500 hover:text-white transition-colors disabled:border-gray-600 disabled:text-gray-600 disabled:bg-white"
           onClick={() =>
-            handleSubmit(() => {
+            handleSubmit(async () => {
               //Todo
             })
           }
