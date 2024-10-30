@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import './custom-container.css';
-
 body {
     overflow-x: hidden !important;
 }
