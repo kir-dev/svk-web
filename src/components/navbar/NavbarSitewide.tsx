@@ -36,13 +36,14 @@ export const NavbarSitewide: FC<PropsWithChildren<Props>> = ({ routes }) => {
   }
 
   const [openDropdown, setOpenDropdown] = useState<boolean>(false)
+  const [isContactPopUpOpen, setContactPopUpOpen] = useState<boolean>(false)
+  const [isJoinUsPopUpOpen, setJoinUsPopUpOpen] = useState<boolean>(false)
 
   return (
     <nav className="sticky top-0 z-40">
       <div className="flex justify-between w-screen px-[8.5%] py-3 bg-black">
         <LogoIcon />
         <div className="flex w-fit justify-around items-center gap-5 lg:gap-10 text-xl">
-
           <div className="block md:hidden h-fit">
             <Button
               onClick={() => setOpenDropdown(!openDropdown)}
@@ -73,11 +74,17 @@ export const NavbarSitewide: FC<PropsWithChildren<Props>> = ({ routes }) => {
                   {t(`routes.${route.key}`)}
                 </NextLink>
               ))}
-              <JoinUsPopUp>
+              <JoinUsPopUp
+                isOpenInit={isJoinUsPopUpOpen}
+                onIsOpenChange={setJoinUsPopUpOpen}
+              >
                 <h1>{t('navbar.joinButtonTitle')}</h1>
               </JoinUsPopUp>
               <div className="my-5">
-                <ContactPopUp>
+                <ContactPopUp
+                  isOpenInit={isContactPopUpOpen}
+                  onIsOpenChange={setContactPopUpOpen}
+                >
                   <h1 className="bg-blue-500 rounded-full p-3">
                     {t('navbar.contactButtonTitle')}
                   </h1>
@@ -98,28 +105,30 @@ export const NavbarSitewide: FC<PropsWithChildren<Props>> = ({ routes }) => {
                 {t(`routes.${route.key}`)}
               </NextLink>
             ))}
-            <JoinUsPopUp>
+            <JoinUsPopUp
+              isOpenInit={isJoinUsPopUpOpen}
+              onIsOpenChange={setJoinUsPopUpOpen}
+            >
               <h1>{t('navbar.joinButtonTitle')}</h1>
             </JoinUsPopUp>
-            <ContactPopUp>
+            <ContactPopUp
+              isOpenInit={isContactPopUpOpen}
+              onIsOpenChange={setContactPopUpOpen}
+            >
               <h1 className="bg-blue-500 rounded-full p-3">
-                {' '}
                 {t('navbar.contactButtonTitle')}
               </h1>
             </ContactPopUp>
           </div>
-
-          <div>
-            <Button
-              isIconOnly
-              aria-label={t('navbar.langSwitcher')}
-              className="p-0"
-              variant="flat"
-              onPress={switchLocale}
-            >
-              {locale === 'en' ? 'HU' : 'EN'}
-            </Button>
-          </div>
+          <Button
+            isIconOnly
+            aria-label={t('navbar.langSwitcher')}
+            className="p-0"
+            variant="flat"
+            onPress={switchLocale}
+          >
+            {locale === 'en' ? 'HU' : 'EN'}
+          </Button>
         </div>
       </div>
     </nav>

@@ -3,9 +3,12 @@ import { ContactFormFirstPage } from '~/components/pop-up-components/contact/Con
 import React, { useEffect, useState } from 'react'
 import { useTranslations } from 'next-intl'
 import { ContactFormSecondPage } from '~/components/pop-up-components/contact/ContactFormSecondPage'
+import { usePopUpControl } from '~/lib/hooks/usePopUpControl'
 
 interface Props {
   children: React.ReactNode
+  isOpenInit?: boolean
+  onIsOpenChange?: (isOpen: boolean) => void
 }
 
 enum FormStates {
@@ -14,12 +17,20 @@ enum FormStates {
   SecondPageOpen,
 }
 
-export const ContactPopUp = ({ children }: Props) => {
+export const ContactPopUp = ({
+  children,
+  isOpenInit = false,
+  onIsOpenChange,
+}: Props) => {
   const t = useTranslations('common.contact')
-  const [isOpen, setIsOpen] = useState(false)
   const [modalState, setModalState] = useState<FormStates>(
     FormStates.FirstPageOpen,
   )
+
+  const { isOpen, setIsOpen } = usePopUpControl({
+    isOpenInit: isOpenInit,
+    onIsOpenChange: onIsOpenChange,
+  })
 
   useEffect(() => {
     if (modalState === FormStates.Closed) {
