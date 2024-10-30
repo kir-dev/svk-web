@@ -6,6 +6,8 @@ import { ContactSubmissionIndicator } from '~/components/pop-up-components/Conta
 import { CircularProgress } from '@nextui-org/progress'
 import { DropdownFormField } from '~/components/pop-up-components/DropdownFormField'
 import { useJoinUsFrom } from '~/lib/hooks/useJoinUsFrom'
+import { convertToString, Sheets } from '~/utils/google-sheets'
+import { submitForm } from '~/lib/api'
 
 export interface ModalFormProps {
   closeModal?: (param: any) => void
@@ -15,6 +17,7 @@ export const JoinUsFrom: React.FC<ModalFormProps> = ({
   closeModal,
 }: ModalFormProps) => {
   const formInitState: JoinUsFormFields = {
+    sheet: convertToString(Sheets.JOIN),
     name: '',
     email: '',
     study: '',
@@ -110,8 +113,8 @@ export const JoinUsFrom: React.FC<ModalFormProps> = ({
           type="submit"
           className="rounded-lg p-3 bg-white border-blue-500 border-2 text-blue-600 hover:bg-blue-500 hover:text-white transition-colors disabled:border-gray-600 disabled:text-gray-600 disabled:bg-white"
           onClick={() =>
-            handleSubmit(() => {
-              //Todo
+            handleSubmit(async () => {
+              await submitForm(formData)
             })
           }
           disabled={!validForm}
