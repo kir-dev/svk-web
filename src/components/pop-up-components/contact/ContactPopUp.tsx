@@ -1,12 +1,12 @@
 import { PopUp } from '~/components/pop-up-components/PopUp'
 import { ContactFormFirstPage } from '~/components/pop-up-components/contact/ContactFormFirstPage'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useTranslations } from 'next-intl'
 import { ContactFormSecondPage } from '~/components/pop-up-components/contact/ContactFormSecondPage'
+import { useModalIsOpen } from '~/lib/hooks/useModalIsOpen'
 
 interface Props {
-  children: React.ReactNode
-  isOpenInit?: boolean
+  isOpenOuter?: boolean
   onIsOpenChange?: (isOpen: boolean) => void
 }
 
@@ -17,8 +17,7 @@ enum FormStates {
 }
 
 export const ContactPopUp = ({
-  children,
-  isOpenInit = false,
+  isOpenOuter = false,
   onIsOpenChange,
 }: Props) => {
   const t = useTranslations('common.contact')
@@ -26,25 +25,10 @@ export const ContactPopUp = ({
     FormStates.FirstPageOpen,
   )
 
-  const [isOpen, setIsOpen] = useState<boolean>(isOpenInit)
-
-  useEffect(() => {
-    setIsOpen(isOpenInit)
-  }, [isOpenInit])
-
-  useEffect(() => {
-    if (onIsOpenChange) {
-      onIsOpenChange(isOpen)
-    }
-  }, [isOpen, onIsOpenChange])
+  const { isOpen, setIsOpen } = useModalIsOpen(isOpenOuter, onIsOpenChange)
 
   return (
-    <PopUp
-      button={children}
-      title={t('mainTitle')}
-      isOpen={isOpen}
-      setIsOpen={setIsOpen}
-    >
+    <PopUp title={t('mainTitle')} isOpenOuter={isOpen}>
       <div className="overflow-x-hidden">
         <div
           className={`overflow-y-hidden transition-transform duration-1000 ease-in-out " ${
