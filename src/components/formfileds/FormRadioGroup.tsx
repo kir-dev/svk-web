@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { FormRadioButton } from '~/components/pop-up-components/FormRadioButton'
+import { FormRadioButton } from '~/components/formfileds/FormRadioButton'
 
 interface Props {
   id: string
@@ -30,8 +30,9 @@ export const FormRadioGroup = ({
       setSelectedOption(value)
     } else {
       setSelectedOption(elements[0])
+      onChange(id, elements[0])
     }
-  }, [elements, value])
+  }, [elements, id, onChange, value])
 
   return (
     <div className="p-3 px-6 w-full">
