@@ -51,7 +51,7 @@ export interface EventFull extends EventSummary {
 }
 
 export interface Picture {
-  _type: 'picture'
+  _type: 'pictures'
   _id: string
   title: string
   image: ImageAsset

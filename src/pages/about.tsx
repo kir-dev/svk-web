@@ -1,18 +1,21 @@
 import { getMembers } from '~/lib/queries'
 import { getClient } from '~/lib/sanity.client'
 import type { InferGetStaticPropsType } from 'next'
-import { Member } from '~/lib/sanity.types'
+import { Member, Picture } from '~/lib/sanity.types'
 import { MemberCard } from '~/components/member-components/MemberCard'
 import { MembersGrid } from '~/components/member-components/MembersGrid'
 import { useTranslations } from 'next-intl'
 import AboutUsLayout from '~/components/AboutUsLayout'
+import { getAboutUsBackground } from '~/lib/queries/pictures.queries'
 
 export const getStaticProps = async ({ locale }) => {
   const client = getClient()
   const members: Member[] = await getMembers(client)
+  const bg: Picture = await getAboutUsBackground(client)
   return {
     props: {
       members: members,
+      bg: bg,
       messages: (await import(`../../messages/${locale}.json`)).default,
     },
   }
@@ -22,11 +25,10 @@ export default function AboutUsPage(
   props: InferGetStaticPropsType<typeof getStaticProps>,
 ) {
   const members = props.members
-
   const t = useTranslations('Members')
 
   return (
-    <AboutUsLayout>
+    <AboutUsLayout bg={props.bg}>
 
       <section>
         <div className="mx-auto h-min gap-2 w-[83%] py-24">
