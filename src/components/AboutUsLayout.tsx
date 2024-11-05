@@ -5,16 +5,18 @@ import { NavbarSitewide } from './navbar/NavbarSitewide'
 import { Blur } from '~/components/decoration-components/Blur'
 import Image from 'next/image'
 import { urlForImage } from '~/lib/sanity.image'
+import { Picture } from '~/lib/sanity.types'
 
 export default function AboutUsLayout(
   { children, bg },
 ) {
+  const background : Picture = bg
   return (
     <div className="z-20 relative">
       <NavbarSitewide routes={allRoutes} />
 
       <div className={`w-screen aspect-[3/2] sm:aspect-[4/2] md:aspect-[5/2] lg:aspect-[3/1] xl:aspect-[4/1] relative` }>
-        <Image src={urlForImage(bg.image)?.url() ?? ''} alt={bg.name} width={0} height={0} sizes="100vw"
+        <Image src={urlForImage(background.image)?.url() ?? ''} alt={background.title} width={0} height={0} sizes="100vw"
                className="w-screen fixed overflow-y-hidden"/>
       </div>
 
