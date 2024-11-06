@@ -6,7 +6,7 @@ import { MemberCard } from '~/components/member-components/MemberCard'
 import { MembersGrid } from '~/components/member-components/MembersGrid'
 import { useTranslations } from 'next-intl'
 import AboutUsLayout from '~/components/AboutUsLayout'
-import { getAboutUsBackground } from '~/lib/queries/pictures.queries'
+import { getAboutUsBackground } from '~/lib/queries/picture.queries'
 
 export const getStaticProps = async ({ locale }) => {
   const client = getClient()
