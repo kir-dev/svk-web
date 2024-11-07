@@ -20,8 +20,8 @@ export const getStaticProps = async ({ locale }) => {
       members: members,
       aboutMultiCarouselImages: aboutMultiCarouselImages,
       messages: (await import(`../../messages/${locale}.json`)).default,
+      revalidate: 60,
     },
-    revalidation: 60,
   }
 }
 

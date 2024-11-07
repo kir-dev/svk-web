@@ -15,8 +15,8 @@ export const getStaticProps = async ({ locale }) => {
       currentEvents: currentEvents,
       previousEvents: previousEvents,
       messages: (await import(`../../messages/${locale}.json`)).default,
+      revalidate: 60,
     },
-    revalidation: 60,
   }
 }
 
