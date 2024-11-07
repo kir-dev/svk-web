@@ -8,6 +8,7 @@ export function getClient(preview?: { token: string }): SanityClient {
     dataset,
     apiVersion,
     perspective: 'published',
+    useCdn: true,
   })
   if (preview) {
     if (!preview.token) {
@@ -15,7 +16,6 @@ export function getClient(preview?: { token: string }): SanityClient {
     }
     return client.withConfig({
       token: preview.token,
-      useCdn: true,
       ignoreBrowserTokenWarning: true,
       perspective: 'previewDrafts',
     })
