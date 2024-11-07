@@ -21,6 +21,7 @@ export const getStaticProps = async ({ locale }) => {
       aboutMultiCarouselImages: aboutMultiCarouselImages,
       messages: (await import(`../../messages/${locale}.json`)).default,
     },
+    revalidation: 60,
   }
 }
 
@@ -40,8 +41,8 @@ export default function AboutUsPage(
             {t('mission.title')}
           </p>
           <div className="text-justify flex flex-col gap-4 leading-loose text-gray-300 text-md sm:text-lg">
-              <p>{t('mission.body0')}</p>
-              <p>{t('mission.body1')}</p>
+            <p>{t('mission.body0')}</p>
+            <p>{t('mission.body1')}</p>
           </div>
         </div>
       </section>

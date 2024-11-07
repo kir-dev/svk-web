@@ -16,7 +16,7 @@ import { Picture } from '~/lib/sanity.types'
 import { Carousel } from '~/components/carousel-components/Carousel'
 import { CarouselImage } from '~/components/carousel-components/CarouselImage'
 import { MultiCarousel } from '~/components/carousel-components/MultiCarousel'
-import Bubbles from "~/components/Bubbles";
+import Bubbles from '~/components/Bubbles'
 
 export const getStaticProps = async ({ draftMode = false, locale }) => {
   const client = getClient()
@@ -33,6 +33,7 @@ export const getStaticProps = async ({ draftMode = false, locale }) => {
       miniCarouselImages: miniCarouselImages,
       multiCarouselImages: multiCarouselImages,
     },
+    revalidation: 60,
   }
 }
 
@@ -70,7 +71,7 @@ export default function IndexPage(
         </MultiCarousel>
       </section>
       <section>
-        <Bubbles/>
+        <Bubbles />
       </section>
       <section className="pb-24">
         <PartnersSection partners={partners} title={t('partnersTitle')} />
