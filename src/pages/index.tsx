@@ -32,8 +32,8 @@ export const getStaticProps = async ({ draftMode = false, locale }) => {
       partners: partners,
       miniCarouselImages: miniCarouselImages,
       multiCarouselImages: multiCarouselImages,
-      revalidate: 60,
     },
+    revalidate:60
   }
 }
 
