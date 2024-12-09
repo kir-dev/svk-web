@@ -28,7 +28,7 @@ export default function AboutUsPage(
   const t = useTranslations('Members')
 
   return (
-    <AboutUsLayout bg={props.bg}>
+    <AboutUsLayout bg={props.bg.image} bgAlt={props.bg.title}>
 
       <section>
         <div className="mx-auto h-min gap-2 w-[83%] py-24">

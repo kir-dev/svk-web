@@ -4,5 +4,9 @@ import { groq, SanityClient } from 'next-sanity'
 const aboutUsBackgroundQuery = groq`*[_type == 'picture' && title == 'About Us Background'][0] {_id, title, image}`
 
 export const getAboutUsBackground = async ( client: SanityClient): Promise<Picture> => {
-  return await client.fetch(aboutUsBackgroundQuery)
+  const result = await client.fetch(aboutUsBackgroundQuery)
+  if (result == null) {
+    throw new Error('No picture found')
+  }
+  return result
 }
