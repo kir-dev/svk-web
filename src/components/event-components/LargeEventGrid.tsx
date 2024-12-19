@@ -9,7 +9,7 @@ export const LargeEventGrid = ({ currentEvents }: Props) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-40 justify-items-center">
       {currentEvents.map((event) => (
-        <EventTile key={event._id} eventSummary={event} />
+        <EventTile key={event._id} event={event} />
       ))}
     </div>
   )

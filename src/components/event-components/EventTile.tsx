@@ -1,118 +1,79 @@
 import { EventFull } from '~/lib/sanity.types'
 import React, { FC, useState } from 'react'
 import { EventCoverPicture } from '~/components/event-components/EventCoverPicture'
+import { useRouter } from 'next/router'
 import { CalendarIcon } from '~/components/svg-components/CalendarIcon'
-import { PictureIcon } from '~/components/svg-components/PictureIcon'
-import { DocumentIcon } from '~/components/svg-components/DocumentIcon'
-import { IconBox } from '~/components/event-components/IconBox'
-import { CalendarAndClockIcon } from '~/components/svg-components/CalendarAndClockIcon'
 import { LocationIcon } from '~/components/svg-components/LocationIcon'
 import { LecturerIcon } from '~/components/svg-components/LecturerIcon'
-import { ChevronUpIcon } from '@heroicons/react/24/solid'
-import { DateTime } from 'groq-js'
+import { formatDateTime } from '~/utils/format-date-time'
+import { PictureIcon } from '~/components/svg-components/PictureIcon'
 
 interface Props {
-  eventSummary: EventFull
+  event: EventFull
 }
 
-export const EventTile: FC<Props> = ({ eventSummary }) => {
-  const [hovered, setHovered] = useState<boolean>(false)
+const path = 'http://localhost:3000/event/'
 
-  function formatDateTime(datetime: DateTime): String {
-    return datetime
-      .toString()
-      .substring(0, 16)
-      .replace('T', ' ')
-      .replaceAll('-', '.')
-  }
+export const EventTile: FC<Props> = ({ event }) => {
+  const [hovered, setHovered] = useState<boolean>(false)
 
   return (
     <div
-      className={`relative transition-all bg-gray-900  rounded-md max-w-2xl overflow-y-hidden ${hovered ? 'md:scale-105 ' : ''} `}
+      className="relative transition-transform bg-gray-900 rounded-md max-w-2xl overflow-hidden cursor-pointer"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      {eventSummary.image && (
-        <div
-          className={`transition-all relative z-10 ${hovered ? '-translate-y-[105%]' : ''}`}
-        >
-          <EventCoverPicture
-            image={eventSummary.image}
-            title={eventSummary.title}
-          />
-          <div className="absolute bottom-0 right-0 left-0 w-full">
-            <ChevronUpIcon className="w-10 mx-auto" />
+      {event.image && (
+        <div className="relative h-full">
+          <div
+            className={`transition-transform ${
+              hovered ? '-translate-y-[40%]' : ''
+            }`}
+          >
+            <a href={event.externalLink || path + event.slug.current}>
+              <EventCoverPicture image={event.image} title={event.title} />
+            </a>
+            <h1 className="my-5 mx-3 text-2xl">{event.title}</h1>
+          </div>
+
+          <a
+            href={event.spotLink}
+            target="_blank"
+            className={`absolute bottom-0 right-0 p-4 transition-transform ${
+              hovered ? '-translate-y-[40%]' : ''
+            }`}
+          >
+            <PictureIcon color="#3DCAB1" />
+          </a>
+
+          <div
+            className={`absolute bottom-0 left-0 right-0 p-4 transition-transform ${
+              hovered ? 'translate-y-0' : 'translate-y-full'
+            }`}
+          >
+            <div className="flex flex-col space-y-2">
+              {event.datetime && (
+                <div className="flex flex-row flex-nowrap space-x-2">
+                  <CalendarIcon width={25} height={25} color="#3DCAB1" />
+                  <h2>{formatDateTime(event.datetime)}</h2>
+                </div>
+              )}
+              {event.location && (
+                <div className="flex flex-row flex-nowrap space-x-2">
+                  <LocationIcon />
+                  <h2 className="text-sm">{event.location}</h2>
+                </div>
+              )}
+              {event.lecturer && (
+                <div className="flex flex-row flex-nowrap space-x-2">
+                  <LecturerIcon />
+                  <h2>{event.lecturer}</h2>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       )}
-
-      <div
-        className={`absolute transition-all bottom-0 left-0 top-0 right-0 ${hovered ? 'px-10' : 'px-0'} `}
-      >
-        <h1
-          className={`transition-all  my-5 text-center ${hovered ? 'text-xl' : 'text-sm'} `}
-        >
-          {eventSummary.title}
-        </h1>
-        {eventSummary.datetime && (
-          <div className="flex flex-nowrap justify-between my-2">
-            <div>
-              <CalendarAndClockIcon />
-            </div>
-            <div>
-              <span className="text-lg mt-5">
-                {formatDateTime(eventSummary.datetime)}
-              </span>
-            </div>
-          </div>
-        )}
-        {eventSummary.location && (
-          <div className="flex flex-nowrap justify-between my-2">
-            <div>
-              <LocationIcon />
-            </div>
-            <div>
-              <span className=" text-lg mt-5">{eventSummary.location}</span>
-            </div>
-          </div>
-        )}
-
-        {eventSummary.lecturer?.name && (
-          <div className="flex flex-nowrap justify-between my-2">
-            <div>
-              <LecturerIcon />
-            </div>
-            <div>
-              <span className="text-lg mt-5">{eventSummary.lecturer.name}</span>
-            </div>
-          </div>
-        )}
-      </div>
-
-      <div
-        className={`transition-all grid grid-cols-[80%_20%]  text-white p-4`}
-      >
-        <div>
-          <p className="text-justify">{eventSummary.description}</p>
-        </div>
-        <div className="grid grid-rows-3 gap-2 p-2 lg:px-0 justify-self-end">
-          {eventSummary.externalLink && (
-            <IconBox title="Link az esményre" url={eventSummary.externalLink}>
-              <CalendarIcon />
-            </IconBox>
-          )}
-          {eventSummary.spotLink && (
-            <IconBox title="Link a Spot albumhoz" url={eventSummary.spotLink}>
-              <PictureIcon />
-            </IconBox>
-          )}
-          {eventSummary.exportLink && (
-            <IconBox title="ICS export" url={eventSummary.exportLink}>
-              <DocumentIcon />
-            </IconBox>
-          )}
-        </div>
-      </div>
     </div>
   )
 }

@@ -17,6 +17,7 @@ import { urlForImage } from '~/lib/sanity.image'
 import { DateTime } from 'groq-js'
 import { LocationIcon } from '~/components/svg-components/LocationIcon'
 import { LecturerIcon } from '~/components/svg-components/LecturerIcon'
+import { formatDateTime } from '~/utils/format-date-time'
 
 interface Query {
   [key: string]: string
@@ -113,12 +114,4 @@ export const getStaticPaths = async () => {
     paths: slugs?.map(({ slug }) => `/event/${slug}`) || [],
     fallback: 'blocking',
   }
-}
-
-function formatDateTime(datetime: DateTime): String {
-  return datetime
-    .toString()
-    .substring(0, 16)
-    .replace('T', ' ')
-    .replaceAll('-', '.')
 }
