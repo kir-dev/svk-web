@@ -16,6 +16,7 @@ import Image from 'next/image'
 import { urlForImage } from '~/lib/sanity.image'
 import { DateTime } from 'groq-js'
 import { LocationIcon } from '~/components/svg-components/LocationIcon'
+import { LecturerIcon } from '~/components/svg-components/LecturerIcon'
 
 interface Query {
   [key: string]: string
@@ -88,7 +89,7 @@ export default function PostSlugRoute(
                 )}
                 {event.lecturer && (
                   <div className="flex flex-row flex-nowrap space-x-2">
-                    <CalendarIcon /> <h2>20+</h2>
+                    <LecturerIcon /> <h2>{event.lecturer}</h2>
                   </div>
                 )}
               </div>

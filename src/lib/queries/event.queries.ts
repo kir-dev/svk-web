@@ -25,7 +25,7 @@ export const getPreviousEventsSummary = async (
   return await client.fetch(previousEventsSummary)
 }
 
-export const currentEvents = groq`*[_type == 'event' && datetime > now()]{title,datetime,image,description,spotLink,externalLink,exportLink,location,host,lecturer->{name, title, image}}`
+export const currentEvents = groq`*[_type == 'event' && datetime > now()]{title,datetime,image,description,spotLink,externalLink,exportLink,location,host,lecturer}`
 
 export const getCurrentEvents = async (
   client: SanityClient,
@@ -33,7 +33,7 @@ export const getCurrentEvents = async (
   return await client.fetch(currentEvents)
 }
 
-export const previousEvents = groq`*[_type == 'event' && datetime < now()]{title,datetime,image,description,spotLink,externalLink,exportLink,location,host,lecturer->{name, title, image}}`
+export const previousEvents = groq`*[_type == 'event' && datetime < now()]{title,datetime,image,description,spotLink,externalLink,exportLink,location,host,lecturer}`
 
 export const getPreviousEvents = async (
   client: SanityClient,
@@ -50,7 +50,7 @@ export const getEventBySlug = async (
   slug: string,
 ): Promise<EventFull | undefined> => {
   try {
-    const eventBySlug = groq`*[_type == 'event' && slug.current == '${slug}' ]{title,datetime,image,description,spotLink,externalLink,exportLink,location,host,lecturer->{name, title, image}}`
+    const eventBySlug = groq`*[_type == 'event' && slug.current == '${slug}' ]{title,datetime,image,description,spotLink,externalLink,exportLink,location,host,lecturer}`
     const response = await client.fetch(eventBySlug)
     if (response.length > 0) {
       return response[0]
