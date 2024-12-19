@@ -40,3 +40,23 @@ export const getPreviousEvents = async (
 ): Promise<EventFull[]> => {
   return await client.fetch(previousEvents)
 }
+
+export const eventSlugsQuery = groq`
+*[_type == "event" && defined(slug.current)][].slug.current
+`
+
+export const getEventBySlug = async (
+  client: SanityClient,
+  slug: string,
+): Promise<EventFull | undefined> => {
+  try {
+    const eventBySlug = groq`*[_type == 'event' && slug.current == '${slug}' ]{title,datetime,image,description,spotLink,externalLink,exportLink,location,host,lecturer->{name, title, image}}`
+    const response = await client.fetch(eventBySlug)
+    if (response.length > 0) {
+      return response[0]
+    }
+    return response
+  } catch (e) {
+    console.error(e)
+  }
+}
