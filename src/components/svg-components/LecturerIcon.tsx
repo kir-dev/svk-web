@@ -1,13 +1,23 @@
 import { SVGProps } from 'react'
 
-export const LecturerIcon: React.FC<SVGProps<SVGSVGElement>> = (props) => (
+interface props {
+  width?: number
+  height?: number
+  color?: string
+}
+
+export const LecturerIcon: React.FC<SVGProps<SVGSVGElement>> = ({
+  width = 50,
+  height = 50,
+  color = '#ffffff',
+}: props) => (
   <svg
-    fill="#ffffff"
+    fill={color}
     version="1.1"
     id="Capa_1"
     xmlns="http://www.w3.org/2000/svg"
-    width="30"
-    height="30"
+    width={width}
+    height={height}
     viewBox="0 0 763.961 763.961"
   >
     <g>

@@ -1,7 +1,6 @@
 import { EventFull } from '~/lib/sanity.types'
 import React, { FC, useState } from 'react'
 import { EventCoverPicture } from '~/components/event-components/EventCoverPicture'
-import { useRouter } from 'next/router'
 import { CalendarIcon } from '~/components/svg-components/CalendarIcon'
 import { LocationIcon } from '~/components/svg-components/LocationIcon'
 import { LecturerIcon } from '~/components/svg-components/LecturerIcon'
@@ -16,6 +15,8 @@ const path = 'http://localhost:3000/event/'
 
 export const EventTile: FC<Props> = ({ event }) => {
   const [hovered, setHovered] = useState<boolean>(false)
+
+  const iconSize = 25
 
   return (
     <div
@@ -36,15 +37,17 @@ export const EventTile: FC<Props> = ({ event }) => {
             <h1 className="my-5 mx-3 text-2xl">{event.title}</h1>
           </div>
 
-          <a
-            href={event.spotLink}
-            target="_blank"
-            className={`absolute bottom-0 right-0 p-4 transition-transform ${
-              hovered ? '-translate-y-[40%]' : ''
-            }`}
-          >
-            <PictureIcon color="#3DCAB1" />
-          </a>
+          {event.spotLink && (
+            <a
+              href={event.spotLink}
+              target="_blank"
+              className={`absolute bottom-0 right-0 p-4 transition-transform ${
+                hovered ? '-translate-y-[40%]' : ''
+              }`}
+            >
+              <PictureIcon color="#3DCAB1" />
+            </a>
+          )}
 
           <div
             className={`absolute bottom-0 left-0 right-0 p-4 transition-transform ${
@@ -54,19 +57,23 @@ export const EventTile: FC<Props> = ({ event }) => {
             <div className="flex flex-col space-y-2">
               {event.datetime && (
                 <div className="flex flex-row flex-nowrap space-x-2">
-                  <CalendarIcon width={25} height={25} color="#3DCAB1" />
+                  <CalendarIcon
+                    width={iconSize}
+                    height={iconSize}
+                    color="#3DCAB1"
+                  />
                   <h2>{formatDateTime(event.datetime)}</h2>
                 </div>
               )}
               {event.location && (
                 <div className="flex flex-row flex-nowrap space-x-2">
-                  <LocationIcon />
+                  <LocationIcon width={iconSize} height={iconSize} />
                   <h2 className="text-sm">{event.location}</h2>
                 </div>
               )}
               {event.lecturer && (
                 <div className="flex flex-row flex-nowrap space-x-2">
-                  <LecturerIcon />
+                  <LecturerIcon width={iconSize} height={iconSize} />
                   <h2>{event.lecturer}</h2>
                 </div>
               )}
