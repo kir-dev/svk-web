@@ -52,8 +52,12 @@ export const getEventBySlug = async (
   try {
     const eventBySlug = groq`*[_type == 'event' && slug.current == '${slug}' ]{title,datetime,image,description,spotLink,externalLink,exportLink,location,host,lecturer,slug}`
     const response = await client.fetch(eventBySlug)
-    if (response.length > 0) {
-      return response[0]
+
+    if (Array.isArray(response)) {
+      if (response.length > 0) {
+        return response[0]
+      }
+      return undefined
     }
     return response
   } catch (e) {

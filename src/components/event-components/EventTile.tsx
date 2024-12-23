@@ -6,16 +6,15 @@ import { LocationIcon } from '~/components/svg-components/LocationIcon'
 import { LecturerIcon } from '~/components/svg-components/LecturerIcon'
 import { formatDateTime } from '~/utils/format-date-time'
 import { PictureIcon } from '~/components/svg-components/PictureIcon'
+import { useRouter } from 'next/router'
 
 interface Props {
   event: EventFull
 }
 
-const path = 'http://localhost:3000/event/'
-
 export const EventTile: FC<Props> = ({ event }) => {
   const [hovered, setHovered] = useState<boolean>(false)
-
+  const router = useRouter()
   const iconSize = 25
 
   return (
@@ -31,7 +30,13 @@ export const EventTile: FC<Props> = ({ event }) => {
               hovered ? '-translate-y-[40%]' : ''
             }`}
           >
-            <a href={event.externalLink || path + event.slug.current}>
+            <a
+              onClick={() => {
+                const path =
+                  event.externalLink || '/event/' + event.slug.current
+                router.push(path)
+              }}
+            >
               <EventCoverPicture image={event.image} title={event.title} />
             </a>
             <h1 className="my-5 mx-3 text-2xl">{event.title}</h1>
