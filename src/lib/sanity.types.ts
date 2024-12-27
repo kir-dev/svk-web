@@ -20,14 +20,6 @@ export interface Member {
   linkedInQr?: ImageAsset
 }
 
-export interface Lecturer {
-  _type: 'lecturer'
-  _id: string
-  name: string
-  title?: string
-  image?: ImageAsset
-}
-
 export interface EventPreview {
   _type: 'event'
   _id: string
@@ -47,7 +39,7 @@ export interface EventSummary extends EventPreview {
 export interface EventFull extends EventSummary {
   location?: string
   host?: string
-  lecturer?: Lecturer
+  lecturer?: string
 }
 
 export interface Picture {

@@ -39,8 +39,8 @@ export default defineType({
     defineField({
       name: 'lecturer',
       title: 'Lecturer',
-      type: 'reference',
-      to: { type: 'lecturer' },
+      description: 'Name or estimated count',
+      type: 'string',
     }),
     defineField({
       name: 'description',

@@ -1,8 +1,14 @@
 import { SVGProps } from 'react'
 
-export const PictureIcon: React.FC<SVGProps<SVGSVGElement>> = (props) => (
+interface props {
+  color: string
+}
+
+export const PictureIcon: React.FC<SVGProps<SVGSVGElement>> = ({
+  color,
+}: props) => (
   <svg
-    fill="#000000"
+    fill={color}
     width="30px"
     height="30px"
     viewBox="0 0 32 32"
