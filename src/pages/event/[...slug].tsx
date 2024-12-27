@@ -42,6 +42,15 @@ export const getStaticProps: GetStaticProps<
   }
 }
 
+export const getStaticPaths = async () => {
+  const client = getClient()
+  const slugs = await client.fetch(eventSlugsQuery)
+  return {
+    paths: slugs?.map(({ slug }) => `/event/${slug}`) || [],
+    fallback: 'blocking',
+  }
+}
+
 export default function PostSlugRoute(
   props: InferGetStaticPropsType<typeof getStaticProps>,
 ) {
@@ -53,7 +62,6 @@ export default function PostSlugRoute(
           <h1 className="text-3xl mb-5 text-center lg:hidden">{event.title}</h1>
           <div className="flex flex-row flex-wrap space-x-5">
             <div className="w-full lg:w-1/3 my-auto">
-              <h1>This event does not exist</h1>
               {event.image && (
                 <Image
                   src={urlForImage(event.image)?.url() ?? ''}
@@ -97,14 +105,4 @@ export default function PostSlugRoute(
       </div>
     </Layout>
   )
-}
-
-export const getStaticPaths = async () => {
-  const client = getClient()
-  const slugs = await client.fetch(eventSlugsQuery)
-
-  return {
-    paths: slugs?.map(({ slug }) => `/event/${slug}`) || [],
-    fallback: 'blocking',
-  }
 }

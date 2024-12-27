@@ -22,6 +22,10 @@ export const EventTile: FC<Props> = ({ event }) => {
       className="relative transition-transform bg-gray-900 rounded-md max-w-2xl overflow-hidden cursor-pointer"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
+      onClick={() => {
+        const path = event.externalLink || '/event/' + event.slug.current
+        router.push(path)
+      }}
     >
       {event.image && (
         <div className="relative h-full">
@@ -30,28 +34,20 @@ export const EventTile: FC<Props> = ({ event }) => {
               hovered ? '-translate-y-[40%]' : ''
             }`}
           >
-            <a
-              onClick={() => {
-                const path =
-                  event.externalLink || '/event/' + event.slug.current
-                router.push(path)
-              }}
-            >
-              <EventCoverPicture image={event.image} title={event.title} />
-            </a>
+            <EventCoverPicture image={event.image} title={event.title} />
             <h1 className="my-5 mx-3 text-2xl">{event.title}</h1>
           </div>
 
           {event.spotLink && (
-            <a
-              href={event.spotLink}
-              target="_blank"
-              className={`absolute bottom-0 right-0 p-4 transition-transform ${
-                hovered ? '-translate-y-[40%]' : ''
-              }`}
+            <div
+              className={`absolute bottom-0 right-0 m-4 w-fit z-10 transition-transform ${hovered ? '-translate-y-[40%]' : ''}`}
+              onClick={(e) => {
+                e.stopPropagation()
+                window.open(event.spotLink!!, '_blank')
+              }}
             >
               <PictureIcon color="#3DCAB1" />
-            </a>
+            </div>
           )}
 
           <div
