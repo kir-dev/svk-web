@@ -20,7 +20,7 @@ export const PartnersSection = ({ title, partners }: Props) => {
   const splitPartners: Partner[][] = splitArrays(partners, partnerPerRow)
 
   return (
-    <div className="bg-gray-500 text-black py-10 overflow-x-hidden w-screen">
+    <div className="relative bg-white bg-opacity-70 text-black overflow-x-hidden w-screen">
       <PartnersCounter title={title} length={partners.length} />
       {splitPartners.map((partner, index) => (
         <PartnerRowAnimation
@@ -29,6 +29,8 @@ export const PartnersSection = ({ title, partners }: Props) => {
           toRight={index % 2 == 0}
         />
       ))}
+      <div className="absolute left-0 top-0 bottom-0 w-1/12 z-10 bg-gradient-to-r from-gray-400 to-transparent" />
+      <div className="absolute right-0 top-0 bottom-0 w-1/12 z-10 bg-gradient-to-r from-transparent to-gray-400" />
     </div>
   )
 }
