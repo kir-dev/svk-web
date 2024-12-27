@@ -1,6 +1,6 @@
 import { Partner } from '~/lib/sanity.types'
-import { PartnerLogo } from '~/components/partners-components/PartnerLogo'
 import { PartnersCounter } from '~/components/partners-components/PartnersCounter'
+import { PartnerRowAnimation } from '~/components/partners-components/PartnersRowAnimation.tsx'
 
 interface Props {
   title: string
@@ -9,13 +9,9 @@ interface Props {
 
 export const PartnersSection = ({ title, partners }: Props) => {
   return (
-    <div className="bg-gray-500 text-black py-10">
+    <div className="bg-gray-500 text-black py-10 overflow-x-hidden w-screen">
       <PartnersCounter title={title} length={partners.length} />
-      <div className="flex flex-wrap items-center gap-5">
-        {partners.map((partner) => (
-          <PartnerLogo key={partner._id} partner={partner} />
-        ))}
-      </div>
+      <PartnerRowAnimation partners={partners} toRight={true} />
     </div>
   )
 }
