@@ -97,7 +97,7 @@ export default function App({
           defaultTheme="dark"
         >
           <PlausibleProvider
-            domain="kir-dev.hu"
+            domain="svk.sch.bme.hu"
             selfHosted
             customDomain={process.env.NEXT_PUBLIC_PLAUSIBLE_URL}
           >
@@ -108,7 +108,7 @@ export default function App({
             >
               <main>
                 {draftMode ? (
-                    <Component {...pageProps} />
+                  <Component {...pageProps} />
                 ) : (
                   <Component className="flex-1 pb-10" {...pageProps} />
                 )}

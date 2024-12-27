@@ -1,12 +1,13 @@
-import { FormField } from '~/components/pop-up-components/FormField'
+import { TextInputField } from '~/components/formfileds/TextInputField'
 import React, { ChangeEvent, useEffect } from 'react'
 import { ContactFieldsValidity } from '~/utils/form-validation'
 import { useTranslations } from 'next-intl'
 import { ContactSubmissionIndicator } from '~/components/pop-up-components/ContactSubmissionIndicator'
 import { CircularProgress } from '@nextui-org/progress'
-import { FormRadioGroup } from '~/components/pop-up-components/FormRadioGroup'
-import { DropdownFormField } from '~/components/pop-up-components/DropdownFormField'
+import { FormRadioGroup } from '~/components/formfileds/FormRadioGroup'
+import { DropdownFormField } from '~/components/formfileds/DropdownFormField'
 import { useContactForm } from '~/lib/hooks/useContactFrom'
+import { sendContactFrom } from '~/lib/api'
 
 export interface ModalFormProps {
   closeModal: () => void
@@ -59,7 +60,7 @@ export const ContactFormSecondPage: React.FC<ModalFormProps> = ({
         <ContactSubmissionIndicator isSuccess={isSuccess} />
       </div>
       <div>
-        <FormField
+        <TextInputField
           title={t('reason')}
           type="text"
           id="reason"
@@ -110,7 +111,7 @@ export const ContactFormSecondPage: React.FC<ModalFormProps> = ({
         <button
           type="submit"
           className="rounded-lg p-3 bg-white border-blue-500 border-2 text-blue-600 hover:bg-blue-500 hover:text-white transition-colors disabled:border-gray-600 disabled:text-gray-600 disabled:bg-white"
-          onClick={handleSubmit}
+          onClick={() => handleSubmit(async () => sendContactFrom(formData))}
           disabled={!validForm}
         >
           {isLoading ? (

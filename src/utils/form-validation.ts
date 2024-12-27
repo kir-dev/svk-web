@@ -10,6 +10,8 @@ export interface ContactFormFields {
   source: string
   money: string
   employees: string
+
+  [key: string]: string
 }
 
 export interface ContactFieldsValidity {
@@ -19,6 +21,8 @@ export interface ContactFieldsValidity {
   money: boolean
   employees: boolean
   source: boolean
+
+  [key: string]: boolean
 }
 
 export interface JoinUsFormFields {
@@ -26,6 +30,8 @@ export interface JoinUsFormFields {
   email: string
   study: string
   activeSemesterCount: string
+
+  [key: string]: string
 }
 
 export interface JoinUsFieldsValidity {
@@ -33,6 +39,8 @@ export interface JoinUsFieldsValidity {
   email: boolean
   study: boolean
   activeSemesterCount: boolean
+
+  [key: string]: boolean
 }
 
 const validateRequired = (text: string): boolean => !(!text || !text.trim())

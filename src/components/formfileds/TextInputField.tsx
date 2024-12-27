@@ -13,7 +13,7 @@ interface Props {
   onChange: (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
 }
 
-export const FormField = ({
+export const TextInputField = ({
   title,
   type = 'text',
   id,
