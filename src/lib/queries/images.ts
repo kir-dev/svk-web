@@ -1,9 +1,9 @@
 import { Picture } from '~/lib/sanity.types'
-import { SanityClient } from 'next-sanity'
+import { groq, SanityClient } from 'next-sanity'
 
-const images = `*[_type == 'mini_carousel_image'] {_id, title, image}`
-const homeMultiCarouselQueries = `*[_type == 'home_multi_carousel_images'] {_id, title, image}`
-const aboutMultiCarouselQueries = `*[_type == 'about_multi_carousel_images'] {_id, title, image}`
+const images = groq`*[_type == 'mini_carousel_image'] {_id, title, image}`
+const homeMultiCarouselQueries = groq`*[_type == 'home_multi_carousel_images'] {_id, title, image}`
+const aboutMultiCarouselQueries = groq`*[_type == 'about_multi_carousel_images'] {_id, title, image}`
 
 export const getMiniCarouselImages = async (
   client: SanityClient,
