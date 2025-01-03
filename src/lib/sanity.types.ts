@@ -13,6 +13,7 @@ export interface Member {
   _type: 'member'
   _id: string
   name: string
+  slug: Slug
   position?: string
   description?: string
   linkedIn?: string

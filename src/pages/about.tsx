@@ -29,7 +29,6 @@ export default function AboutUsPage(
 
   return (
     <AboutUsLayout bg={props.bg.image} bgAlt={props.bg.title}>
-
       <section>
         <div className="mx-auto h-min gap-2 w-[83%] py-24">
           <p className="text-3xl sm:text-4xl md:text-5xl text-nowrap text-center 2xl:text-start pb-4">
@@ -47,6 +46,7 @@ export default function AboutUsPage(
             <MemberCard
               key={member._id}
               name={member.name}
+              slug={member.slug}
               position={member.position}
               description={member.description}
               picture={member.picture}
