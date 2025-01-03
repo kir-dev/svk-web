@@ -16,9 +16,7 @@ export interface Member {
   slug: Slug
   position?: string
   description?: string
-  linkedIn?: string
   picture?: ImageAsset
-  linkedInQr?: ImageAsset
 }
 
 export interface EventPreview {

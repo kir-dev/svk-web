@@ -7,9 +7,6 @@ interface Props {
   picture?: ImageAsset
   name: string
   position?: string
-  description?: string
-  linkedIN?: string
-  linkedInQr?: ImageAsset
   slug: Slug
 }
 

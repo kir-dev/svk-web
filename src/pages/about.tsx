@@ -48,10 +48,7 @@ export default function AboutUsPage(
               name={member.name}
               slug={member.slug}
               position={member.position}
-              description={member.description}
               picture={member.picture}
-              linkedIN={member.linkedIn}
-              linkedInQr={member.linkedInQr}
             />
           ))}
         </MembersGrid>
