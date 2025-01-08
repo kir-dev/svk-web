@@ -13,10 +13,9 @@ import {
   getMiniCarouselImages,
 } from '~/lib/queries/images'
 import { Picture } from '~/lib/sanity.types'
-import { Carousel } from '~/components/carousel-components/Carousel'
 import { CarouselImage } from '~/components/carousel-components/CarouselImage'
 import { MultiCarousel } from '~/components/carousel-components/MultiCarousel'
-import Bubbles from "~/components/Bubbles";
+import Bubbles from '~/components/Bubbles'
 
 export const getStaticProps = async ({ draftMode = false, locale }) => {
   const client = getClient()
@@ -41,25 +40,18 @@ export default function IndexPage(
 ) {
   const t = useTranslations('Index')
   const partners = props.partners
-  const miniCarouselImages = props.miniCarouselImages
   const multiCarouselImages = props.multiCarouselImages
   return (
     <Layout>
-      <section className=" items-center h-fit justify-center px-6 sm:px-0 pb-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 w-5/6 items-center mx-auto my-8 lg:my-56">
-          <div className={' justify-center'}>
-            <h1 className="mb-6 text-md lg:text-2xl font-extrabold leading-none tracking-tight">
+      <section className="items-center h-fit justify-center md:px-6 sm:px-0 pb-8 -translate-y-20">
+        <div className="flex flex-col gap-10 justify-center content-center h-screen w-full md:w-2/3 mx-auto">
+          <div className="w-full h-2/5">SVK logo és felirat helye</div>
+          <div className=" text-center">
+            <h1 className="mb-6 text-2xl lg:text-6xl bold ">
               {t('mainTitle')}
             </h1>
-            <h1 className="mb-6 text-3xl lg:text-5xl font-extrabold leading-none tracking-tight">
-              {t('motto')}
-            </h1>
+            <h1 className="mb-6 text-md lg:text-2xl text-cyan">{t('motto')}</h1>
           </div>
-          <Carousel>
-            {miniCarouselImages.map((image, index) => (
-              <CarouselImage image={image} key={image._id + index} />
-            ))}
-          </Carousel>
         </div>
       </section>
       <section className="">
@@ -70,7 +62,7 @@ export default function IndexPage(
         </MultiCarousel>
       </section>
       <section>
-        <Bubbles/>
+        <Bubbles />
       </section>
       <section className="pb-24">
         <PartnersSection partners={partners} title={t('partnersTitle')} />
