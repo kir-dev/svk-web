@@ -67,7 +67,7 @@ export const MultiCarousel: React.FC<Props> = ({ children }: Props) => {
   }, [children])
 
   return (
-    <div className="relative w-full overflow-hidden px-[10%] ">
+    <div className="relative w-full h-fit overflow-hidden px-[5%] ">
       <div className="absolute left-0 top-0 bottom-0 right-0 flex justify-between items-center px-0 md:px-20 z-20">
         <Button className="bg-transparent" onClick={decreaseIndex}>
           <ChevronLeftIcon />
@@ -79,12 +79,12 @@ export const MultiCarousel: React.FC<Props> = ({ children }: Props) => {
 
       <div
         style={{ transform: `translateX(${index * -100}%)` }}
-        className={`flex flex-nowrap  ${transitionNeeded() ? 'transition-none' : 'transition-all'}`}
+        className={`flex flex-nowrap w-fit  ${transitionNeeded() ? 'transition-none' : 'transition-all'}`}
       >
         {carouselItems.map((item, currentIndex) => (
           <div
             key={currentIndex}
-            className={`min-w-full min-h-full ${transitionNeeded() ? 'transition-none' : 'transition-all'}  ${index === currentIndex ? 'scale-[80%] md:scale-[60%] z-10' : `scale-[45%] md:scale-[25%] ${currentIndex != index - 1 ? '-translate-x-[60%]' : 'translate-x-[60%]'}`}`}
+            className={`min-w-full min-h-full ${transitionNeeded() ? 'transition-none' : 'transition-all'}  ${index === currentIndex ? 'md:scale-[50%] z-10' : ` md:scale-[45%] opacity-0 md:opacity-50 ${currentIndex != index - 1 ? ' -translate-x-[51%]' : 'translate-x-[51%]'}`}`}
           >
             {item}
           </div>

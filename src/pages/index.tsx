@@ -55,6 +55,9 @@ export default function IndexPage(
         </div>
       </section>
       <section className="">
+        <h1 className="text-center text-3xl md:text-5xl bold md:translate-y-[200%]">
+          Események
+        </h1>
         <MultiCarousel>
           {multiCarouselImages.map((image) => (
             <CarouselImage image={image} key={image._id} />
