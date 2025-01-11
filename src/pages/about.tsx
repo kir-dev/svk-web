@@ -18,6 +18,7 @@ export const getStaticProps = async ({ locale }) => {
       bg: bg,
       messages: (await import(`../../messages/${locale}.json`)).default,
     },
+    revalidate:60
   }
 }
 
