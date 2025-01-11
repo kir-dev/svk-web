@@ -25,8 +25,8 @@ export const MemberCard: FC<Props> = ({
         router.push(`member/${slug.current}`)
       }}
     >
-      <div className="transition-all grid-rows-2 bg-blue-950 rounded-md text-center justify-between overflow-y-hidden w-64 h-80 hover:scale-105">
-        <div className="p-1 pb-0">
+      <div className="transition-all bg-blue-950 rounded-md overflow-y-hidden w-64 h-80 hover:scale-105">
+        <div className="p-1 pb-0 h-2/3">
           {picture && (
             <img
               src={urlForImage(picture)?.url() ?? ''}
@@ -35,8 +35,10 @@ export const MemberCard: FC<Props> = ({
             />
           )}
         </div>
-        <h1 className="text-lg md:text-2xl">{name}</h1>
-        <p className="text-md text-gray-400 text-center">{position ?? ''}</p>
+        <div className="flex flex-col justify-center h-1/3 text-center">
+          <h1 className="text-lg md:text-2xl">{name}</h1>
+          <p className="text-md text-gray-400">{position ?? ''}</p>
+        </div>
       </div>
     </a>
   )
