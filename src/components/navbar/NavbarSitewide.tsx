@@ -18,10 +18,22 @@ export interface Props {
   routes: Route[]
 }
 
+const mainPagePath = '/'
+
 export const NavbarSitewide: FC<PropsWithChildren<Props>> = ({ routes }) => {
-  const [isMenuOpen, setIsMenuOpen] = useState<boolean | undefined>(false)
   const router = useRouter()
   const { pathname, asPath, query, locales, locale } = router
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean | undefined>(false)
+  const [displayNavbar, setDisplayNavbar] = useState(
+    router.route !== mainPagePath,
+  )
+
+  useEffect(() => {
+    if (router.route !== mainPagePath) {
+      return
+    }
+    document.addEventListener('scroll', () => setDisplayNavbar(true))
+  }, [router.route])
 
   useEffect(() => {
     if (isMenuOpen) {
@@ -52,7 +64,9 @@ export const NavbarSitewide: FC<PropsWithChildren<Props>> = ({ routes }) => {
       />
 
       <nav className="sticky top-0 z-40">
-        <div className="flex justify-between w-screen px-[8.5%] py-3 bg-black">
+        <div
+          className={`flex justify-between w-screen px-[8.5%] py-3 bg-black transition-all ${displayNavbar ? 'translate-y-0' : '-translate-y-20'}`}
+        >
           <LogoIcon />
           <div className="flex w-fit justify-around items-center gap-5 lg:gap-10 text-xl">
             <div className="block md:hidden h-fit">
