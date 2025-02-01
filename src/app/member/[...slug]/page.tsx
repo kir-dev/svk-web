@@ -1,56 +1,34 @@
-import type { GetStaticProps, InferGetStaticPropsType } from 'next'
-
 import Layout from '~/components/Layout'
-import { readToken } from '~/lib/sanity.api'
-import { getClient } from '~/lib/sanity.client'
-import { eventSlugsQuery, getMemberBySlug } from '~/lib/queries'
-import { Member } from '~/lib/sanity.types'
 import Image from 'next/image'
 import { urlForImage } from '~/lib/sanity.image'
+import { getClient } from '~/lib/sanity.client'
+import { getMemberBySlug } from '~/lib/queries'
+import { notFound, useSearchParams } from 'next/navigation'
 
-interface Query {
-  [key: string]: string
+
+async function fetchMember(slug: string) {
+  const client = getClient()
+  return await getMemberBySlug(client, slug)
 }
 
-export const getStaticProps: GetStaticProps<
-  {
-    member: Member
-  },
-  Query
-> = async ({ draftMode = false, params = {}, locale }) => {
-  const client = getClient()
-  const member: Member | undefined = await getMemberBySlug(
-    client,
-    params.slug[0],
-  )
+
+export default function MemberSlugRoute() {
+  const searchParams = useSearchParams()
+  const slug = searchParams?.get('slug')
+  if (!slug) {
+    notFound()
+  }
+
+  const member = fetchMember(slug)
   if (!member) {
-    return {
-      notFound: true,
-    }
+    notFound()
   }
-  return {
-    props: {
-      draftMode,
-      token: draftMode ? readToken : '',
-      member: member,
-      messages: (await import(`../../../messages/${locale}.json`)).default,
-    },
-  }
+
+  return <MemberSlugContent member={member} />
 }
 
-export const getStaticPaths = async () => {
-  const client = getClient()
-  const slugs = await client.fetch(eventSlugsQuery)
-  return {
-    paths: slugs?.map(({ slug }) => `/member/${slug}`) || [],
-    fallback: 'blocking',
-  }
-}
 
-export default function PostSlugRoute(
-  props: InferGetStaticPropsType<typeof getStaticProps>,
-) {
-  const member = props.member
+const MemberSlugContent = ({ member }) => {
   return (
     <Layout>
       <div className="flex w-full my-[5%] justify-center">

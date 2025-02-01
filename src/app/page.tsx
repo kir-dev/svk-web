@@ -1,49 +1,29 @@
-import type { InferGetStaticPropsType } from 'next'
-
-import Layout from '~/components/Layout'
-import { readToken } from '~/lib/sanity.api'
-
 import { useTranslations } from 'next-intl'
+import { SvkLogoWithText } from '~/components/svg-components/SvkLogoWithText'
+import { MultiCarousel } from '~/components/carousel-components/MultiCarousel'
+import { CarouselImage } from '~/components/carousel-components/CarouselImage'
+import Bubbles from '~/components/Bubbles'
 import { PartnersSection } from '~/components/partners-components/PartnersSection'
+import React from 'react'
 import { getClient } from '~/lib/sanity.client'
 import { getPartners } from '~/lib/queries/partner.queries'
-import React from 'react'
-import {
-  getHomeMultiCarouselImages,
-  getMiniCarouselImages,
-} from '~/lib/queries/images'
 import { Picture } from '~/lib/sanity.types'
-import { CarouselImage } from '~/components/carousel-components/CarouselImage'
-import { MultiCarousel } from '~/components/carousel-components/MultiCarousel'
-import Bubbles from '~/components/Bubbles'
-import { SvkLogoWithText } from '~/components/svg-components/SvkLogoWithText'
+import { getHomeMultiCarouselImages, getMiniCarouselImages } from '~/lib/queries/images'
 
-export const getStaticProps = async ({ draftMode = false, locale }) => {
+
+export default async function HomePage() {
   const client = getClient()
   const partners = await getPartners(client)
-  const miniCarouselImages: Picture[] = await getMiniCarouselImages(client)
-  const multiCarouselImages: Picture[] =
-    await getHomeMultiCarouselImages(client)
-  return {
-    props: {
-      draftMode,
-      token: draftMode ? readToken : '',
-      messages: (await import(`../../messages/${locale}.json`)).default,
-      partners: partners,
-      miniCarouselImages: miniCarouselImages,
-      multiCarouselImages: multiCarouselImages,
-    },
-  }
+  const multiCarouselImages: Picture[] = await getHomeMultiCarouselImages(client)
+  return <HomePageContent partners={partners} multiCarouselImages={multiCarouselImages} />
 }
 
-export default function IndexPage(
-  props: InferGetStaticPropsType<typeof getStaticProps>,
-) {
+
+const HomePageContent = ({ partners, multiCarouselImages }) => {
   const t = useTranslations('Index')
-  const partners = props.partners
-  const multiCarouselImages = props.multiCarouselImages
+
   return (
-    <Layout>
+    <>
       <section className="items-center h-fit justify-center px-0 pb-8 -translate-y-20">
         <div className="flex flex-col gap-10 justify-center content-center h-screen w-full mx-auto">
           <div className="flex flex-row justify-center w-full">
@@ -75,6 +55,6 @@ export default function IndexPage(
       <section className="pb-24">
         <PartnersSection partners={partners} title={t('partnersTitle')} />
       </section>
-    </Layout>
+    </>
   )
 }

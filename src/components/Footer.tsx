@@ -1,3 +1,5 @@
+"use client"
+
 import { environment } from '~/utils/environment'
 
 import { useTranslations } from 'next-intl'
