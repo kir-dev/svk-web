@@ -43,6 +43,20 @@ export interface JoinUsFieldsValidity {
   [key: string]: boolean
 }
 
+export interface EventApplicationFormFields {
+  name: string
+  email: string
+
+  [key: string]: string
+}
+
+export interface EventApplicationFieldsValidity {
+  name: boolean
+  email: boolean
+
+  [key: string]: boolean
+}
+
 const validateRequired = (text: string): boolean => !(!text || !text.trim())
 
 const validateEmail = (email: string): boolean =>
