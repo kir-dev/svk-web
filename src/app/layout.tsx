@@ -1,27 +1,32 @@
 import '~/styles/global.css'
 import '~/styles/prism-okaidia.css'
 
-import { Blur } from '~/components/decoration-components/Blur'
-import { NavbarSitewide } from '~/components/navbar/NavbarSitewide'
-import { allRoutes } from '~/utils/routes'
-import { Footer } from '~/components/Footer'
 import { NextIntlClientProvider } from 'next-intl'
-import { router } from 'next/client'
+import { getLocale, getMessages } from 'next-intl/server'
+import { ThemeProvider } from 'next-themes'
 
-export default function RootLayout( { children }) {
+export default async function RootLayout( { children }: {
+  children: React.ReactNode;
+}) {
+
+  const locale = await getLocale();
+
+  const messages = await getMessages();
+
   return (
-    <html>
+    <html lang={locale}>
       <body>
-        <div className="d-flex flex-col min-h-screen bg-[#111827] z-10">
-          <Blur width={20} height={20} top={50} left={-10} />
-          <Blur width={15} height={15} top={0} left={80} />
-          <Blur width={15} height={15} top={80} left={55} />
-          <div className="z-20 relative">
-            <NavbarSitewide routes={allRoutes} />
-              {children}
-            {/*<Footer routes={allRoutes} />*/}
-          </div>
-        </div>
+        <main>
+        <NextIntlClientProvider messages={messages}>
+          <ThemeProvider
+            themes={['dark', 'light']}
+            attribute="class"
+            defaultTheme="dark"
+          >
+            {children}
+          </ThemeProvider>
+        </NextIntlClientProvider>
+        </main>
       </body>
     </html>
   )

@@ -6,7 +6,7 @@ import { LocationIcon } from '~/components/svg-components/LocationIcon'
 import { LecturerIcon } from '~/components/svg-components/LecturerIcon'
 import { formatDateTime } from '~/utils/format-date-time'
 import { PictureIcon } from '~/components/svg-components/PictureIcon'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 
 interface Props {
   event: EventFull
