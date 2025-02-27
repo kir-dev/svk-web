@@ -8,6 +8,7 @@ import { useTranslations } from 'next-intl'
 import { ContactSubmissionIndicator } from '~/components/pop-up-components/ContactSubmissionIndicator'
 import { CircularProgress } from '@nextui-org/progress'
 import { useEventApplicationForm } from '~/lib/hooks/useEventApplicationForm'
+import { ToggleInputField } from '~/components/formfileds/ToggleInputField'
 
 export interface ModalFormProps {
   closeModal?: (param: any) => void
@@ -19,11 +20,15 @@ export const EventApplicationForm: React.FC<ModalFormProps> = ({
   const formInitState: EventApplicationFormFields = {
     name: '',
     email: '',
+    schDormResident: 'false',
+    acceptTerms: 'notAccepted',
   }
 
   const validityInitState: EventApplicationFieldsValidity = {
     name: false,
     email: false,
+    schDormResident: true,
+    acceptTerms: false,
   }
 
   const t = useTranslations('common.joinUs.form')
@@ -43,9 +48,7 @@ export const EventApplicationForm: React.FC<ModalFormProps> = ({
     event: ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
     >,
-  ) => {
-    updateFormField(event.target)
-  }
+  ) => updateFormField(event.target)
 
   return (
     <form onSubmit={(e) => e.preventDefault()} className="my-5">
@@ -76,6 +79,25 @@ export const EventApplicationForm: React.FC<ModalFormProps> = ({
           onChange={(event) => {
             handleChange(event)
           }}
+        />
+        <ToggleInputField
+          title="Kolis vagyok"
+          id="schDormResident"
+          value={formData.schDormResident}
+          onChange={(
+            event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+          ) => handleChange(event)}
+        />
+      </div>
+      <div className="w-full">
+        <ToggleInputField
+          title="Elfogadom a szerződési feltételeket"
+          id="acceptTerms"
+          value={formData.schDormResident}
+          required={true}
+          onChange={(
+            event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+          ) => handleChange(event)}
         />
       </div>
       <div className="flex justify-around w-full">
