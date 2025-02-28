@@ -21,7 +21,7 @@ export const EventApplicationForm: React.FC<ModalFormProps> = ({
     name: '',
     email: '',
     schDormResident: 'false',
-    acceptTerms: 'notAccepted',
+    acceptTerms: 'false',
   }
 
   const validityInitState: EventApplicationFieldsValidity = {
@@ -31,7 +31,7 @@ export const EventApplicationForm: React.FC<ModalFormProps> = ({
     acceptTerms: false,
   }
 
-  const t = useTranslations('common.joinUs.form')
+  const t = useTranslations('events.form')
   const ti = useTranslations('common.invalidMessage')
 
   const {
@@ -81,9 +81,9 @@ export const EventApplicationForm: React.FC<ModalFormProps> = ({
           }}
         />
         <ToggleInputField
-          title="Kolis vagyok"
+          title={t('schDormResident')}
           id="schDormResident"
-          value={formData.schDormResident}
+          defaultValue={formData.schDormResident === 'true'}
           onChange={(
             event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
           ) => handleChange(event)}
@@ -91,9 +91,9 @@ export const EventApplicationForm: React.FC<ModalFormProps> = ({
       </div>
       <div className="w-full">
         <ToggleInputField
-          title="Elfogadom a szerződési feltételeket"
+          title={t('acceptTerms')}
           id="acceptTerms"
-          value={formData.schDormResident}
+          defaultValue={formData.acceptTerms === 'true'}
           required={true}
           onChange={(
             event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -114,6 +114,7 @@ export const EventApplicationForm: React.FC<ModalFormProps> = ({
           onClick={() =>
             handleSubmit(async () => {
               //Todo
+              console.log('form field values:', formData)
             })
           }
           disabled={!validForm}

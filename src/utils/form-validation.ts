@@ -91,6 +91,8 @@ export const validateField = (field: string, value: string): boolean => {
       return validatePhoneNumber(value)
     case 'acceptTerms':
       return validateAcceptTerms(value)
+    case 'schDormResident':
+      return true
     default:
       return false
   }

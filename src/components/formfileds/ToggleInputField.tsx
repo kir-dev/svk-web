@@ -4,7 +4,7 @@ interface Props {
   title: string
   type?: string
   id: string
-  value: string
+  defaultValue?: boolean
   required?: boolean
   onChange: (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
 }
@@ -13,7 +13,7 @@ export const ToggleInputField = ({
   title,
   type = 'checkbox',
   id,
-  value,
+  defaultValue = false,
   required = false,
   onChange,
 }: Props) => {
@@ -26,7 +26,7 @@ export const ToggleInputField = ({
     if (inputRef.current) {
       setValid(inputRef.current.validity.valid)
     }
-  }, [value])
+  }, [defaultValue])
 
   return (
     <div className="p-3 px-6 w-full">
@@ -35,14 +35,18 @@ export const ToggleInputField = ({
           ref={inputRef}
           type={type}
           id={id}
-          value={value}
+          value={defaultValue ? 'true' : 'false'}
           className="sr-only peer"
           required={required}
+          checked={defaultValue}
           onChange={(event) => {
             setValid(event.target.validity.valid)
             setTouched(true)
             event.target.value = event.target.checked ? 'true' : 'false'
             onChange(event)
+          }}
+          onSubmit={() => {
+            setTouched(false)
           }}
         />
         <div
