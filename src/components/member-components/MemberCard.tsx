@@ -1,3 +1,5 @@
+"use client";
+
 import { ImageAsset, Slug } from 'sanity'
 import React, { FC } from 'react'
 import { urlForImage } from '~/lib/sanity.image'

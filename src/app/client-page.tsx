@@ -7,13 +7,12 @@ import { CarouselImage } from '~/components/carousel-components/CarouselImage'
 import Bubbles from '~/components/Bubbles'
 import { PartnersSection } from '~/components/partners-components/PartnersSection'
 import React from 'react'
-import Layout from '~/components/Layout'
 
 export const ClientHomePage = ({ partners, multiCarouselImages }) => {
   const t = useTranslations('Index')
 
   return (
-    <Layout>
+    <>
       <section className="items-center h-fit justify-center px-0 pb-8 -translate-y-20">
         <div className="flex flex-col gap-10 justify-center content-center h-screen w-full mx-auto">
           <div className="flex flex-row justify-center w-full">
@@ -45,6 +44,6 @@ export const ClientHomePage = ({ partners, multiCarouselImages }) => {
       <section className="pb-24">
         <PartnersSection partners={partners} title={t('partnersTitle')} />
       </section>
-    </Layout>
+    </>
   )
 }
