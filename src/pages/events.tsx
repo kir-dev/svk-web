@@ -24,7 +24,7 @@ export default function EventsPage(
 ) {
   const currentEvents = props.currentEvents
   const previousEvents = props.previousEvents
-  const t = useTranslations('Events')
+  const t = useTranslations('events')
 
   return (
     <Layout>
