@@ -1,9 +1,10 @@
+import { getClient } from '~/lib/sanity.client'
+import { getMemberBySlug } from '~/lib/queries'
+import { notFound } from 'next/navigation'
+
 import Layout from '~/components/Layout'
 import Image from 'next/image'
 import { urlForImage } from '~/lib/sanity.image'
-import { getClient } from '~/lib/sanity.client'
-import { getMemberBySlug } from '~/lib/queries'
-import { notFound, useSearchParams } from 'next/navigation'
 
 
 async function fetchMember(slug: string) {
@@ -12,21 +13,20 @@ async function fetchMember(slug: string) {
 }
 
 
-export default function MemberSlugRoute() {
-  const searchParams = useSearchParams()
-  const slug = searchParams?.get('slug')
+export default async function MemberSlugRoute({ params }: { params: Promise<{ slug: string }> }) {
+  const slug = (await params).slug
   if (!slug) {
     notFound()
   }
 
-  const member = fetchMember(slug)
+  const member = await fetchMember(slug)
   if (!member) {
+    console.log('no member')
     notFound()
   }
 
   return <MemberSlugContent member={member} />
 }
-
 
 const MemberSlugContent = ({ member }) => {
   return (
