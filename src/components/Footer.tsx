@@ -1,3 +1,5 @@
+"use client"
+
 import { environment } from '~/utils/environment'
 
 import { useTranslations } from 'next-intl'
@@ -6,11 +8,11 @@ import { InstagramSvg } from './svg-components/InstagramSvg'
 import { Route } from '~/utils/routes'
 import NextLink from 'next/link'
 import React, { FC, PropsWithChildren, useState } from 'react'
-import { useRouter } from 'next/router'
 import { LinkedInSvg } from '~/components/svg-components/LinkedInSvg'
 import SocialIcon from '~/components/SocialIcon'
 import { MailIconSvg } from '~/components/svg-components/MailIconSvg'
 import { ContactPopUp } from '~/components/pop-up-components/contact/ContactPopUp'
+import { usePathname } from 'next/navigation'
 
 export interface Props {
   routes: Route[]
@@ -25,8 +27,7 @@ const socials = [
 export const Footer: FC<PropsWithChildren<Props>> = ({ routes }) => {
   const t = useTranslations('common')
 
-  const router = useRouter()
-  const { pathname } = router
+  const  pathname  = usePathname()
   const [isContactModalOpen, setIsContactModalOpen] = useState<boolean>(false)
 
   return (

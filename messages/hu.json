@@ -36,7 +36,8 @@
       "themeSwitcher": "Téma váltása",
       "contactButtonTitle": "Kapcsolat",
       "joinButtonTitle": "Csatlakozás",
-      "home": "Kezdőlap"
+      "home": "Kezdőlap",
+      "locale": "HU"
     },
     "routes": {
       "home": "Főoldal",

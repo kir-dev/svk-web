@@ -1,4 +1,5 @@
 import { withPlausibleProxy } from 'next-plausible'
+import createNextIntlPlugin from 'next-intl/plugin'
 
 /** @type {import('next').NextConfig} */
 const config = withPlausibleProxy({
@@ -9,11 +10,8 @@ const config = withPlausibleProxy({
       { hostname: 'cdn.sanity.io' },
       { hostname: 'betteruptime.com' },
     ],
-  },
-  i18n: {
-    locales: ['hu', 'en'],
-    defaultLocale: 'hu',
-  },
+  }
 })
 
-export default config
+const withNextIntl = createNextIntlPlugin();
+export default withNextIntl(config);

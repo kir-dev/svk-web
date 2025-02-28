@@ -36,7 +36,8 @@
       "themeSwitcher": "Switch color theme",
       "contactButtonTitle": "Contact",
       "joinButtonTitle": "Join Us",
-      "home": "Home"
+      "home": "Home",
+      "locale": "EN"
     },
     "routes": {
       "home": "Home",

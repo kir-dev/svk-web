@@ -1,7 +1,9 @@
+"use client";
+
 import { ImageAsset, Slug } from 'sanity'
 import React, { FC } from 'react'
 import { urlForImage } from '~/lib/sanity.image'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 
 interface Props {
   picture?: ImageAsset

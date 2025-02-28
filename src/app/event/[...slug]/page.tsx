@@ -1,60 +1,36 @@
-import type { GetStaticProps, InferGetStaticPropsType } from 'next'
-
-import Layout from '~/components/Layout'
-import { readToken } from '~/lib/sanity.api'
+import { notFound } from 'next/navigation'
 import { getClient } from '~/lib/sanity.client'
-import { eventSlugsQuery, getEventBySlug } from '~/lib/queries'
-import { EventFull } from '~/lib/sanity.types'
-import { CalendarIcon } from '~/components/svg-components/CalendarIcon'
+import { getEventBySlug } from '~/lib/queries'
 import Image from 'next/image'
 import { urlForImage } from '~/lib/sanity.image'
+import { CalendarIcon } from '~/components/svg-components/CalendarIcon'
+import { formatDateTime } from '~/utils/format-date-time'
 import { LocationIcon } from '~/components/svg-components/LocationIcon'
 import { LecturerIcon } from '~/components/svg-components/LecturerIcon'
-import { formatDateTime } from '~/utils/format-date-time'
+import Layout from '~/components/Layout'
 
-interface Query {
-  [key: string]: string
+
+async function fetchEvent(slug: string) {
+  const client = getClient()
+  return await getEventBySlug(client, slug)
 }
 
-export const getStaticProps: GetStaticProps<
-  {
-    event: EventFull
-  },
-  Query
-> = async ({ draftMode = false, params = {}, locale }) => {
-  const client = getClient()
-  const event: EventFull | undefined = await getEventBySlug(
-    client,
-    params.slug[0],
-  )
+
+export default async function PostSlugRoute({ params }: { params: Promise<{ slug: string }> }) {
+  const slug = (await params).slug
+  if (!slug) {
+    notFound()
+  }
+
+  const event = await fetchEvent(slug)
   if (!event) {
-    return {
-      notFound: true,
-    }
+    notFound()
   }
-  return {
-    props: {
-      draftMode,
-      token: draftMode ? readToken : '',
-      event: event,
-      messages: (await import(`../../../messages/${locale}.json`)).default,
-    },
-  }
+
+  return <PostSlugRouteContent event={event} />
 }
 
-export const getStaticPaths = async () => {
-  const client = getClient()
-  const slugs = await client.fetch(eventSlugsQuery)
-  return {
-    paths: slugs?.map(({ slug }) => `/event/${slug}`) || [],
-    fallback: 'blocking',
-  }
-}
-
-export default function PostSlugRoute(
-  props: InferGetStaticPropsType<typeof getStaticProps>,
-) {
-  const event = props.event
+const PostSlugRouteContent = ({ event }) => {
   return (
     <Layout>
       <div className="flex w-full my-[5%] justify-center">

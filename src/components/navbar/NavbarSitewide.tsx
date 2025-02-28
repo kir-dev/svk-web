@@ -1,7 +1,6 @@
 'use client'
 
-import { useRouter } from 'next/router'
-import React, { FC, PropsWithChildren, useEffect, useState } from 'react'
+import React, { FC, PropsWithChildren, startTransition, useEffect, useState } from 'react'
 
 import { Route } from '~/utils/routes'
 
@@ -13,6 +12,8 @@ import { CloseMenuIcon } from '~/components/svg-components/CloseMenuIcon'
 import { ContactPopUp } from '~/components/pop-up-components/contact/ContactPopUp'
 import { JoinUsPopUp } from '~/components/pop-up-components/join-us/JoinUsPopUp'
 import { LogoIcon } from '~/components/svg-components/LogoIcon'
+import { usePathname } from 'next/navigation'
+import { getUserLocale, setUserLocale } from '~/services/locale'
 
 export interface Props {
   routes: Route[]
@@ -21,19 +22,19 @@ export interface Props {
 const mainPagePath = '/'
 
 export const NavbarSitewide: FC<PropsWithChildren<Props>> = ({ routes }) => {
-  const router = useRouter()
-  const { pathname, asPath, query, locales, locale } = router
+  const pathname = usePathname()
+
   const [isMenuOpen, setIsMenuOpen] = useState<boolean | undefined>(false)
   const [displayNavbar, setDisplayNavbar] = useState(
-    router.route !== mainPagePath,
+    pathname !== mainPagePath,
   )
 
   useEffect(() => {
-    if (router.route !== mainPagePath) {
+    if (pathname !== mainPagePath) {
       return
     }
     document.addEventListener('scroll', () => setDisplayNavbar(true))
-  }, [router.route])
+  }, [pathname])
 
   useEffect(() => {
     if (isMenuOpen) {
@@ -42,9 +43,12 @@ export const NavbarSitewide: FC<PropsWithChildren<Props>> = ({ routes }) => {
   }, [isMenuOpen, pathname])
 
   const t = useTranslations('common')
-  const switchLocale = () => {
-    const nextLocale = locales?.find((loc) => loc !== locale) || locale
-    router.push({ pathname, query }, asPath, { locale: nextLocale })
+
+  const switchLocale = async () => {
+    const locale = await getUserLocale() === 'en' ? 'hu' : 'en';
+    startTransition(() => {
+      setUserLocale(locale);
+    });
   }
 
   const [openDropdown, setOpenDropdown] = useState<boolean>(false)
@@ -142,7 +146,7 @@ export const NavbarSitewide: FC<PropsWithChildren<Props>> = ({ routes }) => {
               variant="flat"
               onPress={switchLocale}
             >
-              {locale === 'en' ? 'HU' : 'EN'}
+              {t('navbar.locale')}
             </Button>
           </div>
         </div>
