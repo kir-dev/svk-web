@@ -1,11 +1,11 @@
-"use client";
+'use client'
 
 import { useTranslations } from 'next-intl'
 import { LargeEventGrid } from '~/components/event-components/LargeEventGrid'
 import { EventTile } from '~/components/event-components/EventTile'
 
 export const EventsPageContent = ({ currentEvents, previousEvents }) => {
-  const t = useTranslations('Events')
+  const t = useTranslations('events')
 
   return (
     <>

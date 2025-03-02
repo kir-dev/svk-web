@@ -27,6 +27,7 @@
     "current": "Current events",
     "past": "Past events",
     "none": "There are no upcoming events",
+    "apply": "Apply",
     "form": {
       "name": "Name",
       "exampleName": "Example John",

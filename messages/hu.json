@@ -27,6 +27,7 @@
     "current": "Aktuális esemény",
     "past": "Korábbi események",
     "none": "Nincsen közelgő esemény",
+    "apply": "Jelentkezés",
     "form": {
       "name": "Név",
       "exampleName": "Példa János",
