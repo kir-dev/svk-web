@@ -43,6 +43,23 @@ export interface JoinUsFieldsValidity {
   [key: string]: boolean
 }
 
+export interface EventApplicationFormFields {
+  name: string
+  email: string
+  schDormResident: string
+  acceptTerms: string
+
+  [key: string]: string
+}
+
+export interface EventApplicationFieldsValidity {
+  name: boolean
+  email: boolean
+  acceptTerms: boolean
+
+  [key: string]: boolean
+}
+
 const validateRequired = (text: string): boolean => !(!text || !text.trim())
 
 const validateEmail = (email: string): boolean =>
@@ -54,6 +71,8 @@ const validatePhoneNumber = (phoneNumber: string): boolean =>
     !phoneNumber.trim() ||
     !phoneNumber.match(phoneNumberRegexp)
   )
+
+const validateAcceptTerms = (text: string): boolean => text === 'true'
 
 export const validateField = (field: string, value: string): boolean => {
   switch (field) {
@@ -70,6 +89,10 @@ export const validateField = (field: string, value: string): boolean => {
       return validateEmail(value)
     case 'phoneNumber':
       return validatePhoneNumber(value)
+    case 'acceptTerms':
+      return validateAcceptTerms(value)
+    case 'schDormResident':
+      return true
     default:
       return false
   }

@@ -50,13 +50,14 @@ export const TextInputField = ({
           type={type}
           id={id}
           value={value}
-          className={`shadow rounded w-full py-2 px-3 text-gray-700 border-4 bg-white pr-10 ${touched ? 'invalid:border-red-600 valid:border-blue-500' : ''}`}
+          className={`shadow rounded w-full py-2 px-3 text-gray-700 border-4 bg-white pr-10 ${touched ? 'invalid:border-red-600 valid:border-blue-500' : 'border-gray-400'}`}
           required={true}
           pattern={pattern}
           placeholder={placeHolder}
-          onSubmit={() => {
+          onSubmit={(event) => {
             setTouched(false)
             setValid(false)
+            event.preventDefault()
           }}
           onChange={(event) => {
             setValid(event.target.validity.valid)

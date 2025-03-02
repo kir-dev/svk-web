@@ -23,10 +23,21 @@
       "body1": "In this process, we pay special attention to providing media presence for companies at the largest campus events, such as the Simonyi Conference, the Schönherz Qpa, Freshman Camp, and Freshman Ball, as well as at our own events, such as professional lectures, courses, and company visits. This way, we provide companies with the opportunity to establish direct contact with talented students and showcase their services and opportunities to the future workforce."
     }
   },
-  "Events": {
+  "events": {
     "current": "Current events",
     "past": "Past events",
-    "none": "There are no upcoming events"
+    "none": "There are no upcoming events",
+    "apply": "Apply",
+    "form": {
+      "name": "Name",
+      "exampleName": "Example John",
+      "email": "Email",
+      "exampleEmail": "examplejohn@email.com",
+      "schDormResident": "I live in Schönhertz dormitory",
+      "acceptTerms": "I accept the terms of the event",
+      "cancel": "Cancel",
+      "submit": "Apply"
+    }
   },
   "common": {
     "navbar": {
