@@ -1,7 +1,7 @@
 import { groq, SanityClient } from 'next-sanity'
 import { Member } from '../sanity.types'
 
-const timeBetweenRevalidations: number = 30 //24 * 60 * 60
+const timeBetweenRevalidations: number = 24 * 60 * 60
 
 const membersQuery = groq`*[_type == 'member'] {name, position, picture, slug}`
 

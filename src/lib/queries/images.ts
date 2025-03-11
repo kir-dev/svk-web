@@ -5,7 +5,7 @@ const images = groq`*[_type == 'mini_carousel_image'] {_id, title, image}`
 const homeMultiCarouselQueries = groq`*[_type == 'home_multi_carousel_images'] {_id, title, image}`
 const aboutMultiCarouselQueries = groq`*[_type == 'about_multi_carousel_images'] {_id, title, image}`
 
-const timeBetweenRevalidations: number = 30 //24 * 60 * 60
+const timeBetweenRevalidations: number = 24 * 60 * 60
 
 export const getMiniCarouselImages = async (
   client: SanityClient,

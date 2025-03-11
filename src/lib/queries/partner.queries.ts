@@ -1,7 +1,7 @@
 import { Partner } from '~/lib/sanity.types'
 import { groq, SanityClient } from 'next-sanity'
 
-const timeBetweenRevalidations: number = 30 //24 * 60 * 60
+const timeBetweenRevalidations: number = 24 * 60 * 60
 
 const partnerQueries = groq`*[_type == 'partner'] {_id, name,link,image}`
 

@@ -1,7 +1,7 @@
 import { Picture } from '~/lib/sanity.types'
 import { groq, SanityClient } from 'next-sanity'
 
-const timeBetweenRevalidations: number = 30 //24 * 60 * 60
+const timeBetweenRevalidations: number = 24 * 60 * 60
 
 const aboutUsBackgroundQuery = groq`*[_type == 'picture' && title == 'About Us Background'][0] {_id, title, image}`
 
