@@ -11,9 +11,11 @@ export default async function EventsPage() {
   return (
     <Layout>
       <div className="w-screen justify-items-center sm:w-3/4 mx-auto">
-        <EventsPageContent currentEvents={currentEvents} previousEvents={previousEvents} />
+        <EventsPageContent
+          currentEvents={currentEvents}
+          previousEvents={previousEvents}
+        />
       </div>
     </Layout>
   )
 }
-

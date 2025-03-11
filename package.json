@@ -29,6 +29,7 @@
     "next-sanity": "8.5.0",
     "next-seo": "6.5.0",
     "next-themes": "0.3.0",
+    "ngrok": "^5.0.0-beta.2",
     "nodemailer": "^6.9.14",
     "react": "18.2.0",
     "react-countup": "^6.5.3",
