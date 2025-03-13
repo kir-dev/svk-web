@@ -1,10 +1,18 @@
 import { groq, SanityClient } from 'next-sanity'
 import { Member } from '../sanity.types'
 
-export const membersQuery = groq`*[_type == 'member'] {name, position, picture, slug}`
+const timeBetweenRevalidations: number = 24 * 60 * 60
+
+const membersQuery = groq`*[_type == 'member'] {name, position, picture, slug}`
 
 export async function getMembers(client: SanityClient): Promise<Member[]> {
-  return await client.fetch(membersQuery)
+  return await client.fetch(
+    membersQuery,
+    {},
+    {
+      next: { revalidate: timeBetweenRevalidations },
+    },
+  )
 }
 
 export const getMemberBySlug = async (
@@ -13,7 +21,13 @@ export const getMemberBySlug = async (
 ): Promise<Member | undefined> => {
   try {
     const memberBySlugQuery = groq`*[_type == 'member' && slug.current == '${slug}' ]{name, position, description, picture, slug}`
-    const response = await client.fetch(memberBySlugQuery)
+    const response = await client.fetch(
+      memberBySlugQuery,
+      {},
+      {
+        next: { revalidate: timeBetweenRevalidations },
+      },
+    )
 
     if (Array.isArray(response)) {
       if (response.length > 0) {
