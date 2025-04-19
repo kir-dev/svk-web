@@ -9,13 +9,16 @@ import { ContactSubmissionIndicator } from '~/components/pop-up-components/Conta
 import { CircularProgress } from '@nextui-org/progress'
 import { useEventApplicationForm } from '~/lib/hooks/useEventApplicationForm'
 import { ToggleInputField } from '~/components/formfileds/ToggleInputField'
+import {sendForm} from "~/lib/api";
 
 export interface ModalFormProps {
-  closeModal?: (param: any) => void
+  closeModal?: (param: any) => void,
+  eventName: string
 }
 
 export const EventApplicationForm: React.FC<ModalFormProps> = ({
   closeModal,
+  eventName
 }: ModalFormProps) => {
   const formInitState: EventApplicationFormFields = {
     name: '',
@@ -113,8 +116,7 @@ export const EventApplicationForm: React.FC<ModalFormProps> = ({
           className="rounded-lg p-3 bg-white border-blue-500 border-2 text-blue-600 hover:bg-blue-500 hover:text-white transition-colors disabled:border-gray-600 disabled:text-gray-600 disabled:bg-white"
           onClick={() =>
             handleSubmit(async () => {
-              //Todo
-              console.log('form field values:', formData)
+              await sendForm({ sheet: "event", event: eventName, ...formData })
             })
           }
           disabled={!validForm}

@@ -30,7 +30,7 @@ const generateEmailContent = (data: ContactFormFields) => {
   }
 }
 
-const handler = async (req, res) => {
+export default async function POST(req, res) {
   const data: ContactFormFields = req.body
   const entries = Object.entries(data)
   const valid =
@@ -51,5 +51,3 @@ const handler = async (req, res) => {
     return res.status(400).send({ message: error.message })
   }
 }
-
-export default handler
