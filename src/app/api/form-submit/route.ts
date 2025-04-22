@@ -2,7 +2,6 @@ import axios, { AxiosResponse } from 'axios'
 
 export async function POST(request) {
   const data = await request.json()
-  console.log(data)
   try {
     const axiosResponse: AxiosResponse = await axios.post(
       process.env['N8N_SHEETS_HTTP']!,
