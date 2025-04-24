@@ -6,12 +6,14 @@ import { EventApplicationForm } from '~/components/pop-up-components/event-appli
 
 interface Props {
   isOpenOuter?: boolean
-  onIsOpenChange?: (isOpen: boolean) => void
+  onIsOpenChange?: (isOpen: boolean) => void,
+  eventName: string
 }
 
 export const EventApplicationPopUp = ({
   isOpenOuter = false,
   onIsOpenChange,
+  eventName
 }: Props) => {
   const t = useTranslations('common.joinUs')
 
@@ -23,6 +25,7 @@ export const EventApplicationPopUp = ({
         closeModal={() => {
           setIsOpen(false)
         }}
+        eventName={eventName}
       />
     </PopUp>
   )

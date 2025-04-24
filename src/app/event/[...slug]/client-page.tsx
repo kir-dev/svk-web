@@ -27,6 +27,7 @@ export const EventPageContent = ({ event }: Props) => {
       <EventApplicationPopUp
         isOpenOuter={isEventApplicationPopUpOpen}
         onIsOpenChange={setEventApplicationPopUpOpen}
+        eventName={event.title}
       />
       <div className="flex w-full my-[5%] justify-center">
         <div className="bg-black bg-opacity-70 rounded-2xl w-full md:w-3/5 mx-5 md:mx-auto p-5">

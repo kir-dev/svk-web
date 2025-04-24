@@ -30,7 +30,7 @@ const generateEmailContent = (data: ContactFormFields) => {
   }
 }
 
-const handler = async (req, res) => {
+export async function POST(req) {
   const data: ContactFormFields = req.body
   const entries = Object.entries(data)
   const valid =
@@ -38,7 +38,12 @@ const handler = async (req, res) => {
       .map((field) => validateField(field[0], field[1]))
       .filter((valid) => valid).length == entries.length
   if (!valid) {
-    return res.status(400).send({ message: 'Incorrect form fields' })
+    return new Response(JSON.stringify({ error: 'Incorrect form fields' }), {
+      status: 400,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
   }
   try {
     await transporter.sendMail({
@@ -46,10 +51,21 @@ const handler = async (req, res) => {
       ...generateEmailContent(data),
       subject: 'Megkeresés',
     })
-    return res.status(200).send({ message: 'Successful request' })
+
+    return new Response(JSON.stringify({ message: 'Successful request' }), {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
   } catch (error) {
-    return res.status(400).send({ message: error.message })
+
+    const message = error?.response?.data?.message || error.message || 'Internal Server Error';
+    return new Response(JSON.stringify({ error: message }), {
+      status: error?.response?.status || 400,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
   }
 }
-
-export default handler

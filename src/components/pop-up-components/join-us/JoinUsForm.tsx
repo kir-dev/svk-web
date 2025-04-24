@@ -6,6 +6,7 @@ import { ContactSubmissionIndicator } from '~/components/pop-up-components/Conta
 import { CircularProgress } from '@nextui-org/progress'
 import { DropdownFormField } from '~/components/formfileds/DropdownFormField'
 import { useJoinUsFrom } from '~/lib/hooks/useJoinUsFrom'
+import { sendForm } from "~/lib/api";
 
 export interface ModalFormProps {
   closeModal?: (param: any) => void
@@ -111,7 +112,7 @@ export const JoinUsFrom: React.FC<ModalFormProps> = ({
           className="rounded-lg p-3 bg-white border-blue-500 border-2 text-blue-600 hover:bg-blue-500 hover:text-white transition-colors disabled:border-gray-600 disabled:text-gray-600 disabled:bg-white"
           onClick={() =>
             handleSubmit(async () => {
-              //Todo
+              await sendForm({ sheet: "joinus", ...formData })
             })
           }
           disabled={!validForm}
