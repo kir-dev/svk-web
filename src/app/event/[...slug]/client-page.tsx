@@ -22,6 +22,11 @@ export const EventPageContent = ({ event }: Props) => {
   const [isEventApplicationPopUpOpen, setEventApplicationPopUpOpen] =
     useState<boolean>(false)
 
+  const available =
+    event !== undefined && event.datetime !== undefined
+      ? new Date(event.datetime.toString()).getTime() > Date.now()
+      : false
+
   return (
     <>
       <EventApplicationPopUp
@@ -72,16 +77,18 @@ export const EventPageContent = ({ event }: Props) => {
           <div className="mt-10">
             <p className="text-justify text-xl">{event.description}</p>
           </div>
-          <div className="flex w-full justify-center">
-            <div className="w-fit">
-              <Button
-                onClick={() => setEventApplicationPopUpOpen(true)}
-                className="mx-auto text-xl my-5"
-              >
-                {t('apply')}
-              </Button>
+          {available && (
+            <div className="flex w-full justify-center">
+              <div className="w-fit">
+                <Button
+                  onClick={() => setEventApplicationPopUpOpen(true)}
+                  className="mx-auto text-xl my-5"
+                >
+                  {t('apply')}
+                </Button>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </>

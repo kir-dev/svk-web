@@ -29,6 +29,7 @@
     "none": "Nincsen közelgő esemény",
     "apply": "Jelentkezés",
     "form": {
+      "mainTitle": "Jelentkezés",
       "name": "Név",
       "exampleName": "Példa János",
       "email": "Email",

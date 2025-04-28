@@ -6,16 +6,16 @@ import { EventApplicationForm } from '~/components/pop-up-components/event-appli
 
 interface Props {
   isOpenOuter?: boolean
-  onIsOpenChange?: (isOpen: boolean) => void,
+  onIsOpenChange?: (isOpen: boolean) => void
   eventName: string
 }
 
 export const EventApplicationPopUp = ({
   isOpenOuter = false,
   onIsOpenChange,
-  eventName
+  eventName,
 }: Props) => {
-  const t = useTranslations('common.joinUs')
+  const t = useTranslations('events.form')
 
   const { isOpen, setIsOpen } = useModalIsOpen(isOpenOuter, onIsOpenChange)
 
