@@ -29,6 +29,7 @@
     "none": "There are no upcoming events",
     "apply": "Apply",
     "form": {
+      "mainTitle": "Application",
       "name": "Name",
       "exampleName": "Example John",
       "email": "Email",
