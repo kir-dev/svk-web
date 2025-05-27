@@ -7,6 +7,7 @@ export interface Partner {
   name?: string
   link?: string
   image?: ImageAsset
+  isActive?: boolean
 }
 
 export interface Member {

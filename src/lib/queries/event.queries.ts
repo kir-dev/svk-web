@@ -3,7 +3,7 @@ import { EventFull } from '~/lib/sanity.types'
 
 const tags: string[] = ['event']
 
-export const currentEvents = groq`*[_type == 'event' && datetime > now()]{title, datetime, image, spotLink, externalLink, location, lecturer, slug}`
+export const currentEvents = groq`*[_type == 'event' && isActive != false && (isActive == true || datetime > now())]{title, datetime, image, spotLink, externalLink, location, lecturer, slug}`
 
 export const getCurrentEvents = async (
   client: SanityClient,

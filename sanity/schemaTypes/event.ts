@@ -27,6 +27,13 @@ export default defineType({
       type: 'string',
     }),
     defineField({
+      name: 'isActive',
+      title: 'Is the event active',
+      description:
+        "If this field is empty the event's status will be calculated from the end date",
+      type: 'boolean',
+    }),
+    defineField({
       name: 'datetime',
       title: 'Datetime',
       type: 'datetime',
