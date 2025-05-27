@@ -37,7 +37,6 @@ export interface EventSummary extends EventPreview {
 
 export interface EventFull extends EventSummary {
   location?: string
-  host?: string
   lecturer?: string
 }
 

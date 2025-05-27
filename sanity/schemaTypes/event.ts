@@ -32,11 +32,6 @@ export default defineType({
       type: 'datetime',
     }),
     defineField({
-      name: 'host',
-      title: 'Host Company',
-      type: 'string',
-    }),
-    defineField({
       name: 'lecturer',
       title: 'Lecturer',
       description: 'Name or estimated count',
