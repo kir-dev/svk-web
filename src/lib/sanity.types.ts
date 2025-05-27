@@ -7,7 +7,6 @@ export interface Partner {
   name?: string
   link?: string
   image?: ImageAsset
-  isActive?: boolean
 }
 
 export interface Member {
@@ -27,6 +26,7 @@ export interface EventPreview {
   slug: Slug
   datetime?: DateTime
   image?: ImageAsset
+  isActive?: boolean
 }
 
 export interface EventSummary extends EventPreview {

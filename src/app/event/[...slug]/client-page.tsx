@@ -22,10 +22,15 @@ export const EventPageContent = ({ event }: Props) => {
   const [isEventApplicationPopUpOpen, setEventApplicationPopUpOpen] =
     useState<boolean>(false)
 
+  console.log(event)
+
   const available =
-    event !== undefined && event.datetime !== undefined
-      ? new Date(event.datetime.toString()).getTime() > Date.now()
-      : false
+    event !== undefined &&
+    (event.isActive == true ||
+      (event.isActive == null &&
+        (event.datetime !== undefined
+          ? new Date(event.datetime.toString()).getTime() > Date.now()
+          : false)))
 
   return (
     <>
