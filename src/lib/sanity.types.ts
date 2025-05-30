@@ -22,17 +22,17 @@ export interface Member {
 export interface EventPreview {
   _type: 'event'
   _id: string
-  title: string
   slug: Slug
-  datetime?: DateTime
   image?: ImageAsset
-  isActive?: boolean
+  externalLink?: string
 }
 
 export interface EventSummary extends EventPreview {
+  title: string
+  isActive?: boolean
+  datetime?: DateTime
   description?: string
   spotLink?: string
-  externalLink?: string
   exportLink?: string
 }
 

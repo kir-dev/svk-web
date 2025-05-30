@@ -1,4 +1,4 @@
-"use client";
+'use client'
 
 import { useTranslations } from 'next-intl'
 import { SvkLogoWithText } from '~/components/svg-components/SvkLogoWithText'
@@ -7,10 +7,15 @@ import { CarouselImage } from '~/components/carousel-components/CarouselImage'
 import Bubbles from '~/components/Bubbles'
 import { PartnersSection } from '~/components/partners-components/PartnersSection'
 import React from 'react'
+import { EventPreview, Partner } from '~/lib/sanity.types'
 
-export const ClientHomePage = ({ partners, multiCarouselImages }) => {
+interface Props {
+  partners: Partner[]
+  events: EventPreview[]
+}
+
+export const ClientHomePage = ({ partners, events }: Props) => {
   const t = useTranslations('Index')
-
   return (
     <>
       <section className="items-center h-fit justify-center px-0 pb-8 -translate-y-20">
@@ -33,9 +38,16 @@ export const ClientHomePage = ({ partners, multiCarouselImages }) => {
           {t('events')}
         </h1>
         <MultiCarousel>
-          {multiCarouselImages.map((image) => (
-            <CarouselImage image={image} key={image._id} />
-          ))}
+          {events.map(
+            (event) =>
+              event.image && (
+                <CarouselImage
+                  image={event.image}
+                  key={event.image._id}
+                  link={event.externalLink || '/event/' + event.slug.current}
+                />
+              ),
+          )}
         </MultiCarousel>
       </section>
       <section>

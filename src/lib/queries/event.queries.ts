@@ -1,7 +1,22 @@
 import { groq, SanityClient } from 'next-sanity'
-import { EventFull } from '~/lib/sanity.types'
+import { EventFull, EventPreview } from '~/lib/sanity.types'
 
 const tags: string[] = ['event']
+
+export const currentEventsPreview = groq`*[_type == 'event' && isActive != false && (isActive == true || datetime > now())]{image,externalLink, slug}`
+
+export const getCurrentEventsPreview = async (
+  client: SanityClient,
+): Promise<EventPreview[]> => {
+  return await client.fetch(
+    currentEventsPreview,
+    {},
+    {
+      cache: 'no-store',
+      next: { tags },
+    },
+  )
+}
 
 export const currentEvents = groq`*[_type == 'event' && isActive != false && (isActive == true || datetime > now())]{title, datetime, image, spotLink, externalLink, location, lecturer, slug}`
 
