@@ -6,8 +6,9 @@ interface Props {
   title: string
   partners: Partner[]
 }
+
 export const PartnersSection = ({ title, partners }: Props) => {
-  const partnerPerRow = 2
+  const partnerPerRow = Math.ceil(partners.length / 2)
 
   const splitArrays = (array: Partner[], size: number): Partner[][] => {
     const result: Partner[][] = []

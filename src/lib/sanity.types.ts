@@ -17,27 +17,28 @@ export interface Member {
   position?: string
   description?: string
   picture?: ImageAsset
+  linkedIn?: string
 }
 
 export interface EventPreview {
   _type: 'event'
   _id: string
-  title: string
   slug: Slug
-  datetime?: DateTime
   image?: ImageAsset
+  externalLink?: string
 }
 
 export interface EventSummary extends EventPreview {
+  title: string
+  isActive?: boolean
+  datetime?: DateTime
   description?: string
   spotLink?: string
-  externalLink?: string
   exportLink?: string
 }
 
 export interface EventFull extends EventSummary {
   location?: string
-  host?: string
   lecturer?: string
 }
 

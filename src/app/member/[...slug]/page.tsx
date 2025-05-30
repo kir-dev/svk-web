@@ -5,15 +5,20 @@ import { notFound } from 'next/navigation'
 import Layout from '~/components/Layout'
 import Image from 'next/image'
 import { urlForImage } from '~/lib/sanity.image'
-
+import { LinkedInSvg } from '~/components/svg-components/LinkedInSvg'
+import React from 'react'
+import { Member } from '~/lib/sanity.types'
 
 async function fetchMember(slug: string) {
   const client = getClient()
   return await getMemberBySlug(client, slug)
 }
 
-
-export default async function MemberSlugRoute({ params }: { params: Promise<{ slug: string }> }) {
+export default async function MemberSlugRoute({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}) {
   const slug = (await params).slug
   if (!slug) {
     notFound()
@@ -28,7 +33,11 @@ export default async function MemberSlugRoute({ params }: { params: Promise<{ sl
   return <MemberSlugContent member={member} />
 }
 
-const MemberSlugContent = ({ member }) => {
+interface Props {
+  member: Member
+}
+
+const MemberSlugContent = ({ member }: Props) => {
   return (
     <Layout>
       <div className="flex w-full my-[5%] justify-center">
@@ -49,6 +58,11 @@ const MemberSlugContent = ({ member }) => {
             <div className="flex flex-col w-auto mt-5 lg:mt-0 justify-center">
               <h1 className="text-3xl mb-5">{member.name}</h1>
               <h2 className="text-xl">{member.position}</h2>
+              {member.linkedIn && (
+                <a href={member.linkedIn} target="_blank" className="my-5">
+                  <LinkedInSvg />
+                </a>
+              )}
             </div>
           </div>
 

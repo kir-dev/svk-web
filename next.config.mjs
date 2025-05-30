@@ -10,8 +10,8 @@ const config = withPlausibleProxy({
       { hostname: 'cdn.sanity.io' },
       { hostname: 'betteruptime.com' },
     ],
-  }
+  },
 })
 
-const withNextIntl = createNextIntlPlugin();
-export default withNextIntl(config);
+const withNextIntl = createNextIntlPlugin()
+export default withNextIntl(config)

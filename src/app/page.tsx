@@ -1,22 +1,19 @@
 import React from 'react'
 import { getClient } from '~/lib/sanity.client'
 import { getPartners } from '~/lib/queries/partner.queries'
-import { Picture } from '~/lib/sanity.types'
-import { getHomeMultiCarouselImages } from '~/lib/queries/images'
 import { ClientHomePage } from '~/app/client-page'
 import Layout from '~/components/Layout'
-
+import { getCurrentEventsPreview } from '~/lib/queries'
+import { EventPreview, Partner } from '~/lib/sanity.types'
 
 export default async function HomePage() {
   const client = getClient()
-  const partners = await getPartners(client)
-  const multiCarouselImages: Picture[] = await getHomeMultiCarouselImages(client)
+  const partners: Partner[] = await getPartners(client)
+  const events: EventPreview[] = await getCurrentEventsPreview(client)
 
-  return(
+  return (
     <Layout>
-      <ClientHomePage partners={partners} multiCarouselImages={multiCarouselImages} />
+      <ClientHomePage partners={partners} events={events} />
     </Layout>
   )
 }
-
-
