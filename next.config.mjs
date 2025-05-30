@@ -6,7 +6,6 @@ const config = withPlausibleProxy({
   customDomain: process.env.NEXT_PUBLIC_PLAUSIBLE_URL,
 })({
   images: {
-    dangerouslyAllowSVG: true,
     remotePatterns: [
       { hostname: 'cdn.sanity.io' },
       { hostname: 'betteruptime.com' },
