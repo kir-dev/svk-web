@@ -3,7 +3,7 @@ import { Member } from '../sanity.types'
 
 const timeBetweenRevalidations: number = 24 * 60 * 60
 
-const membersQuery = groq`*[_type == 'member'] {name, position, picture, slug}`
+const membersQuery = groq`*[_type == 'member'] | order(orderPriority asc) {name, position, picture, slug}`
 
 export async function getMembers(client: SanityClient): Promise<Member[]> {
   return await client.fetch(

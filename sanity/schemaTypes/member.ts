@@ -27,6 +27,14 @@ export default defineType({
       type: 'string',
     }),
     defineField({
+      name: 'orderPriority',
+      title: 'Order Priority',
+      description:
+        'Represents the order of the members on the page in ascending order',
+      initialValue: 0,
+      type: 'number',
+    }),
+    defineField({
       name: 'description',
       title: 'Description',
       type: 'string',
