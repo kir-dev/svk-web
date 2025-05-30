@@ -10,7 +10,6 @@ interface Props {
   name: string
   position?: string
   slug: Slug
-  linkedIn?: string
 }
 
 export const MemberCard: FC<Props> = ({
@@ -18,7 +17,6 @@ export const MemberCard: FC<Props> = ({
   name,
   position,
   slug,
-  linkedIn = '#',
 }: Props) => {
   const router = useRouter()
 
