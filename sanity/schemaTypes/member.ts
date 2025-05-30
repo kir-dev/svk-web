@@ -51,21 +51,6 @@ export default defineType({
       title: 'LinkedIn',
       type: 'url',
     }),
-    defineField({
-      name: 'linkedInQr',
-      title: 'Qr code of LinkedIn profile',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
-      fields: [
-        {
-          name: 'alt',
-          type: 'string',
-          title: 'Alternative Text',
-        },
-      ],
-    }),
   ],
   preview: {
     select: {

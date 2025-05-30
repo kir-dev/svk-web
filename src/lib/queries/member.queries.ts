@@ -20,7 +20,7 @@ export const getMemberBySlug = async (
   slug: string,
 ): Promise<Member | undefined> => {
   try {
-    const memberBySlugQuery = groq`*[_type == 'member' && slug.current == '${slug}' ]{name, position, description, picture, slug}`
+    const memberBySlugQuery = groq`*[_type == 'member' && slug.current == '${slug}' ]{name, position, description, picture, slug, linkedIn}`
     const response = await client.fetch(
       memberBySlugQuery,
       {},

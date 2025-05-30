@@ -17,6 +17,7 @@ export interface Member {
   position?: string
   description?: string
   picture?: ImageAsset
+  linkedIn?: string
 }
 
 export interface EventPreview {
