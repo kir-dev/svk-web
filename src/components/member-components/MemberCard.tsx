@@ -1,4 +1,4 @@
-"use client";
+'use client'
 
 import { ImageAsset, Slug } from 'sanity'
 import React, { FC } from 'react'

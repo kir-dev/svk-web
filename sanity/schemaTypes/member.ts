@@ -27,6 +27,14 @@ export default defineType({
       type: 'string',
     }),
     defineField({
+      name: 'orderPriority',
+      title: 'Order Priority',
+      description:
+        'Represents the order of the members on the page in ascending order',
+      initialValue: 0,
+      type: 'number',
+    }),
+    defineField({
       name: 'description',
       title: 'Description',
       type: 'string',
@@ -50,21 +58,6 @@ export default defineType({
       name: 'linkedIn',
       title: 'LinkedIn',
       type: 'url',
-    }),
-    defineField({
-      name: 'linkedInQr',
-      title: 'Qr code of LinkedIn profile',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
-      fields: [
-        {
-          name: 'alt',
-          type: 'string',
-          title: 'Alternative Text',
-        },
-      ],
     }),
   ],
   preview: {
