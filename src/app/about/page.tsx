@@ -16,9 +16,9 @@ export default async function AboutUsPage() {
       <AboutUsPageClient />
       <section className="pb-24">
         <MembersGrid>
-          {members.map((member) => (
+          {members.map((member, index) => (
             <MemberCard
-              key={member._id}
+              key={index}
               name={member.name}
               slug={member.slug}
               position={member.position}

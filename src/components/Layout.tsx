@@ -14,7 +14,7 @@ export default function Layout({ children }) {
       <Blur width={15} height={15} top={80} left={55} />
       <div className="z-20 relative">
         <NavbarSitewide routes={allRoutes} />
-        {children}
+            {children}
         <Footer routes={allRoutes} />
       </div>
     </div>
