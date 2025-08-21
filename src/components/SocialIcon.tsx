@@ -3,18 +3,16 @@ import { SVGProps } from 'react'
 
 
 interface SocialIcon {
-  key: string
   href: string
   icon: React.FC<SVGProps<SVGSVGElement>>
 }
 
-export default function SocialIcon({key, href, icon}) {
+export default function SocialIcon({ href, icon}: SocialIcon) {
 
-  const item : SocialIcon = { key, href, icon }
+  const item : SocialIcon = { href, icon }
 
   return(
   <Button
-    key={key}
     isIconOnly
     className="p-0 bg-transparent data-[hover=true]:bg-transparent h-10 w-10"
   >
