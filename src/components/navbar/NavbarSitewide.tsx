@@ -109,7 +109,7 @@ export const NavbarSitewide: FC<PropsWithChildren<Props>> = ({ routes }) => {
                 <div className="my-5">
                   <button
                     onClick={() => setContactPopUpOpen(!isContactPopUpOpen)}
-                    className="bg-blue-500 rounded-full p-3"
+                    className="bg-cyan rounded-full p-3"
                   >
                     {t('navbar.contactButtonTitle')}
                   </button>
@@ -134,7 +134,7 @@ export const NavbarSitewide: FC<PropsWithChildren<Props>> = ({ routes }) => {
               </button>
               <button
                 onClick={() => setContactPopUpOpen(!isContactPopUpOpen)}
-                className="bg-blue-500 rounded-full p-3"
+                className="bg-cyan rounded-full p-3"
               >
                 {t('navbar.contactButtonTitle')}
               </button>

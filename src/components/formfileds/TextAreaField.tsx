@@ -27,7 +27,7 @@ export const TextAreaField = ({
         id={id}
         value={value}
         placeholder={placeholder}
-        className={`w-full h-20 rounded bg-white text-gray-600 border-4 p-1 ${touched ? 'invalid:border-red-600 valid:border-blue-500' : ''}`}
+        className={`w-full h-20 rounded bg-white text-gray-600 border-4 p-1 ${touched ? 'invalid:border-red-600 valid:border-cyan' : ''}`}
         onSubmit={() => {
           setTouched(false)
         }}

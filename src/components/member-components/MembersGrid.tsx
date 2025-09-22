@@ -1,7 +1,7 @@
 export const MembersGrid = ({ children }) => {
   return (
-    <div className="flex flex-row flex-wrap w-full  gap-5 justify-center">
-      {children}
+    <div className="flex flex-row flex-wrap mx-auto w-[83%] gap-5 justify-around">
+        {children}
     </div>
   )
 }

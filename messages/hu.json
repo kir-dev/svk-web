@@ -4,7 +4,6 @@
     "mainTitle": "Híd a jövő szakembereihez\n",
     "motto": "Employer Branding szolgáltatások mérnöki és informatikai területen",
     "events": "Események",
-    "joinUs": "Csatlakozz",
     "partnersTitle": "Partnereink"
   },
   "Contact": {
@@ -47,7 +46,7 @@
       "langSwitcher": "Nyelv váltása",
       "themeSwitcher": "Téma váltása",
       "contactButtonTitle": "Kapcsolat",
-      "joinButtonTitle": "Csatlakozás",
+      "joinButtonTitle": "Karrier",
       "home": "Kezdőlap",
       "locale": "HU"
     },
@@ -91,7 +90,7 @@
       }
     },
     "joinUs": {
-      "mainTitle": "Csatlakozás",
+      "mainTitle": "Karrier",
       "form": {
         "name": "Név",
         "exampleName": "Példa János",

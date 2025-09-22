@@ -4,7 +4,6 @@
     "mainTitle": "Bridge to the professionals of the future",
     "motto": "Employer Branding services in engineering and information technology",
     "events": "Events",
-    "joinUs": "Join us",
     "partnersTitle": "Our partners"
   },
   "Contact": {
@@ -47,7 +46,7 @@
       "langSwitcher": "Switch language",
       "themeSwitcher": "Switch color theme",
       "contactButtonTitle": "Contact",
-      "joinButtonTitle": "Join Us",
+      "joinButtonTitle": "Carrier",
       "home": "Home",
       "locale": "EN"
     },
@@ -85,7 +84,7 @@
       }
     },
     "joinUs": {
-      "mainTitle": "Join Us",
+      "mainTitle": "Carrier",
       "form": {
         "name": "Name",
         "exampleName": "Example John",

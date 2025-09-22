@@ -113,7 +113,7 @@ export const EventApplicationForm: React.FC<ModalFormProps> = ({
         </button>
         <button
           type="submit"
-          className="rounded-lg p-3 bg-white border-blue-500 border-2 text-blue-600 hover:bg-blue-500 hover:text-white transition-colors disabled:border-gray-600 disabled:text-gray-600 disabled:bg-white"
+          className="rounded-lg p-3 bg-white border-cyan border-2 text-cyan hover:bg-cyan hover:text-white transition-colors disabled:border-gray-600 disabled:text-gray-600 disabled:bg-white"
           onClick={() =>
             handleSubmit(async () => {
               await sendForm({ sheet: "event", event: eventName, ...formData })
