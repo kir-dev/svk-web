@@ -9,8 +9,8 @@ import { ThemeProvider } from 'next-themes'
 const montserrat = Montserrat({
   weight: '500',
   subsets: ['latin'],
-  display: 'swap', // optional: reduces CLS
-  variable: '--font-montserrat', // optional: if using CSS variables
+  display: 'swap',
+  variable: '--font-montserrat',
 });
 
 export default async function RootLayout( { children }: {
