@@ -3,8 +3,14 @@
 import { useTranslations } from 'next-intl'
 import { LargeEventGrid } from '~/components/event-components/LargeEventGrid'
 import { EventTile } from '~/components/event-components/EventTile'
+import { EventFull } from '~/lib/sanity.types'
 
-export const EventsPageContent = ({ currentEvents, previousEvents }) => {
+interface Props {
+  currentEvents: EventFull[]
+  previousEvents: EventFull[]
+}
+
+export const EventsPageContent = ({ currentEvents, previousEvents }: Props) => {
   const t = useTranslations('events')
 
   return (

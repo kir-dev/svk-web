@@ -26,7 +26,6 @@ export default async function MemberSlugRoute({
 
   const member = await fetchMember(slug)
   if (!member) {
-    console.log('no member')
     notFound()
   }
 

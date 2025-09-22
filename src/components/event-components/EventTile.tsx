@@ -30,8 +30,8 @@ export const EventTile: FC<Props> = ({ event }) => {
               hovered ? '-translate-y-[40%]' : ''
             }`}
             onClick={() => {
-                const path = event.externalLink || '/event/' + event.slug.current
-                router.push(path)
+              const path = event.externalLink || '/event/' + event.slug.current
+              router.push(path)
             }}
           >
             <EventCoverPicture image={event.image} title={event.title} />
