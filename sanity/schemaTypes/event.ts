@@ -30,8 +30,18 @@ export default defineType({
       name: 'isActive',
       title: 'Is the event active',
       description:
-        "If this field is empty the event's status will be calculated from the end date",
-      type: 'boolean',
+        'If this field is Date Dependent the event will behave as active until the given datetime',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Active', value: 'active' },
+          { title: 'Inactive', value: 'inactive' },
+          { title: 'Date Dependent', value: 'dateDependent' },
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'dateDependent',
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'datetime',
@@ -89,6 +99,7 @@ export default defineType({
       spotLink: 'spotLink',
       externalLink: 'externalLink',
       exportLink: 'exportLink',
+      isActive: 'isActive',
     },
   },
 })

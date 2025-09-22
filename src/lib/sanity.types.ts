@@ -30,7 +30,7 @@ export interface EventPreview {
 
 export interface EventSummary extends EventPreview {
   title: string
-  isActive?: boolean
+  isActive: EventActivitySate
   datetime?: DateTime
   description?: string
   spotLink?: string
@@ -47,4 +47,10 @@ export interface Picture {
   _id: string
   title: string
   image: ImageAsset
+}
+
+export enum EventActivitySate {
+  active = 'active',
+  inactive = 'inactive',
+  dateDependent = 'dateDependent',
 }

@@ -10,7 +10,7 @@ import { LocationIcon } from '~/components/svg-components/LocationIcon'
 import { LecturerIcon } from '~/components/svg-components/LecturerIcon'
 import { Button } from '@nextui-org/react'
 import React, { useState } from 'react'
-import { EventFull } from '~/lib/sanity.types'
+import { EventActivitySate, EventFull } from '~/lib/sanity.types'
 
 interface Props {
   event: EventFull
@@ -22,12 +22,10 @@ export const EventPageContent = ({ event }: Props) => {
   const [isEventApplicationPopUpOpen, setEventApplicationPopUpOpen] =
     useState<boolean>(false)
 
-  console.log(event)
-
   const available =
     event !== undefined &&
-    (event.isActive == true ||
-      (event.isActive == null &&
+    (event.isActive == EventActivitySate.active ||
+      (event.isActive == EventActivitySate.dateDependent &&
         (event.datetime !== undefined
           ? new Date(event.datetime.toString()).getTime() > Date.now()
           : false)))
