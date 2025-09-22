@@ -2,12 +2,12 @@ import { allRoutes } from '~/utils/routes'
 
 import { Footer } from './Footer'
 import { NavbarSitewide } from './navbar/NavbarSitewide'
-import { Blur } from '~/components/decoration-components/Blur'
 import Image from 'next/image'
 import { urlForImage } from '~/lib/sanity.image'
 import { Picture } from '~/lib/sanity.types'
 import { getAboutUsBackground } from '~/lib/queries/picture.queries'
 import { getClient } from '~/lib/sanity.client'
+import { BackgroundFeatures } from "~/components/BackgroundFeatures";
 
 export default async function AboutUsLayout(
   { children },
@@ -26,9 +26,7 @@ export default async function AboutUsLayout(
       </div>
 
       <div className="d-flex flex-col bg-svk_blue z-10 relative overflow-hidden" style={{clipPath: "inset(0 0 -1px 0)"}}>
-        <Blur width={20} height={20} top={50} left={-10} />
-        <Blur width={15} height={15} top={0} left={80} />
-        <Blur width={15} height={15} top={80} left={55} />
+        <BackgroundFeatures/>
         <div className="relative z-10">
           {children}
         </div>
