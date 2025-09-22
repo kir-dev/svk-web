@@ -27,7 +27,7 @@ export const DropdownFormField = ({
       <select
         id={id}
         value={value}
-        className={`shadow rounded w-full py-2 px-3 text-gray-700 border-4 bg-white ${value !== incorrectValue ? 'border-blue-500' : ''}`}
+        className={`shadow rounded w-full py-2 px-3 text-gray-700 border-4 bg-white ${value !== incorrectValue ? 'border-cyan' : ''}`}
         required
         onChange={onChange}
       >

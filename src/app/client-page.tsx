@@ -39,11 +39,11 @@ export const ClientHomePage = ({ partners, events }: Props) => {
         </h1>
         <MultiCarousel>
           {events.map(
-            (event) =>
+            (event, index) =>
               event.image && (
                 <CarouselImage
                   image={event.image}
-                  key={event.image._id}
+                  key={index}
                   link={event.externalLink || '/event/' + event.slug.current}
                 />
               ),
@@ -53,7 +53,7 @@ export const ClientHomePage = ({ partners, events }: Props) => {
       <section>
         <Bubbles />
       </section>
-      <section className="pb-24">
+      <section>
         <PartnersSection partners={partners} title={t('partnersTitle')} />
       </section>
     </>

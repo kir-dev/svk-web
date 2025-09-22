@@ -27,7 +27,7 @@ export const MemberCard: FC<Props> = ({
         router.push(`member/${slug.current}`)
       }}
     >
-      <div className="transition-all bg-blue-950 rounded-md overflow-y-hidden w-64 h-80 hover:scale-105">
+      <div className="transition-all bg-black/35 rounded-md overflow-y-hidden w-64 h-80 hover:scale-105">
         <div className="p-1 pb-0 h-2/3">
           {picture && (
             <img

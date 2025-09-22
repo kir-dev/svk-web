@@ -4,6 +4,9 @@
 
 body {
     overflow-x: hidden !important;
+    font-family: 'Montserrat', sans-serif;
+    color: #FFF;
+    fill: #FFF;
 }
 
 @layer base {

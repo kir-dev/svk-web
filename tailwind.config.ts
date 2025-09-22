@@ -10,6 +10,7 @@ const config = {
     extend: {
       colors: {
         cyan: '#3dcab1',
+        svk_blue: '#071c42'
       },
     },
   },

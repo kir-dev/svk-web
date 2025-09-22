@@ -25,7 +25,7 @@ export default async function AboutUsLayout(
                className="w-screen fixed overflow-y-hidden"/>
       </div>
 
-      <div className="d-flex flex-col bg-[#111827] z-10 relative overflow-hidden" style={{clipPath: "inset(0 0 -1px 0)"}}>
+      <div className="d-flex flex-col bg-svk_blue z-10 relative overflow-hidden" style={{clipPath: "inset(0 0 -1px 0)"}}>
         <Blur width={20} height={20} top={50} left={-10} />
         <Blur width={15} height={15} top={0} left={80} />
         <Blur width={15} height={15} top={80} left={55} />

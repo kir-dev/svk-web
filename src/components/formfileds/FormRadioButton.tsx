@@ -31,7 +31,7 @@ export const FormRadioButton = ({
           checked={isChecked}
           onChange={onChange}
           className={`col-start-1 row-start-1 appearance-none shrink-0 w-4 h-4 border-4 rounded-full transition-all ${
-            isChecked ? 'border-blue-500' : 'border-gray-600 bg-gray-500'
+            isChecked ? 'border-cyan' : 'border-gray-600 bg-gray-500'
           }`}
         />
         <div

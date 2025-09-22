@@ -19,20 +19,20 @@ export const EventTile: FC<Props> = ({ event }) => {
 
   return (
     <div
-      className="relative transition-transform bg-gray-900 rounded-md max-w-2xl overflow-hidden cursor-pointer"
+      className="relative transition-transform bg-black/70 rounded-md max-w-2xl overflow-hidden"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      onClick={() => {
-        const path = event.externalLink || '/event/' + event.slug.current
-        router.push(path)
-      }}
     >
       {event.image && (
         <div className="relative h-full">
           <div
-            className={`transition-transform ${
+            className={`transition-transform cursor-pointer ${
               hovered ? '-translate-y-[40%]' : ''
             }`}
+            onClick={() => {
+                const path = event.externalLink || '/event/' + event.slug.current
+                router.push(path)
+            }}
           >
             <EventCoverPicture image={event.image} title={event.title} />
             <h1 className="my-5 mx-3 text-2xl">{event.title}</h1>
@@ -40,7 +40,7 @@ export const EventTile: FC<Props> = ({ event }) => {
 
           {event.spotLink && (
             <div
-              className={`absolute bottom-0 right-0 m-4 w-fit z-10 transition-transform ${hovered ? '-translate-y-[40%]' : ''}`}
+              className={`absolute bottom-0 right-0 m-4 w-fit z-10 transition-transform cursor-pointer ${hovered ? '-translate-y-[40%]' : ''}`}
               onClick={(e) => {
                 e.stopPropagation()
                 window.open(event.spotLink!!, '_blank')

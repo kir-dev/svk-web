@@ -47,7 +47,7 @@
       "langSwitcher": "Nyelv váltása",
       "themeSwitcher": "Téma váltása",
       "contactButtonTitle": "Kapcsolat",
-      "joinButtonTitle": "Csatlakozás",
+      "joinButtonTitle": "Karrier",
       "home": "Kezdőlap",
       "locale": "HU"
     },
@@ -91,7 +91,7 @@
       }
     },
     "joinUs": {
-      "mainTitle": "Csatlakozás",
+      "mainTitle": "Karrier",
       "form": {
         "name": "Név",
         "exampleName": "Példa János",
