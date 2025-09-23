@@ -18,6 +18,21 @@ export const getCurrentEventsPreview = async (
   )
 }
 
+export const previousEventsPreview = groq`*[_type == 'event' &&  (isActive == '${EventActivitySate.inactive}' || (isActive == '${EventActivitySate.dateDependent}' && datetime < now()))]{image,externalLink, slug}`
+
+export const getPreviousEventsPreview = async (
+  client: SanityClient,
+): Promise<EventPreview[]> => {
+  return await client.fetch(
+    previousEventsPreview,
+    {},
+    {
+      cache: 'no-store',
+      next: { tags },
+    },
+  )
+}
+
 export const currentEvents = groq`*[_type == 'event' && isActive == '${EventActivitySate.active}' || (isActive == '${EventActivitySate.dateDependent}' && datetime >= now())]{title, datetime, image, spotLink, externalLink, location, lecturer, slug, isActive}`
 
 export const getCurrentEvents = async (
