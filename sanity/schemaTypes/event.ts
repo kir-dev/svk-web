@@ -8,12 +8,14 @@ export default defineType({
     defineField({
       name: 'title',
       title: 'Title',
+      description: 'The title of the event',
       type: 'string',
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'slug',
       title: 'Slug',
+      description: 'This is used for the url of the event. Must be unique!',
       type: 'slug',
       validation: (rule) => rule.required(),
       options: {
@@ -24,6 +26,7 @@ export default defineType({
     defineField({
       name: 'location',
       title: 'Location',
+      description: 'The location where the event will be set',
       type: 'string',
     }),
     defineField({
@@ -46,22 +49,25 @@ export default defineType({
     defineField({
       name: 'datetime',
       title: 'Datetime',
+      description: 'The date that the event will occur on',
       type: 'datetime',
     }),
     defineField({
       name: 'lecturer',
       title: 'Lecturer',
-      description: 'Name or estimated count',
+      description: 'Name of lecturer or estimated count of the lecturers',
       type: 'string',
     }),
     defineField({
       name: 'description',
       title: 'Description',
+      description: 'The description that will appear in the detailed view of the event. Will not appear if you define an external link',
       type: 'string',
     }),
     defineField({
       name: 'image',
       title: 'Image',
+      description: 'Preview image of the event',
       type: 'image',
       options: {
         hotspot: true,
@@ -71,22 +77,26 @@ export default defineType({
           name: 'alt',
           type: 'string',
           title: 'Alternative Text',
+          description: 'Text that appears if the image fails to load'
         },
       ],
     }),
     defineField({
       name: 'spotLink',
       title: 'Link of the Spot album',
+      description: 'This is the link the user will go to if they press the little picture icon on the preview of the event',
       type: 'url',
     }),
     defineField({
       name: 'externalLink',
       title: 'External link',
+      description: 'If defined, this is where the user will be redirected to when they click on the event preview',
       type: 'url',
     }),
     defineField({
       name: 'exportLink',
       title: 'ICS export link',
+      description: '(not currently in use)',
       type: 'url',
     }),
   ],

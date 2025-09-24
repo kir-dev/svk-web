@@ -4,6 +4,7 @@ export default defineType({
   name: 'picture',
   title: 'Picture',
   type: 'document',
+  description: "These pictures can be used for various things on website. Normally you don't want to add here unless you know what you are doing",
   fields: [
     defineField({
       name: 'title',
