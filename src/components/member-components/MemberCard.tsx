@@ -1,45 +1,50 @@
 'use client'
 
-import { ImageAsset, Slug } from 'sanity'
 import React, { FC } from 'react'
 import { urlForImage } from '~/lib/sanity.image'
 import { useRouter } from 'next/navigation'
+import { Member } from '~/lib/sanity.types'
+import { useLocale } from 'next-intl'
+import { formatNameByLocale, getLocalizedText } from '~/utils/getLocalizedText'
 
 interface Props {
-  picture?: ImageAsset
-  name: string
-  position?: string
-  slug: Slug
+  member: Member
 }
 
-export const MemberCard: FC<Props> = ({
-  picture,
-  name,
-  position,
-  slug,
-}: Props) => {
+export const MemberCard: FC<Props> = ({ member }: Props) => {
   const router = useRouter()
+  const locale = useLocale()
 
   return (
     <a
       className={'cursor-pointer'}
       onClick={() => {
-        router.push(`member/${slug.current}`)
+        router.push(`member/${member.slug.current}`)
       }}
     >
       <div className="transition-all bg-black/35 rounded-md overflow-y-hidden w-64 h-80 hover:scale-105">
         <div className="p-1 pb-0 h-2/3">
-          {picture && (
+          {member.picture && (
             <img
-              src={urlForImage(picture)?.url() ?? ''}
-              alt={picture.title}
+              src={urlForImage(member.picture)?.url() ?? ''}
+              alt={member.picture.title}
               className="rounded-full mx-auto max-h-full"
             />
           )}
         </div>
         <div className="flex flex-col justify-center h-1/3 text-center">
-          <h1 className="text-lg md:text-2xl">{name}</h1>
-          <p className="text-md text-gray-400">{position ?? ''}</p>
+          <h1 className="text-lg md:text-2xl">
+            {formatNameByLocale(locale, member.firstName, member.lastName)}
+          </h1>
+          {member.position && (
+            <p className="text-md text-gray-400">
+              {getLocalizedText(
+                locale,
+                member.position,
+                member.englishPosition,
+              ) ?? ''}
+            </p>
+          )}
         </div>
       </div>
     </a>

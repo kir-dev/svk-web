@@ -3,7 +3,7 @@ import { Member } from '../sanity.types'
 
 const timeBetweenRevalidations: number = 24 * 60 * 60
 
-const membersQuery = groq`*[_type == 'member'] | order(orderPriority asc) {name, position, picture, slug}`
+const membersQuery = groq`*[_type == 'member'] | order(orderPriority asc) {firstName, lastName, position,englishPosition, picture, slug}`
 
 export async function getMembers(client: SanityClient): Promise<Member[]> {
   return await client.fetch(
@@ -20,7 +20,7 @@ export const getMemberBySlug = async (
   slug: string,
 ): Promise<Member | undefined> => {
   try {
-    const memberBySlugQuery = groq`*[_type == 'member' && slug.current == '${slug}' ]{name, position, description, picture, slug, linkedIn}`
+    const memberBySlugQuery = groq`*[_type == 'member' && slug.current == '${slug}' ]{firstName, lastName, position, englishPosition, description, englishDescription, picture, slug, linkedIn}`
     const response = await client.fetch(
       memberBySlugQuery,
       {},

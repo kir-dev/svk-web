@@ -12,10 +12,13 @@ export interface Partner {
 export interface Member {
   _type: 'member'
   _id: string
-  name: string
+  firstName: string
+  lastName: string
   slug: Slug
   position?: string
+  englishPosition?: string
   description?: string
+  englishDescription?: string
   picture?: ImageAsset
   linkedIn?: string
 }
@@ -30,9 +33,11 @@ export interface EventPreview {
 
 export interface EventSummary extends EventPreview {
   title: string
+  englishTitle?: string
   isActive: EventActivitySate
   datetime?: DateTime
   description?: string
+  englishDescription?: string
   spotLink?: string
   exportLink?: string
 }
@@ -40,6 +45,7 @@ export interface EventSummary extends EventPreview {
 export interface EventFull extends EventSummary {
   location?: string
   lecturer?: string
+  englishLecturer?: string
 }
 
 export interface Picture {
