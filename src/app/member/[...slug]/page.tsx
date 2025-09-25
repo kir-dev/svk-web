@@ -8,6 +8,8 @@ import { urlForImage } from '~/lib/sanity.image'
 import { LinkedInSvg } from '~/components/svg-components/LinkedInSvg'
 import React from 'react'
 import { Member } from '~/lib/sanity.types'
+import { formatNameByLocale, getLocalizedText } from '~/utils/getLocalizedText'
+import { useLocale } from 'next-intl'
 
 async function fetchMember(slug: string) {
   const client = getClient()
@@ -37,6 +39,19 @@ interface Props {
 }
 
 const MemberSlugContent = ({ member }: Props) => {
+  const locale = useLocale()
+  const name = formatNameByLocale(locale, member.firstName, member.lastName)
+  const description = getLocalizedText(
+    locale,
+    member.description,
+    member.englishDescription,
+  )
+  const position = getLocalizedText(
+    locale,
+    member.position,
+    member.englishPosition,
+  )
+
   return (
     <Layout>
       <div className="flex w-full my-[5%] justify-center">
@@ -46,17 +61,17 @@ const MemberSlugContent = ({ member }: Props) => {
               {member.picture && (
                 <Image
                   src={urlForImage(member.picture)?.url() ?? ''}
-                  alt={member.name}
+                  alt={name}
                   width={250}
                   height={250}
-                  title={member.name}
+                  title={name}
                   className="rounded-xl max-h-full border-2 border-white"
                 />
               )}
             </div>
             <div className="flex flex-col w-auto mt-5 lg:mt-0 justify-center">
-              <h1 className="text-3xl mb-5">{member.name}</h1>
-              <h2 className="text-xl">{member.position}</h2>
+              <h1 className="text-3xl mb-5">{name}</h1>
+              <h2 className="text-xl">{position}</h2>
               {member.linkedIn && (
                 <a href={member.linkedIn} target="_blank" className="my-5">
                   <LinkedInSvg />
@@ -66,7 +81,7 @@ const MemberSlugContent = ({ member }: Props) => {
           </div>
 
           <div className="mt-10">
-            <p className="text-justify text-xl">{member.description}</p>
+            <p className="text-justify text-xl">{description}</p>
           </div>
         </div>
       </div>

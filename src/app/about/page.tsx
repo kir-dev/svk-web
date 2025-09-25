@@ -6,7 +6,6 @@ import AboutUsLayout from '~/components/AboutUsLayout'
 import { MembersGrid } from '~/components/member-components/MembersGrid'
 import { MemberCard } from '~/components/member-components/MemberCard'
 
-
 export default async function AboutUsPage() {
   const client = getClient()
   const members: Member[] = await getMembers(client)
@@ -17,13 +16,7 @@ export default async function AboutUsPage() {
       <section className="pb-24">
         <MembersGrid>
           {members.map((member, index) => (
-            <MemberCard
-              key={index}
-              name={member.name}
-              slug={member.slug}
-              position={member.position}
-              picture={member.picture}
-            />
+            <MemberCard member={member} key={index} />
           ))}
         </MembersGrid>
       </section>

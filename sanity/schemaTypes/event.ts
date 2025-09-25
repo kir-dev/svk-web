@@ -13,6 +13,12 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'englishTitle',
+      title: 'English Title',
+      description: 'The english title of the event',
+      type: 'string',
+    }),
+    defineField({
       name: 'slug',
       title: 'Slug',
       description: 'This is used for the url of the event. Must be unique!',
@@ -59,9 +65,24 @@ export default defineType({
       type: 'string',
     }),
     defineField({
+      name: 'englishLecturer',
+      title: 'Name of lecturer in english',
+      description:
+        'Name of lecturer in english. May be left blank if estimated count of lecturers is given',
+      type: 'string',
+    }),
+    defineField({
       name: 'description',
       title: 'Description',
-      description: 'The description that will appear in the detailed view of the event. Will not appear if you define an external link',
+      description:
+        'The description that will appear in the detailed view of the event. Will not appear if you define an external link',
+      type: 'string',
+    }),
+    defineField({
+      name: 'englishDescription',
+      title: 'Description in english',
+      description:
+        'The description that will appear in the detailed view of the event in english. Will not appear if you define an external link',
       type: 'string',
     }),
     defineField({
@@ -77,20 +98,22 @@ export default defineType({
           name: 'alt',
           type: 'string',
           title: 'Alternative Text',
-          description: 'Text that appears if the image fails to load'
+          description: 'Text that appears if the image fails to load',
         },
       ],
     }),
     defineField({
       name: 'spotLink',
       title: 'Link of the Spot album',
-      description: 'This is the link the user will go to if they press the little picture icon on the preview of the event',
+      description:
+        'This is the link the user will go to if they press the little picture icon on the preview of the event',
       type: 'url',
     }),
     defineField({
       name: 'externalLink',
       title: 'External link',
-      description: 'If defined, this is where the user will be redirected to when they click on the event preview',
+      description:
+        'If defined, this is where the user will be redirected to when they click on the event preview',
       type: 'url',
     }),
     defineField({

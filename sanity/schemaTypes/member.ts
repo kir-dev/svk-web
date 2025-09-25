@@ -6,9 +6,16 @@ export default defineType({
   type: 'document',
   fields: [
     defineField({
-      name: 'name',
-      title: 'Name',
-      description: 'Name of the member',
+      name: 'firstName',
+      title: 'First Name',
+      description: 'First name of the member',
+      type: 'string',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'lastName',
+      title: 'Last  Name',
+      description: 'Last name of the member',
       type: 'string',
       validation: (rule) => rule.required(),
     }),
@@ -19,7 +26,7 @@ export default defineType({
       type: 'slug',
       validation: (rule) => rule.required(),
       options: {
-        source: 'name',
+        source: (doc) => `${doc.firstName}-${doc.lastName}`.replace(' ', '-'),
         maxLength: 96,
       },
     }),
@@ -27,6 +34,12 @@ export default defineType({
       name: 'position',
       title: 'Position',
       description: 'Title, rank, field, etc.',
+      type: 'string',
+    }),
+    defineField({
+      name: 'englishPosition',
+      title: 'Position in english',
+      description: 'Title, rank, field, etc. in english',
       type: 'string',
     }),
     defineField({
@@ -40,7 +53,15 @@ export default defineType({
     defineField({
       name: 'description',
       title: 'Description',
-      description: 'The short description for the member that appears on the detailed member page',
+      description:
+        'The short description for the member that appears on the detailed member page',
+      type: 'string',
+    }),
+    defineField({
+      name: 'englishDescription',
+      title: 'Description in english',
+      description:
+        'The short description in english for the member that appears on the detailed member page',
       type: 'string',
     }),
     defineField({
@@ -69,12 +90,14 @@ export default defineType({
   ],
   preview: {
     select: {
-      name: 'name',
+      firstName: 'firstName',
+      lastName: 'lastName',
+      media: 'picture',
     },
-    prepare(selection) {
+    prepare({ firstName, lastName, media }) {
       return {
-        ...selection,
-        title: selection.name,
+        title: `${firstName ?? ''} ${lastName ?? ''}`.trim(),
+        media,
       }
     },
   },
