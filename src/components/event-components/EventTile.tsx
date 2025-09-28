@@ -7,6 +7,8 @@ import { LecturerIcon } from '~/components/svg-components/LecturerIcon'
 import { formatDateTime } from '~/utils/format-date-time'
 import { PictureIcon } from '~/components/svg-components/PictureIcon'
 import { useRouter } from 'next/navigation'
+import { useLocale } from 'next-intl'
+import { getLocalizedText } from '~/utils/getLocalizedText'
 
 interface Props {
   event: EventFull
@@ -16,6 +18,15 @@ export const EventTile: FC<Props> = ({ event }) => {
   const [hovered, setHovered] = useState<boolean>(false)
   const router = useRouter()
   const iconSize = 25
+
+  const locale = useLocale()
+
+  const title = getLocalizedText(locale, event.title, event.englishTitle)
+  const lecturer = getLocalizedText(
+    locale,
+    event.lecturer,
+    event.englishLecturer,
+  )
 
   return (
     <div
@@ -34,8 +45,8 @@ export const EventTile: FC<Props> = ({ event }) => {
               router.push(path)
             }}
           >
-            <EventCoverPicture image={event.image} title={event.title} />
-            <h1 className="my-5 mx-3 text-2xl">{event.title}</h1>
+            <EventCoverPicture image={event.image} title={title} />
+            <h1 className="my-5 mx-3 text-2xl">{title}</h1>
           </div>
 
           {event.spotLink && (
@@ -75,7 +86,7 @@ export const EventTile: FC<Props> = ({ event }) => {
               {event.lecturer && (
                 <div className="flex flex-row flex-nowrap space-x-2">
                   <LecturerIcon width={iconSize} height={iconSize} />
-                  <h2>{event.lecturer}</h2>
+                  <h2>{lecturer}</h2>
                 </div>
               )}
             </div>

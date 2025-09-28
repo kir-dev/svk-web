@@ -33,7 +33,7 @@ export const getPreviousEventsPreview = async (
   )
 }
 
-export const currentEvents = groq`*[_type == 'event' && isActive == '${EventActivitySate.active}' || (isActive == '${EventActivitySate.dateDependent}' && datetime >= now())]{title, datetime, image, spotLink, externalLink, location, lecturer, slug, isActive}`
+export const currentEvents = groq`*[_type == 'event' && isActive == '${EventActivitySate.active}' || (isActive == '${EventActivitySate.dateDependent}' && datetime >= now())]{title, englishTitle, datetime, description, englishDescription, image, spotLink, externalLink, location, lecturer, englishLecture, slug, isActive}`
 
 export const getCurrentEvents = async (
   client: SanityClient,
@@ -48,7 +48,7 @@ export const getCurrentEvents = async (
   )
 }
 
-export const previousEvents = groq`*[_type == 'event' && (isActive == '${EventActivitySate.inactive}' || (isActive == '${EventActivitySate.dateDependent}' && datetime < now()))]{title, datetime, image, description, spotLink, externalLink, exportLink, location, host, lecturer, slug, isActive}`
+export const previousEvents = groq`*[_type == 'event' && (isActive == '${EventActivitySate.inactive}' || (isActive == '${EventActivitySate.dateDependent}' && datetime < now()))]{title, englishTitle, datetime, image, description, englishDescription, spotLink, externalLink, exportLink, location, host, lecturer, englishLecturer, slug, isActive}`
 
 export const getPreviousEvents = async (
   client: SanityClient,
@@ -68,7 +68,7 @@ export const getEventBySlug = async (
   slug: string,
 ): Promise<EventFull | undefined> => {
   try {
-    const eventBySlug = groq`*[_type == 'event' && slug.current == '${slug}' ]{title, datetime, image, description, spotLink, externalLink, exportLink, location, host, lecturer, slug, isActive}`
+    const eventBySlug = groq`*[_type == 'event' && slug.current == '${slug}' ]{title, englishTitle, datetime, image, description, englishDescription, spotLink, externalLink, exportLink, location, host, lecturer, englishLecturer, slug, isActive}`
     const response = await client.fetch(
       eventBySlug,
       {},
