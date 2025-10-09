@@ -2,12 +2,12 @@ import { allRoutes } from '~/utils/routes'
 
 import { Footer } from './Footer'
 import { NavbarSitewide } from './navbar/NavbarSitewide'
-import Image from 'next/image'
-import { urlForImage } from '~/lib/sanity.image'
 import { Picture } from '~/lib/sanity.types'
 import { getAboutUsBackground } from '~/lib/queries/picture.queries'
 import { getClient } from '~/lib/sanity.client'
 import { BackgroundFeatures } from "~/components/BackgroundFeatures";
+import BackgroundBanner from "~/components/decoration-components/BackgroundBanner";
+
 
 export default async function AboutUsLayout(
   { children },
@@ -20,10 +20,7 @@ export default async function AboutUsLayout(
     <div className="z-20 relative">
       <NavbarSitewide routes={allRoutes} />
 
-      <div className={`w-screen aspect-[3/2] sm:aspect-[4/2] md:aspect-[5/2] lg:aspect-[3/1] xl:aspect-[4/1] relative` }>
-        <Image src={urlForImage(bg.image)?.url() ?? ''} alt={bg.title} width={0} height={0} sizes="100vw"
-               className="w-screen fixed overflow-y-hidden"/>
-      </div>
+      <BackgroundBanner bg={bg} />
 
       <div className="d-flex flex-col bg-svk_blue z-10 relative overflow-hidden" style={{clipPath: "inset(0 0 -1px 0)"}}>
         <BackgroundFeatures/>
