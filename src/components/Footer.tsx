@@ -52,15 +52,14 @@ export const Footer: FC<PropsWithChildren<Props>> = ({ routes }) => {
             ))}
           </div>
           <div className="flex-1">
-            <div className="mx-auto text-center">
-              Made with <HeartSvg /> by Kir-Dev
-            </div>
             <div className="flex justify-center">
               <a href="https://kir-dev.hu/" className="pb-4">
                 <KirDevWhiteSvg />
               </a>
             </div>
-
+            <div className="mx-auto text-center">
+              Made with <HeartSvg /> by Kir-Dev
+            </div>
           </div>
           <div className="flex-1 flex flex-col gap-5 sm:gap-2 text-center sm:text-left">
             <div className="ml-auto">
