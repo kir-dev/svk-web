@@ -10,7 +10,7 @@ export default async function EventsPage() {
 
   return (
     <Layout>
-      <div className="w-screen justify-items-center sm:w-3/4 mx-auto">
+      <div className="w-screen justify-items-center px-[8.5%]">
         <EventsPageContent
           currentEvents={currentEvents}
           previousEvents={previousEvents}
