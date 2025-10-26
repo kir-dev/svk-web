@@ -30,7 +30,7 @@ export const EventTile: FC<Props> = ({ event }) => {
 
   return (
     <div
-      className="relative transition-transform bg-black/70 rounded-md max-w-2xl overflow-hidden"
+      className="relative transition-transform bg-black/70 rounded-md max-w-2xl overflow-hidden backdrop-blur-sm"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >

@@ -33,7 +33,7 @@ export default function Bubbles() {
             {sections.map((section) => (
                 <div
                     key={section.key}
-                    className="relative flex-1 flex-col mx-auto justify-center max-w-lg bg-black bg-opacity-15 rounded-3xl p-5 gap-20"
+                    className="relative flex-1 flex-col mx-auto justify-center max-w-lg bg-black bg-opacity-15 rounded-3xl p-5 gap-20 backdrop-blur-sm"
                 >
                     <div className="relative mx-auto w-[70px] h-[70px]">
                         <section.image/>

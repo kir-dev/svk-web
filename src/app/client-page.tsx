@@ -18,7 +18,7 @@ export const ClientHomePage = ({ partners, events }: Props) => {
   const t = useTranslations('Index')
   return (
     <>
-      <section className="items-center h-fit justify-center px-0 pb-8 -translate-y-20">
+      <section className="items-center h-fit justify-center px-0 -translate-y-20">
         <div className="flex flex-col gap-10 justify-center content-center h-screen w-full mx-auto">
           <div className="flex flex-row justify-center w-full">
             <div className="w-fit scale-[40%] md:scale-75 lg:scale-100">
@@ -29,11 +29,11 @@ export const ClientHomePage = ({ partners, events }: Props) => {
             <h1 className="mb-6 text-2xl lg:text-6xl bold ">
               {t('mainTitle')}
             </h1>
-            <h1 className="mb-6 text-md lg:text-2xl text-cyan">{t('motto')}</h1>
+            <h1 className="text-md lg:text-2xl text-cyan">{t('motto')}</h1>
           </div>
         </div>
       </section>
-      <section className="">
+      <section>
         <h1 className="text-center text-3xl md:text-5xl bold md:translate-y-[200%]">
           {t('events')}
         </h1>
