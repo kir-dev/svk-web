@@ -6,7 +6,7 @@ import {
 } from '~/utils/form-validation'
 import { useTranslations } from 'next-intl'
 import { ContactSubmissionIndicator } from '~/components/pop-up-components/ContactSubmissionIndicator'
-import { CircularProgress } from '@nextui-org/progress'
+import { CircularProgress } from "@heroui/progress"
 import { useEventApplicationForm } from '~/lib/hooks/useEventApplicationForm'
 import { ToggleInputField } from '~/components/formfileds/ToggleInputField'
 import {sendForm} from "~/lib/api";

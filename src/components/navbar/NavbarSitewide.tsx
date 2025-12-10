@@ -6,7 +6,7 @@ import { Route } from '~/utils/routes'
 
 import { useTranslations } from 'next-intl'
 import NextLink from 'next/link'
-import { Button } from '@nextui-org/react'
+import { Button } from "@heroui/react"
 import { HamburgerIcon } from '~/components/svg-components/HamburgerIcon'
 import { CloseMenuIcon } from '~/components/svg-components/CloseMenuIcon'
 import { ContactPopUp } from '~/components/pop-up-components/contact/ContactPopUp'
@@ -45,7 +45,7 @@ export const NavbarSitewide: FC<PropsWithChildren<Props>> = ({ routes }) => {
   const t = useTranslations('common')
 
   const switchLocale = async () => {
-    const locale = await getUserLocale() === 'en' ? 'hu' : 'en';
+    const locale = (await getUserLocale()) === 'en' ? 'hu' : 'en';
     startTransition(() => {
       setUserLocale(locale);
     });

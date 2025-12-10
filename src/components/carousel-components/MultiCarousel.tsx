@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import { Button } from '@nextui-org/react'
+import { Button } from "@heroui/react"
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid'
 
 interface Props {

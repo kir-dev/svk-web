@@ -8,7 +8,7 @@ import { CalendarIcon } from '~/components/svg-components/CalendarIcon'
 import { formatDateTime } from '~/utils/format-date-time'
 import { LocationIcon } from '~/components/svg-components/LocationIcon'
 import { LecturerIcon } from '~/components/svg-components/LecturerIcon'
-import { Button } from '@nextui-org/react'
+import { Button } from "@heroui/react"
 import React, { useState } from 'react'
 import { EventActivitySate, EventFull } from '~/lib/sanity.types'
 import { getLocalizedText } from '~/utils/getLocalizedText'

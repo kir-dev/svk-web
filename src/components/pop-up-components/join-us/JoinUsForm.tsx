@@ -3,7 +3,7 @@ import React, { ChangeEvent } from 'react'
 import { JoinUsFieldsValidity, JoinUsFormFields } from '~/utils/form-validation'
 import { useTranslations } from 'next-intl'
 import { ContactSubmissionIndicator } from '~/components/pop-up-components/ContactSubmissionIndicator'
-import { CircularProgress } from '@nextui-org/progress'
+import { CircularProgress } from "@heroui/progress"
 import { DropdownFormField } from '~/components/formfileds/DropdownFormField'
 import { useJoinUsFrom } from '~/lib/hooks/useJoinUsFrom'
 import { sendForm } from "~/lib/api";

@@ -3,7 +3,7 @@ import React, { ChangeEvent, useEffect } from 'react'
 import { ContactFieldsValidity } from '~/utils/form-validation'
 import { useTranslations } from 'next-intl'
 import { ContactSubmissionIndicator } from '~/components/pop-up-components/ContactSubmissionIndicator'
-import { CircularProgress } from '@nextui-org/progress'
+import { CircularProgress } from "@heroui/progress"
 import { useContactForm } from '~/lib/hooks/useContactFrom'
 
 export interface ModalFormProps {
