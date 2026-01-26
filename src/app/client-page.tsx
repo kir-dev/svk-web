@@ -54,7 +54,7 @@ export const ClientHomePage = ({ partners, events }: Props) => {
         <Bubbles />
       </section>
       <section>
-        <PartnersSection partners={partners} title={t('partnersTitle')} />
+        {/*<PartnersSection partners={partners} title={t('partnersTitle')} />*/}
       </section>
     </>
   )
