@@ -1,5 +1,7 @@
-import { Button, Link } from '@nextui-org/react'
+
 import { SVGProps } from 'react'
+import { Button } from "@heroui/button";
+import Link from "next/link";
 
 
 interface SocialIcon {

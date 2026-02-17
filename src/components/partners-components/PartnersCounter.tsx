@@ -1,6 +1,8 @@
-import { FC, useState } from 'react'
+'use client'
+
+import { FC } from 'react'
 import CountUp from 'react-countup'
-import VisibilitySensor from 'react-visibility-sensor'
+import {useInView} from "react-intersection-observer";
 
 interface Props {
   title: string
@@ -8,25 +10,18 @@ interface Props {
 }
 
 export const PartnersCounter: FC<Props> = ({ title, length }: Props) => {
-  const [counted, setCounted] = useState(false)
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.8,
+  });
 
   return (
-    <h1 className="text-center text-4xl pt-2 pb-5">
-      {title}:
-      <CountUp start={0} end={length}>
-        {({ countUpRef, start }) => (
-          <VisibilitySensor
-            onChange={(isVisible: boolean) => {
-              if (!counted && isVisible) {
-                setCounted(true)
-                start()
-              }
-            }}
-          >
-            <span ref={countUpRef} />
-          </VisibilitySensor>
-        )}
-      </CountUp>
+    <h1 ref={ref} className="text-center text-4xl pt-2 pb-5">
+      {title}: {inView ? (
+        <CountUp start={0} end={length}/>
+      ) : (
+        0
+      )}
     </h1>
   )
 }
