@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import { environment } from '~/utils/environment'
 
@@ -13,8 +13,8 @@ import SocialIcon from '~/components/SocialIcon'
 import { MailIconSvg } from '~/components/svg-components/MailIconSvg'
 import { ContactPopUp } from '~/components/pop-up-components/contact/ContactPopUp'
 import { usePathname } from 'next/navigation'
-import KirDevWhiteSvg from "~/components/svg-components/KirDevWhiteSvg";
-import HeartSvg from "~/components/svg-components/HeartSvg";
+import KirDevWhiteSvg from '~/components/svg-components/KirDevWhiteSvg'
+import HeartSvg from '~/components/svg-components/HeartSvg'
 
 export interface Props {
   routes: Route[]
@@ -29,7 +29,7 @@ const socials = [
 export const Footer: FC<PropsWithChildren<Props>> = ({ routes }) => {
   const t = useTranslations('common')
 
-  const  pathname  = usePathname()
+  const pathname = usePathname()
   const [isContactModalOpen, setIsContactModalOpen] = useState<boolean>(false)
 
   return (
@@ -62,13 +62,17 @@ export const Footer: FC<PropsWithChildren<Props>> = ({ routes }) => {
             </div>
           </div>
           <div className="flex-1 flex flex-col gap-5 sm:gap-2 text-center sm:text-left">
-            <div className="ml-auto">
+            <div className="mx-auto md:ml-auto">
               <p>{t('footer.svk')}</p>
               <p>{t('footer.address0')}</p>
               <p>{t('footer.address1')}</p>
               <div className="flex flex-row justify-between pt-2">
                 {socials.map((item) => (
-                  <SocialIcon key={item.key} href={item.href} icon={item.icon} />
+                  <SocialIcon
+                    key={item.key}
+                    href={item.href}
+                    icon={item.icon}
+                  />
                 ))}
                 <button
                   onClick={() => setIsContactModalOpen(!isContactModalOpen)}
