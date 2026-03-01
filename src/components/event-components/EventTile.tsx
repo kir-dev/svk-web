@@ -9,6 +9,8 @@ import { PictureIcon } from '~/components/svg-components/PictureIcon'
 import { useRouter } from 'next/navigation'
 import { useLocale } from 'next-intl'
 import { getLocalizedText } from '~/utils/getLocalizedText'
+import { HamburgerIcon } from '~/components/svg-components/HamburgerIcon'
+import { useIsTouchDevice } from '~/utils/hooks/useIsTouchDevice'
 
 interface Props {
   event: EventFull
@@ -28,6 +30,8 @@ export const EventTile: FC<Props> = ({ event }) => {
     event.englishLecturer,
   )
 
+  const isTouch = useIsTouchDevice();
+
   return (
     <div
       className="relative transition-transform bg-black/70 rounded-md max-w-2xl overflow-hidden backdrop-blur-sm"
@@ -46,7 +50,20 @@ export const EventTile: FC<Props> = ({ event }) => {
             }}
           >
             <EventCoverPicture image={event.image} title={title} />
-            <h1 className="my-5 mx-3 text-2xl">{title}</h1>
+            <div className={'flex items-center justify-between'}>
+              <h1 className="my-5 mx-3 text-2xl">{title}</h1>
+              {isTouch && (
+                <div
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    setHovered(!hovered)
+                  }}
+                  className="mr-3 w-fit z-100"
+                >
+                  <HamburgerIcon color="#3DCAB1" />
+                </div>
+              )}
+            </div>
           </div>
 
           {event.spotLink && (
@@ -74,6 +91,7 @@ export const EventTile: FC<Props> = ({ event }) => {
                     height={iconSize}
                     color="#3DCAB1"
                   />
+
                   <h2>{formatDateTime(event.datetime)}</h2>
                 </div>
               )}
