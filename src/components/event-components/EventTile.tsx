@@ -30,7 +30,7 @@ export const EventTile: FC<Props> = ({ event }) => {
     event.englishLecturer,
   )
 
-  const isTouch = useIsTouchDevice();
+  const isTouch = useIsTouchDevice()
 
   return (
     <div
@@ -58,9 +58,9 @@ export const EventTile: FC<Props> = ({ event }) => {
                     e.stopPropagation()
                     setHovered(!hovered)
                   }}
-                  className="mr-3 w-fit z-100"
+                  className="mr-3 w-fit z-20"
                 >
-                  <HamburgerIcon color="#3DCAB1" />
+                  <HamburgerIcon />
                 </div>
               )}
             </div>
