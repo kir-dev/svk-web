@@ -1,5 +1,5 @@
 import { EventFull } from '~/lib/sanity.types'
-import React, { FC, useState } from 'react'
+import React, { FC, useRef, useState } from 'react'
 import { EventCoverPicture } from '~/components/event-components/EventCoverPicture'
 import { CalendarIcon } from '~/components/svg-components/CalendarIcon'
 import { LocationIcon } from '~/components/svg-components/LocationIcon'
@@ -9,6 +9,8 @@ import { PictureIcon } from '~/components/svg-components/PictureIcon'
 import { useRouter } from 'next/navigation'
 import { useLocale } from 'next-intl'
 import { getLocalizedText } from '~/utils/getLocalizedText'
+import { HamburgerIcon } from '~/components/svg-components/HamburgerIcon'
+import { useIsTouchDevice } from '~/utils/hooks/useIsTouchDevice'
 
 interface Props {
   event: EventFull
@@ -28,11 +30,14 @@ export const EventTile: FC<Props> = ({ event }) => {
     event.englishLecturer,
   )
 
+  const isTouch = useIsTouchDevice()
+  const debounceRef = useRef(false)
+
   return (
     <div
       className="relative transition-transform bg-black/70 rounded-md max-w-2xl overflow-hidden backdrop-blur-sm"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+      onMouseEnter={() => !isTouch && setHovered(true)}
+      onMouseLeave={() => !isTouch && setHovered(false)}
     >
       {event.image && (
         <div className="relative h-full">
@@ -46,18 +51,41 @@ export const EventTile: FC<Props> = ({ event }) => {
             }}
           >
             <EventCoverPicture image={event.image} title={title} />
-            <h1 className="my-5 mx-3 text-2xl">{title}</h1>
           </div>
 
-          {event.spotLink && (
+          {(event.spotLink || isTouch) && (
             <div
-              className={`absolute bottom-0 right-0 m-4 w-fit z-10 transition-transform cursor-pointer ${hovered ? '-translate-y-[40%]' : ''}`}
-              onClick={(e) => {
-                e.stopPropagation()
-                window.open(event.spotLink!!, '_blank')
-              }}
+              className={`flex items-center justify-between absolute bottom-0 right-0 m-4 gap-2 w-fit z-20 transition-transform cursor-pointer ${
+                hovered ? '-translate-y-[40%]' : ''
+              }`}
             >
-              <PictureIcon color="#3DCAB1" />
+              {event.spotLink && (
+                <div
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    window.open(event.spotLink!!, '_blank')
+                  }}
+                >
+                  <PictureIcon color="#3DCAB1" />
+                </div>
+              )}
+              {isTouch && (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    if (debounceRef.current) return
+                    debounceRef.current = true
+
+                    setHovered((prev) => !prev)
+
+                    setTimeout(() => {
+                      debounceRef.current = false
+                    }, 250) // Adjust the delay to match your animation duration
+                  }}
+                >
+                  <HamburgerIcon className={'w-[40px] h-[40px]'} />
+                </button>
+              )}
             </div>
           )}
 
@@ -74,6 +102,7 @@ export const EventTile: FC<Props> = ({ event }) => {
                     height={iconSize}
                     color="#3DCAB1"
                   />
+
                   <h2>{formatDateTime(event.datetime)}</h2>
                 </div>
               )}
